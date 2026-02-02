@@ -674,88 +674,119 @@ footer {
     padding-top: 20px;
 }
 
-/* --- CONTENEDOR CENTRADO EN LA FOTO --- */
+/* --- BLOQUE DE CONTROLES CABECERA (TODO EN UNO) --- */
+
+/* Contenedor Principal */
 .controls-area {
-    display: flex;             /* Modo flexible para alinear */
-    justify-content: center;   /* Centrado horizontal total */
-    align-items: center;       /* Centrado vertical */
-    gap: 20px;                 /* Espacio entre botones */
-    margin-top: 40px;          /* Separación del contador */
-    width: 100%;               /* Ocupa todo el ancho */
+    display: flex;
+    flex-direction: column; /* Organiza en pisos */
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+    width: 100%;
     position: relative;
-    z-index: 5;                /* Encima de la foto */
-    flex-wrap: wrap;           /* Adaptable */
+    z-index: 5;
 }
 
-/* --- BOTÓN MOCHILA PREMIUM (Degradado Naranja) --- */
+/* Piso 1: Mochila y Selector */
+.tools-row {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Piso 2: Apps Externas (Tricount/Spotify) */
+.apps-row {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    width: 100%;
+}
+
+/* --- ESTILO MOCHILA --- */
 .btn-mochila-pro {
     background: linear-gradient(135deg, #FF8008 0%, #FFC837 100%);
     color: white;
     border: none;
-    padding: 12px 35px;        /* Más gordito y pulsable */
-    border-radius: 50px;       /* Redondo como una píldora */
+    padding: 12px 30px;
+    border-radius: 50px;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 1px;
     font-size: 0.9em;
     cursor: pointer;
-    box-shadow: 0 10px 25px rgba(255, 128, 8, 0.4); /* Sombra naranja brillante */
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote */
+    box-shadow: 0 10px 25px rgba(255, 128, 8, 0.4);
     display: flex;
     align-items: center;
-    gap: 10px;                 /* Espacio entre icono y texto */
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    gap: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
-
 .btn-mochila-pro:hover {
-    transform: translateY(-4px) scale(1.05); /* Se eleva al pasar el ratón */
+    transform: translateY(-3px) scale(1.05);
     box-shadow: 0 15px 35px rgba(255, 128, 8, 0.6);
 }
 
-/* --- CÁPSULA DE CRISTAL (Glassmorphism) --- */
+/* --- ESTILO SELECTOR (CÁPSULA DE CRISTAL) --- */
 .view-toggle-capsule {
-    background: rgba(0, 0, 0, 0.4); /* Fondo negro semitransparente */
-    backdrop-filter: blur(10px);    /* EFECTO BORROSO DE CRISTAL */
+    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro transparente */
+    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     padding: 5px;
     border-radius: 50px;
     display: flex;
     gap: 5px;
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* BORDE BLANCO SUTIL */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
-/* --- BOTONES DEL SELECTOR --- */
 .view-btn-pro {
     background: transparent;
     color: rgba(255, 255, 255, 0.7);
     border: none;
-    padding: 10px 25px;
+    padding: 8px 20px;
     border-radius: 40px;
     font-weight: 600;
     font-size: 0.85em;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s;
 }
-
-/* Estado Activo (Blanco Brillante) */
 .view-btn-pro.active {
     background: white;
-    color: #2c3e50;
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+    color: #333;
     font-weight: 800;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
-/* --- VERSIÓN MÓVIL --- */
+/* --- ESTILO APPS (PÍLDORAS) --- */
+.btn-app {
+    text-decoration: none;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.85em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+.btn-app:hover { transform: translateY(-3px); color: white; }
+
+.btn-tricount {
+    background: linear-gradient(135deg, #004e92 0%, #000428 100%); /* Azul */
+    box-shadow: 0 5px 15px rgba(0, 78, 146, 0.4);
+}
+.btn-spotify {
+    background: linear-gradient(135deg, #1DB954 0%, #191414 100%); /* Verde */
+    box-shadow: 0 5px 15px rgba(29, 185, 84, 0.4);
+}
+
+/* Versión Móvil */
 @media (max-width: 768px) {
-    .controls-area {
-        flex-direction: column; /* Uno debajo del otro */
-        gap: 15px;
-    }
-    .btn-mochila-pro {
-        width: 80%;            /* Botón grande para dedo */
-        justify-content: center;
-    }
+    .tools-row { flex-direction: column; width: 100%; }
+    .btn-mochila-pro { width: 80%; justify-content: center; }
 }
 
     </style>
@@ -785,18 +816,29 @@ footer {
 
 <div class="controls-area">
     
-    <button onclick="openModal('modalMochila')" class="btn-mochila-pro">
-        <span style="font-size: 1.4em;">🎒</span> 
-        <span>Mi Mochila</span>
-    </button>
+    <div class="tools-row">
+        <button onclick="openModal('modalMochila')" class="btn-mochila-pro">
+            <span style="font-size: 1.4em;">🎒</span> 
+            <span>Mi Mochila</span>
+        </button>
 
-    <div class="view-toggle-capsule">
-        <button class="view-btn-pro active" onclick="switchView('detail', this)">
-            🪪 Tarjetas
-        </button>
-        <button class="view-btn-pro" onclick="switchView('list', this)">
-            📋 Lista
-        </button>
+        <div class="view-toggle-capsule">
+            <button class="view-btn-pro active" onclick="switchView('detail', this)">
+                🪪 Tarjetas
+            </button>
+            <button class="view-btn-pro" onclick="switchView('list', this)">
+                📋 Lista
+            </button>
+        </div>
+    </div>
+
+    <div class="apps-row">
+        <a href="https://tricount.com" target="_blank" class="btn-app btn-tricount">
+            💸 Tricount
+        </a>
+        <a href="https://open.spotify.com" target="_blank" class="btn-app btn-spotify">
+            🎧 Música
+        </a>
     </div>
 
 </div>
@@ -1363,9 +1405,27 @@ Esta etapa de descanso es fundamental para recuperar fuerzas antes del último t
                                 </div>
                             </div>
                             <div class="tramo-content">
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://oportoando.com/wp-content/uploads/sites/12/2018/02/barrio-se-oporto-1-1024x683.jpeg" 
+         alt="Puente Don Luis I"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Inicio de la aventura: Puente Don Luis I
+    </figcaption>
+</figure>
                                 <p>Esta primera etapa del Camino Portugués por la Costa parte de la ciudad de Oporto, la segunda más grande de Portugal y una de las principales de la Península Ibérica, y termina en Labruge, con una distancia total de 24 km totalmente pegados a la costa.</p>
                                 <p>Salvo que ya la hayamos visitado el día anterior, el punto tradicional de salida de los peregrinos sería desde la catedral de Oporto, la <strong>"Sé-catedral"</strong>. A partir de aquí sólo tenemos que bajar a la ribera del río Duero (Douro), sin hacer caso de las flechas amarillas ni de las placas metálicas que han colocado (pues éstas conducen hacia el "trazado histórico", que no va por la costa).</p>
                                 <p>Tras bajar a nuestro aire por las calles empedradas del casco antiguo llegaremos al <strong>Cais da Ribeira</strong>, muelle al pie del gran puente metálico de D. Luís I, y a la inmediata Praça da Ribeira, siempre muy concurrida por turistas y locales.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://oportoando.com/wp-content/uploads/sites/12/2018/03/puente-don-luis-oporto-1-1024x683.jpeg" 
+         alt="Puente Don Luis I"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Inicio de la aventura: Puente Don Luis I
+    </figcaption>
+</figure>
                                 <p>Sin flechas –ni falta que hace, pues es imposible perderse– seguiremos un recorrido muy ameno por todo el margen del río Douro en dirección hacia su desembocadura. Pasaremos junto a la iglesia de São Francisco, después ante la antigua aduana o Alfândega, el museo del Vino de Porto y también bajo el inmenso arco del puente da Arrábida. En este tramo encontraremos a menudo runners, ciclistas y paseantes; más de uno nos deseará "Bom caminho" al vernos con la mochila.</p>
                                 <p>En <strong>Foz de Douro</strong> superamos el farol (faro) de São Miguel, los jardines do Passeio Alegre y llegamos al fuerte de São João Baptista, donde desemboca el Duero y aparece frente a nosotros el <strong>océano Atlántico</strong>.</p>
                                 <div class="punto-parada">
@@ -1384,7 +1444,25 @@ Esta etapa de descanso es fundamental para recuperar fuerzas antes del último t
                             </div>
                             <div class="tramo-content">
                                 <p>Comienza aquí un largo tramo por la fachada marítima del barrio de Nevogilde, la Copacabana de Porto, pasando ante las concurridas playas de Ourigo, Ingleses, da Luz, Molhe… Al final llegamos al fuerte de São Francisco Xavier, más conocido como <strong>Castelo do Queijo</strong> (castillo del queso), donde comienza la extensa playa de Matosinhos, muy frecuentada por surfistas.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://porto-north-portugal.com/images/650x450/castelo-do-queijo-matosinhos.jpg" 
+         alt="Puente Don Luis I"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Inicio de la aventura: Puente Don Luis I
+    </figcaption>
+</figure>
                                 <p>Superamos una rotonda de forma elíptica con una curiosa escultura colgante que simboliza una red de pesca, si bien es más conocida como la <strong>Anémona</strong>; al final de la playa tenemos otra escultura, ésta figurativa, titulada <strong>Tragédia do Mar</strong> y dedicada al desastre acaecido aquí una noche de diciembre de 1947, donde naufragaron varios barcos de pesca y murieron 152 marineros.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://lifecooler.com/files/registos/imagens/429139/240627.jpg" 
+         alt="Puente Don Luis I"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Inicio de la aventura: Puente Don Luis I
+    </figcaption>
+</figure>
                                 <p>Podemos seguir por el puerto o por las calles interiores hasta llegar a la parada de metro de Mercado, de la línea A-azul (ojo, pues el metro en Porto va casi siempre por superficie, parecido a un tranvía largo).</p>
                                 <div class="punto-parada">
                                     <div class="punto-parada-nombre">📍 MATOSINHOS</div>
