@@ -473,18 +473,18 @@ input:checked + .slider:before {
 header {
     /* Imagen de fondo (Costa/Camino) con un filtro oscuro encima para que se lea el texto */
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), 
-                url('https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?q=80&w=2534&auto=format&fit=crop');
+                url('https://estaticos-cdn.prensaiberica.es/clip/6bbb0fed-2234-4eac-b78e-77702924fd41_alta-libre-aspect-ratio_default_0.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* Efecto Parallax chulo al hacer scroll */
     color: white;
-    padding: 60px 20px;
+    padding: 60px 20px 140px 20px; /* Aumentamos el espacio de abajo a 140px */
     margin-bottom: 40px;
     border-radius: 0 0 25px 25px; /* Bordes redondeados solo abajo */
     text-align: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     position: relative;
-    overflow: hidden;
+    overflow: visible; /* Esto evita que el contenido se corte si sobresale un poco */
 }
 
 header h1 {
@@ -563,23 +563,32 @@ header p {
     
     /* 1. Ajustar la Cabecera */
     header {
-        padding: 40px 15px; /* Menos relleno a los lados */
-    }
+    padding: 40px 15px 120px 15px !important; 
+}
     header h1 {
         font-size: 2.2em; /* Título un poco más pequeño */
     }
 
-    /* 2. Forzar que las 3 cajas quepan en una línea */
-    .stats-grid {
-        /* Reducimos el ancho mínimo de 140px a 90px para que entren 3 */
-        grid-template-columns: repeat(3, 1fr); 
-        gap: 8px; /* Menos hueco entre ellas */
-        margin-top: 20px;
-    }
+    /* 2. Forzar que las cajas quepan en dos filas en móvil */
+.stats-grid {
+            grid-template-columns: repeat(2, 1fr); /* Crea 2 columnas iguales */
+            grid-template-rows: repeat(2, auto);   /* Crea 2 filas automáticas */
+            gap: 12px;
+            margin-top: 25px;
+            display: grid;
+            width: 100%;
+            max-width: 400px; /* Centra el bloque en el móvil */
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-    .stat {
-        padding: 10px 4px; /* Cajas más compactas */
-    }
+.stat {
+            padding: 15px 5px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 90px; /* Les da una altura uniforme a todas */
+        }
 
     .stat-number {
         font-size: 1.4em; /* Números ajustados */
@@ -665,6 +674,90 @@ footer {
     padding-top: 20px;
 }
 
+/* --- CONTENEDOR CENTRADO EN LA FOTO --- */
+.controls-area {
+    display: flex;             /* Modo flexible para alinear */
+    justify-content: center;   /* Centrado horizontal total */
+    align-items: center;       /* Centrado vertical */
+    gap: 20px;                 /* Espacio entre botones */
+    margin-top: 40px;          /* Separación del contador */
+    width: 100%;               /* Ocupa todo el ancho */
+    position: relative;
+    z-index: 5;                /* Encima de la foto */
+    flex-wrap: wrap;           /* Adaptable */
+}
+
+/* --- BOTÓN MOCHILA PREMIUM (Degradado Naranja) --- */
+.btn-mochila-pro {
+    background: linear-gradient(135deg, #FF8008 0%, #FFC837 100%);
+    color: white;
+    border: none;
+    padding: 12px 35px;        /* Más gordito y pulsable */
+    border-radius: 50px;       /* Redondo como una píldora */
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9em;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(255, 128, 8, 0.4); /* Sombra naranja brillante */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote */
+    display: flex;
+    align-items: center;
+    gap: 10px;                 /* Espacio entre icono y texto */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.btn-mochila-pro:hover {
+    transform: translateY(-4px) scale(1.05); /* Se eleva al pasar el ratón */
+    box-shadow: 0 15px 35px rgba(255, 128, 8, 0.6);
+}
+
+/* --- CÁPSULA DE CRISTAL (Glassmorphism) --- */
+.view-toggle-capsule {
+    background: rgba(0, 0, 0, 0.4); /* Fondo negro semitransparente */
+    backdrop-filter: blur(10px);    /* EFECTO BORROSO DE CRISTAL */
+    -webkit-backdrop-filter: blur(10px);
+    padding: 5px;
+    border-radius: 50px;
+    display: flex;
+    gap: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* --- BOTONES DEL SELECTOR --- */
+.view-btn-pro {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 0.85em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Estado Activo (Blanco Brillante) */
+.view-btn-pro.active {
+    background: white;
+    color: #2c3e50;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+    font-weight: 800;
+}
+
+/* --- VERSIÓN MÓVIL --- */
+@media (max-width: 768px) {
+    .controls-area {
+        flex-direction: column; /* Uno debajo del otro */
+        gap: 15px;
+    }
+    .btn-mochila-pro {
+        width: 80%;            /* Botón grande para dedo */
+        justify-content: center;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -672,28 +765,40 @@ footer {
         <header>
             <h1>🥾 Camino Portugués de la Costa</h1>
             <p>Itinerario completo de peregrinación por la costa portuguesa y gallega</p>
+            
             <div class="stats-grid">
                 <div class="stat"><div class="stat-number">241 km</div><div class="stat-label">Distancia Total</div></div>
                 <div class="stat"><div class="stat-number">12 Etapas</div><div class="stat-label">Jornadas</div></div>
                 <div class="stat"><div class="stat-number">8-10 días</div><div class="stat-label">Duración Aprox.</div></div>
+                <div class="stat" style="background: rgba(230, 126, 34, 0.3); border: 1px solid #e67e22;">
+                    <div class="stat-number" id="global-total-money">0.00€</div>
+                    <div class="stat-label">Presupuesto Gastado</div>
+                </div>
             </div>
-            <div id="countdown-container" style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; margin-top: 25px; display: inline-block; border: 1px solid rgba(255,255,255,0.2);">
-    <span style="font-size: 0.9em; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9;">⏳ Tiempo para la aventura:</span>
-    <div id="countdown" style="font-size: 1.6em; font-weight: bold; margin-top: 5px; color: #f1c40f; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
-        Cargando...
-    </div>
-</div>
 
-<div class="controls-area" style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+            <div id="countdown-container" style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; margin-top: 25px; display: inline-block; border: 1px solid rgba(255,255,255,0.2);">
+                <span style="font-size: 0.9em; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9;">⏳ Tiempo para la aventura:</span>
+                <div id="countdown" style="font-size: 1.6em; font-weight: bold; margin-top: 5px; color: #f1c40f; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+                    Cargando...
+                </div>
+            </div>
+
+<div class="controls-area">
     
-    <button onclick="openModal('modalMochila')" style="background: #e67e22; color: white; border: none; padding: 8px 20px; border-radius: 25px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 8px; transition: transform 0.2s;">
-        🎒 Mochila
+    <button onclick="openModal('modalMochila')" class="btn-mochila-pro">
+        <span style="font-size: 1.4em;">🎒</span> 
+        <span>Mi Mochila</span>
     </button>
 
-    <div class="view-toggle" style="background: rgba(0,0,0,0.2); padding: 4px; border-radius: 25px; display: flex;">
-        <button class="view-btn active" onclick="switchView('detail', this)" style="background: white; color: #333; border: none; padding: 6px 15px; border-radius: 20px; cursor: pointer; font-weight: 600;">Detalle</button>
-        <button class="view-btn" onclick="switchView('list', this)" style="background: transparent; color: white; border: none; padding: 6px 15px; border-radius: 20px; cursor: pointer; font-weight: 600;">Lista</button>
+    <div class="view-toggle-capsule">
+        <button class="view-btn-pro active" onclick="switchView('detail', this)">
+            🪪 Tarjetas
+        </button>
+        <button class="view-btn-pro" onclick="switchView('list', this)">
+            📋 Lista
+        </button>
     </div>
+
 </div>
 
         </header>
@@ -1044,6 +1149,27 @@ footer {
                     <a href="https://www.google.com/maps/dir/Baiona,+Pontevedra/Padr%C3%B3n,+A+Coru%C3%B1a/@42.4,-8.7,10z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0xd259062ccf7c87d:0x404f58273ca55a0!2m2!1d-8.8495577!2d42.1193392!1m5!1m1!1s0xd2f0394c8e7195d:0x404f58273ca5da0!2m2!1d-8.6608933!2d42.7383626!3e0?entry=ttu" target="_blank" class="btn-route-map">
     🗺️ Ver Trayecto (Bus/Coche) en Google Maps
 </a>
+
+<div class="modal-section" style="margin-top: 25px;">
+    <h3 class="sec-alojamiento" style="background: #e1f5fe !important; border-color: #b3e5fc !important;">📸 Mi Recuerdo del Día</h3>
+    <div class="extra-card" style="text-align: center; border-top: 3px solid #3498db; padding: 15px;">
+        <div id="photo-container-etapa8" class="photo-preview" style="width: 100%; height: 250px; background: #f9f9f9; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 12px; border: 2px dashed #3498db; position: relative;">
+            <span style="color: #3498db; font-size: 0.9em; font-weight: 500;">Captura un momento especial</span>
+        </div>
+        
+        <input type="file" id="input-photo-etapa8" accept="image/*" style="display: none;" onchange="handlePhotoUpload('etapa8', this)">
+        
+        <div style="display: flex; gap: 8px;">
+            <button onclick="document.getElementById('input-photo-etapa8').click()" style="flex: 2; background: #3498db; color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85em;">
+                📷 Seleccionar Foto
+            </button>
+            <button onclick="removePhoto('etapa8')" style="flex: 1; background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85em;">
+                🗑️ Borrar
+            </button>
+        </div>
+    </div>
+</div>
+
                 </div>
                 <div class="modal-right">
                     <div class="modal-section">
@@ -1087,6 +1213,32 @@ footer {
                             </ul>
                         </div>
                     </div>
+
+                    <div class="modal-section">
+    <h3 class="sec-alojamiento" style="background: #fff3e0 !important; border-color: #ffe0b2 !important;">💰 Mis Gastos (Etapa)</h3>
+    <div class="extra-card" style="background: #fcfcfc; border-top: 3px solid #e67e22;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div>
+                <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🏨 Alojamiento (€)</label>
+                <input type="number" class="expense-input" data-cat="alojamiento" placeholder="0" 
+                       style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+            </div>
+            <div>
+                <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🍽️ Comida (€)</label>
+                <input type="number" class="expense-input" data-cat="comida" placeholder="0" 
+                       style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+            </div>
+        </div>
+        <div style="margin-top: 10px;">
+            <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🎒 Otros / Varios (€)</label>
+            <input type="number" class="expense-input" data-cat="otros" placeholder="0" 
+                   style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+        </div>
+        <div style="margin-top: 15px; padding-top: 10px; border-top: 1px dashed #eee; font-weight: bold; color: #2c3e50; font-size: 1em; text-align: right;">
+            Total Etapa: <span class="subtotal-etapa" style="color: #e67e22;">0</span>€
+        </div>
+    </div>
+</div>
 
                     <div class="modal-section">
                         <h3>🤓 Curiosidades</h3>
@@ -1146,7 +1298,7 @@ Esta etapa de descanso es fundamental para recuperar fuerzas antes del último t
                 <h3>🥾 Equipo Básico</h3>
                 <div class="backpack-item"><input type="checkbox" id="bp_botas" onchange="updateBackpack()"><label for="bp_botas">Calzado de trekking (domado)</label></div>
                 <div class="backpack-item"><input type="checkbox" id="bp_chanclas" onchange="updateBackpack()"><label for="bp_chanclas">Chanclas (ducha/descanso)</label></div>
-                <div class="backpack-item"><input type="checkbox" id="bp_saco" onchange="updateBackpack()"><label for="bp_saco">Saco de dormir ligero / Sábana</label></div>
+                <div class="backpack-item"><input type="checkbox" id="bp_saco" onchange="updateBackpack()"><label for="bp_saco">Chubasquero / Funda Mochila</label></div>
                 <div class="backpack-item"><input type="checkbox" id="bp_mochila" onchange="updateBackpack()"><label for="bp_mochila">Mochila (30-40L)</label></div>
             </div>
 
@@ -1316,6 +1468,27 @@ Esta etapa de descanso es fundamental para recuperar fuerzas antes del último t
                     <a href="https://www.google.com/maps/dir/Catedral+de+Oporto/Labruge,+Vila+do+Conde,+Portugal/@41.208166,-8.7188764,12z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0xd2464e251ebd14d:0x22629b4df12a433e!2m2!1d-8.6111162!2d41.1428592!1m5!1m1!1s0xd24677f8d689531:0x500ebbde4911070!2m2!1d-8.7160759!2d41.2750047!3e2?entry=ttu" target="_blank" class="btn-route-map">
     🗺️ Ver Ruta en Google Maps (24 km)
 </a>
+
+<div class="modal-section" style="margin-top: 25px;">
+    <h3 class="sec-alojamiento" style="background: #e1f5fe !important; border-color: #b3e5fc !important;">📸 Mi Recuerdo del Día</h3>
+    <div class="extra-card" style="text-align: center; border-top: 3px solid #3498db; padding: 15px;">
+        <div id="photo-container-etapa1" class="photo-preview" style="width: 100%; height: 250px; background: #f9f9f9; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 12px; border: 2px dashed #3498db; position: relative;">
+            <span style="color: #3498db; font-size: 0.9em; font-weight: 500;">Captura un momento especial</span>
+        </div>
+        
+        <input type="file" id="input-photo-etapa1" accept="image/*" style="display: none;" onchange="handlePhotoUpload('etapa1', this)">
+        
+        <div style="display: flex; gap: 8px;">
+            <button onclick="document.getElementById('input-photo-etapa1').click()" style="flex: 2; background: #3498db; color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85em;">
+                📷 Seleccionar Foto
+            </button>
+            <button onclick="removePhoto('etapa1')" style="flex: 1; background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85em;">
+                🗑️ Borrar
+            </button>
+        </div>
+    </div>
+</div>
+
                 </div>
                 <div class="modal-right">
                     <div class="modal-section">
@@ -1329,7 +1502,7 @@ Esta etapa de descanso es fundamental para recuperar fuerzas antes del último t
                                 <div class="accommodation-detail-line"><strong>Capacidad:</strong> 2 camas dobles</div>
                                 <div class="accommodation-detail-line"><strong>Precio:</strong> <span style="font-size: 1.1em; font-weight: bold; color: #27ae60;">165€</span></div>
                             </div>
-                            <a href="https://www.booking.com/Share-Zo09uJ" target="_blank" class="btn-alojamiento">Ver alojamiento disponible</a>
+                            <a href="https://www.booking.com/Share-Zo09uJ" target="_blank" class="btn-alojamiento">Ver alojamiento en Booking</a>
                         </div>
                     </div>
                     
@@ -1353,6 +1526,33 @@ Esta etapa de descanso es fundamental para recuperar fuerzas antes del último t
                             </ul>
                         </div>
                     </div>
+
+                    <div class="modal-section">
+    <h3 class="sec-alojamiento" style="background: #fff3e0 !important; border-color: #ffe0b2 !important;">💰 Mis Gastos (Etapa)</h3>
+    <div class="extra-card" style="background: #fcfcfc; border-top: 3px solid #e67e22;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div>
+                <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🏨 Alojamiento (€)</label>
+                <input type="number" class="expense-input" data-cat="alojamiento" placeholder="0" 
+                       style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+            </div>
+            <div>
+                <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🍽️ Comida (€)</label>
+                <input type="number" class="expense-input" data-cat="comida" placeholder="0" 
+                       style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+            </div>
+        </div>
+        <div style="margin-top: 10px;">
+            <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🎒 Otros / Varios (€)</label>
+            <input type="number" class="expense-input" data-cat="otros" placeholder="0" 
+                   style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+        </div>
+        <div style="margin-top: 15px; padding-top: 10px; border-top: 1px dashed #eee; font-weight: bold; color: #2c3e50; font-size: 1em; text-align: right;">
+            Total Etapa: <span class="subtotal-etapa" style="color: #e67e22;">0</span>€
+        </div>
+    </div>
+</div>
+
                     <div class="modal-section">
                         <h3>🤓 Curiosidades</h3>
                         <div class="extra-card">
@@ -1494,6 +1694,27 @@ Localidad pequeña y tranquila que dispone de albergue de peregrinos en la antig
                     <a href="https://www.google.com/maps/dir/Labruge,+Portugal/P%C3%B3voa+de+Varzim,+Portugal/@41.3283259,-8.7884185,13z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0xd24677f8d689531:0x500ebbde4911070!2m2!1d-8.7160759!2d41.2750047!1m5!1m1!1s0xd246e7ae3d34605:0x400ebbde4903bc0!2m2!1d-8.7612376!2d41.3804369!3e2?entry=ttu" target="_blank" class="btn-route-map">
     🗺️ Ver Ruta en Google Maps (14 km)
                     </a>
+
+                    <div class="modal-section" style="margin-top: 25px;">
+    <h3 class="sec-alojamiento" style="background: #e1f5fe !important; border-color: #b3e5fc !important;">📸 Mi Recuerdo del Día</h3>
+    <div class="extra-card" style="text-align: center; border-top: 3px solid #3498db; padding: 15px;">
+        <div id="photo-container-etapa2" class="photo-preview" style="width: 100%; height: 250px; background: #f9f9f9; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 12px; border: 2px dashed #3498db; position: relative;">
+            <span style="color: #3498db; font-size: 0.9em; font-weight: 500;">Captura un momento especial</span>
+        </div>
+        
+        <input type="file" id="input-photo-etapa2" accept="image/*" style="display: none;" onchange="handlePhotoUpload('etapa2', this)">
+        
+        <div style="display: flex; gap: 8px;">
+            <button onclick="document.getElementById('input-photo-etapa2').click()" style="flex: 2; background: #3498db; color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85em;">
+                📷 Seleccionar Foto
+            </button>
+            <button onclick="removePhoto('etapa2')" style="flex: 1; background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85em;">
+                🗑️ Borrar
+            </button>
+        </div>
+    </div>
+</div>
+
                 </div>
                 <div class="modal-right">
                     <div class="modal-section">
@@ -1534,6 +1755,34 @@ Localidad pequeña y tranquila que dispone de albergue de peregrinos en la antig
                             </ul>
                         </div>
                     </div>
+
+                    <div class="modal-section">
+    <h3 class="sec-alojamiento" style="background: #fff3e0 !important; border-color: #ffe0b2 !important;">💰 Mis Gastos (Etapa)</h3>
+    <div class="extra-card" style="background: #fcfcfc; border-top: 3px solid #e67e22;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div>
+                <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🏨 Alojamiento (€)</label>
+                <input type="number" class="expense-input" data-cat="alojamiento" placeholder="0" 
+                       style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+            </div>
+            <div>
+                <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🍽️ Comida (€)</label>
+                <input type="number" class="expense-input" data-cat="comida" placeholder="0" 
+                       style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+            </div>
+        </div>
+        <div style="margin-top: 10px;">
+            <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🎒 Otros / Varios (€)</label>
+            <input type="number" class="expense-input" data-cat="otros" placeholder="0" 
+                   style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+        </div>
+        <div style="margin-top: 15px; padding-top: 10px; border-top: 1px dashed #eee; font-weight: bold; color: #2c3e50; font-size: 1em; text-align: right;">
+            Total Etapa: <span class="subtotal-etapa" style="color: #e67e22;">0</span>€
+        </div>
+    </div>
+</div>
+
+
                     <div class="modal-section">
                         <h3>🤓 Curiosidades</h3>
                         <div class="extra-card">
@@ -1726,6 +1975,27 @@ Los platos tradicionales de la zona reflejan la combinación entre pesca y agric
                     <a href="https://www.google.com/maps/dir/P%C3%B3voa+de+Varzim,+Portugal/Marinhas,+Portugal/@41.4583925,-8.8258505,12z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0xd246e7ae3d34605:0x400ebbde4903bc0!2m2!1d-8.7612376!2d41.3804369!1m5!1m1!1s0xd25b42d13000b0d:0x500ebbde490fc60!2m2!1d-8.7844093!2d41.5363412!3e2?entry=ttu" target="_blank" class="btn-route-map">
     🗺️ Ver Ruta en Google Maps (24,5 km)
 </a>
+
+<div class="modal-section" style="margin-top: 25px;">
+    <h3 class="sec-alojamiento" style="background: #e1f5fe !important; border-color: #b3e5fc !important;">📸 Mi Recuerdo del Día</h3>
+    <div class="extra-card" style="text-align: center; border-top: 3px solid #3498db; padding: 15px;">
+        <div id="photo-container-etapa3" class="photo-preview" style="width: 100%; height: 250px; background: #f9f9f9; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 12px; border: 2px dashed #3498db; position: relative;">
+            <span style="color: #3498db; font-size: 0.9em; font-weight: 500;">Captura un momento especial</span>
+        </div>
+        
+        <input type="file" id="input-photo-etapa3" accept="image/*" style="display: none;" onchange="handlePhotoUpload('etapa3', this)">
+        
+        <div style="display: flex; gap: 8px;">
+            <button onclick="document.getElementById('input-photo-etapa3').click()" style="flex: 2; background: #3498db; color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85em;">
+                📷 Seleccionar Foto
+            </button>
+            <button onclick="removePhoto('etapa3')" style="flex: 1; background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85em;">
+                🗑️ Borrar
+            </button>
+        </div>
+    </div>
+</div>
+
                 </div>
                 <div class="modal-right">
                     <div class="modal-section">
@@ -1766,6 +2036,33 @@ Los platos tradicionales de la zona reflejan la combinación entre pesca y agric
                             </ul>
                         </div>
                     </div>
+
+                    <div class="modal-section">
+    <h3 class="sec-alojamiento" style="background: #fff3e0 !important; border-color: #ffe0b2 !important;">💰 Mis Gastos (Etapa)</h3>
+    <div class="extra-card" style="background: #fcfcfc; border-top: 3px solid #e67e22;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div>
+                <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🏨 Alojamiento (€)</label>
+                <input type="number" class="expense-input" data-cat="alojamiento" placeholder="0" 
+                       style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+            </div>
+            <div>
+                <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🍽️ Comida (€)</label>
+                <input type="number" class="expense-input" data-cat="comida" placeholder="0" 
+                       style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+            </div>
+        </div>
+        <div style="margin-top: 10px;">
+            <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🎒 Otros / Varios (€)</label>
+            <input type="number" class="expense-input" data-cat="otros" placeholder="0" 
+                   style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+        </div>
+        <div style="margin-top: 15px; padding-top: 10px; border-top: 1px dashed #eee; font-weight: bold; color: #2c3e50; font-size: 1em; text-align: right;">
+            Total Etapa: <span class="subtotal-etapa" style="color: #e67e22;">0</span>€
+        </div>
+    </div>
+</div>
+
 
                     <div class="modal-section">
                         <h3>🤓 Curiosidades</h3>
@@ -1981,6 +2278,27 @@ Si el tiempo acompaña os recomendamos pasar la tarde en la playa de Cepães, qu
                     <a href="https://www.google.com/maps/dir/Marinhas,+Portugal/Viana+do+Castelo,+Portugal/@41.614917,-8.859665,12z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0xd25b42d13000b0d:0x500ebbde490fc60!2m2!1d-8.7844093!2d41.5363412!1m5!1m1!1s0xd25b62649060b2d:0x400ebbde4903820!2m2!1d-8.832596!2d41.69323!3e2?entry=ttu" target="_blank" class="btn-route-map">
     🗺️ Ver Ruta en Google Maps (20,8 km)
 </a>
+
+<div class="modal-section" style="margin-top: 25px;">
+    <h3 class="sec-alojamiento" style="background: #e1f5fe !important; border-color: #b3e5fc !important;">📸 Mi Recuerdo del Día</h3>
+    <div class="extra-card" style="text-align: center; border-top: 3px solid #3498db; padding: 15px;">
+        <div id="photo-container-etapa4" class="photo-preview" style="width: 100%; height: 250px; background: #f9f9f9; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 12px; border: 2px dashed #3498db; position: relative;">
+            <span style="color: #3498db; font-size: 0.9em; font-weight: 500;">Captura un momento especial</span>
+        </div>
+        
+        <input type="file" id="input-photo-etapa4" accept="image/*" style="display: none;" onchange="handlePhotoUpload('etapa4', this)">
+        
+        <div style="display: flex; gap: 8px;">
+            <button onclick="document.getElementById('input-photo-etapa4').click()" style="flex: 2; background: #3498db; color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85em;">
+                📷 Seleccionar Foto
+            </button>
+            <button onclick="removePhoto('etapa4')" style="flex: 1; background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85em;">
+                🗑️ Borrar
+            </button>
+        </div>
+    </div>
+</div>
+
                 </div>
                 <div class="modal-right">
                     <div class="modal-section">
@@ -2022,6 +2340,33 @@ Si el tiempo acompaña os recomendamos pasar la tarde en la playa de Cepães, qu
                             </ul>
                         </div>
                     </div>
+
+                    <div class="modal-section">
+    <h3 class="sec-alojamiento" style="background: #fff3e0 !important; border-color: #ffe0b2 !important;">💰 Mis Gastos (Etapa)</h3>
+    <div class="extra-card" style="background: #fcfcfc; border-top: 3px solid #e67e22;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div>
+                <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🏨 Alojamiento (€)</label>
+                <input type="number" class="expense-input" data-cat="alojamiento" placeholder="0" 
+                       style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+            </div>
+            <div>
+                <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🍽️ Comida (€)</label>
+                <input type="number" class="expense-input" data-cat="comida" placeholder="0" 
+                       style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+            </div>
+        </div>
+        <div style="margin-top: 10px;">
+            <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🎒 Otros / Varios (€)</label>
+            <input type="number" class="expense-input" data-cat="otros" placeholder="0" 
+                   style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+        </div>
+        <div style="margin-top: 15px; padding-top: 10px; border-top: 1px dashed #eee; font-weight: bold; color: #2c3e50; font-size: 1em; text-align: right;">
+            Total Etapa: <span class="subtotal-etapa" style="color: #e67e22;">0</span>€
+        </div>
+    </div>
+</div>
+
 
                     <div class="modal-section">
                         <h3>🤓 Curiosidades</h3>
@@ -2188,6 +2533,27 @@ El puente Eiffel (Ponte de D. Luís Filipe), que cruzamos al final de la etapa, 
                     <a href="https://www.google.com/maps/dir/Viana+do+Castelo,+Portugal/Caminha,+Portugal/@41.784917,-8.9105,11z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0xd25b62649060b2d:0x400ebbde4903820!2m2!1d-8.832596!2d41.69323!1m5!1m1!1s0xd25a8e26527588b:0x400ebbde4903330!2m2!1d-8.8385731!2d41.8761271!3e2?entry=ttu" target="_blank" class="btn-route-map">
     🗺️ Ver Ruta en Google Maps (26,8 km)
 </a>
+
+<div class="modal-section" style="margin-top: 25px;">
+    <h3 class="sec-alojamiento" style="background: #e1f5fe !important; border-color: #b3e5fc !important;">📸 Mi Recuerdo del Día</h3>
+    <div class="extra-card" style="text-align: center; border-top: 3px solid #3498db; padding: 15px;">
+        <div id="photo-container-etapa5" class="photo-preview" style="width: 100%; height: 250px; background: #f9f9f9; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 12px; border: 2px dashed #3498db; position: relative;">
+            <span style="color: #3498db; font-size: 0.9em; font-weight: 500;">Captura un momento especial</span>
+        </div>
+        
+        <input type="file" id="input-photo-etapa5" accept="image/*" style="display: none;" onchange="handlePhotoUpload('etapa5', this)">
+        
+        <div style="display: flex; gap: 8px;">
+            <button onclick="document.getElementById('input-photo-etapa5').click()" style="flex: 2; background: #3498db; color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85em;">
+                📷 Seleccionar Foto
+            </button>
+            <button onclick="removePhoto('etapa5')" style="flex: 1; background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85em;">
+                🗑️ Borrar
+            </button>
+        </div>
+    </div>
+</div>
+
                 </div>
                 <div class="modal-right">
                     <div class="modal-section">
@@ -2229,6 +2595,32 @@ El puente Eiffel (Ponte de D. Luís Filipe), que cruzamos al final de la etapa, 
                             </ul>
                         </div>
                     </div>
+
+                    <div class="modal-section">
+    <h3 class="sec-alojamiento" style="background: #fff3e0 !important; border-color: #ffe0b2 !important;">💰 Mis Gastos (Etapa)</h3>
+    <div class="extra-card" style="background: #fcfcfc; border-top: 3px solid #e67e22;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div>
+                <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🏨 Alojamiento (€)</label>
+                <input type="number" class="expense-input" data-cat="alojamiento" placeholder="0" 
+                       style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+            </div>
+            <div>
+                <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🍽️ Comida (€)</label>
+                <input type="number" class="expense-input" data-cat="comida" placeholder="0" 
+                       style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+            </div>
+        </div>
+        <div style="margin-top: 10px;">
+            <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🎒 Otros / Varios (€)</label>
+            <input type="number" class="expense-input" data-cat="otros" placeholder="0" 
+                   style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+        </div>
+        <div style="margin-top: 15px; padding-top: 10px; border-top: 1px dashed #eee; font-weight: bold; color: #2c3e50; font-size: 1em; text-align: right;">
+            Total Etapa: <span class="subtotal-etapa" style="color: #e67e22;">0</span>€
+        </div>
+    </div>
+</div>
 
                     <div class="modal-section">
                         <h3>🤓 Curiosidades</h3>
@@ -2415,6 +2807,27 @@ Hoy es nuestro último día del recorrido en Portugal, justo cuando nos habíamo
                     <a href="https://www.google.com/maps/dir/Caminha,+Portugal/Porto+Moug%C3%A1s,+Oia,+Espa%C3%B1a/@41.961022,-8.93005,11z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0xd25a8e26527588b:0x400ebbde4903330!2m2!1d-8.8385731!2d41.8761271!1m5!1m1!1s0xd25997a3a5a5a5b:0xa0a0a0a0a0a0a0a0!2m2!1d-8.892!2d42.046!3e2?entry=ttu" target="_blank" class="btn-route-map">
     🗺️ Ver Ruta en Google Maps (23,5 km)
 </a>
+
+<div class="modal-section" style="margin-top: 25px;">
+    <h3 class="sec-alojamiento" style="background: #e1f5fe !important; border-color: #b3e5fc !important;">📸 Mi Recuerdo del Día</h3>
+    <div class="extra-card" style="text-align: center; border-top: 3px solid #3498db; padding: 15px;">
+        <div id="photo-container-etapa6" class="photo-preview" style="width: 100%; height: 250px; background: #f9f9f9; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 12px; border: 2px dashed #3498db; position: relative;">
+            <span style="color: #3498db; font-size: 0.9em; font-weight: 500;">Captura un momento especial</span>
+        </div>
+        
+        <input type="file" id="input-photo-etapa6" accept="image/*" style="display: none;" onchange="handlePhotoUpload('etapa6', this)">
+        
+        <div style="display: flex; gap: 8px;">
+            <button onclick="document.getElementById('input-photo-etapa6').click()" style="flex: 2; background: #3498db; color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85em;">
+                📷 Seleccionar Foto
+            </button>
+            <button onclick="removePhoto('etapa6')" style="flex: 1; background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85em;">
+                🗑️ Borrar
+            </button>
+        </div>
+    </div>
+</div>
+
                 </div>
                 <div class="modal-right">
                     <div class="modal-section">
@@ -2456,6 +2869,33 @@ Hoy es nuestro último día del recorrido en Portugal, justo cuando nos habíamo
                             </ul>
                         </div>
                     </div>
+
+                    <div class="modal-section">
+    <h3 class="sec-alojamiento" style="background: #fff3e0 !important; border-color: #ffe0b2 !important;">💰 Mis Gastos (Etapa)</h3>
+    <div class="extra-card" style="background: #fcfcfc; border-top: 3px solid #e67e22;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div>
+                <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🏨 Alojamiento (€)</label>
+                <input type="number" class="expense-input" data-cat="alojamiento" placeholder="0" 
+                       style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+            </div>
+            <div>
+                <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🍽️ Comida (€)</label>
+                <input type="number" class="expense-input" data-cat="comida" placeholder="0" 
+                       style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+            </div>
+        </div>
+        <div style="margin-top: 10px;">
+            <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🎒 Otros / Varios (€)</label>
+            <input type="number" class="expense-input" data-cat="otros" placeholder="0" 
+                   style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+        </div>
+        <div style="margin-top: 15px; padding-top: 10px; border-top: 1px dashed #eee; font-weight: bold; color: #2c3e50; font-size: 1em; text-align: right;">
+            Total Etapa: <span class="subtotal-etapa" style="color: #e67e22;">0</span>€
+        </div>
+    </div>
+</div>
+
 
                     <div class="modal-section">
                         <h3>🤓 Curiosidades</h3>
@@ -2601,6 +3041,27 @@ La langosta, el bogavante –lumbrigante en gallego–, el buey de mar y la cent
                     <a href="https://www.google.com/maps/dir/Porto+Moug%C3%A1s,+Oia,+Espa%C3%B1a/Baiona,+Pontevedra/@42.0825,-8.9,12z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0xd25997a3a5a5a5b:0xa0a0a0a0a0a0a0a0!2m2!1d-8.892!2d42.046!1m5!1m1!1s0xd259062ccf7c87d:0x404f58273ca55a0!2m2!1d-8.8495577!2d42.1193392!3e2?entry=ttu" target="_blank" class="btn-route-map">
     🗺️ Ver Ruta en Google Maps (11,5 km)
 </a>
+
+<div class="modal-section" style="margin-top: 25px;">
+    <h3 class="sec-alojamiento" style="background: #e1f5fe !important; border-color: #b3e5fc !important;">📸 Mi Recuerdo del Día</h3>
+    <div class="extra-card" style="text-align: center; border-top: 3px solid #3498db; padding: 15px;">
+        <div id="photo-container-etapa7" class="photo-preview" style="width: 100%; height: 250px; background: #f9f9f9; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 12px; border: 2px dashed #3498db; position: relative;">
+            <span style="color: #3498db; font-size: 0.9em; font-weight: 500;">Captura un momento especial</span>
+        </div>
+        
+        <input type="file" id="input-photo-etapa7" accept="image/*" style="display: none;" onchange="handlePhotoUpload('etapa7', this)">
+        
+        <div style="display: flex; gap: 8px;">
+            <button onclick="document.getElementById('input-photo-etapa7').click()" style="flex: 2; background: #3498db; color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85em;">
+                📷 Seleccionar Foto
+            </button>
+            <button onclick="removePhoto('etapa7')" style="flex: 1; background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85em;">
+                🗑️ Borrar
+            </button>
+        </div>
+    </div>
+</div>
+
                 </div>
                 <div class="modal-right">
                     <div class="modal-section">
@@ -2645,6 +3106,32 @@ La langosta, el bogavante –lumbrigante en gallego–, el buey de mar y la cent
                             </ul>
                         </div>
                     </div>
+
+                    <div class="modal-section">
+    <h3 class="sec-alojamiento" style="background: #fff3e0 !important; border-color: #ffe0b2 !important;">💰 Mis Gastos (Etapa)</h3>
+    <div class="extra-card" style="background: #fcfcfc; border-top: 3px solid #e67e22;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div>
+                <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🏨 Alojamiento (€)</label>
+                <input type="number" class="expense-input" data-cat="alojamiento" placeholder="0" 
+                       style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+            </div>
+            <div>
+                <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🍽️ Comida (€)</label>
+                <input type="number" class="expense-input" data-cat="comida" placeholder="0" 
+                       style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+            </div>
+        </div>
+        <div style="margin-top: 10px;">
+            <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🎒 Otros / Varios (€)</label>
+            <input type="number" class="expense-input" data-cat="otros" placeholder="0" 
+                   style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+        </div>
+        <div style="margin-top: 15px; padding-top: 10px; border-top: 1px dashed #eee; font-weight: bold; color: #2c3e50; font-size: 1em; text-align: right;">
+            Total Etapa: <span class="subtotal-etapa" style="color: #e67e22;">0</span>€
+        </div>
+    </div>
+</div>
 
                     <div class="modal-section">
                         <h3>🤓 Curiosidades</h3>
@@ -2818,6 +3305,27 @@ Pasaremos aquí en Baiona 2 noches para descansar y conocer las Islas Cíes.
                     <a href="https://www.google.com/maps/dir/Padr%C3%B3n,+A+Coru%C3%B1a/Catedral+de+Santiago+de+Compostela,+Praza+do+Obradoiro,+Santiago+de+Compostela/@42.809,-8.6,11z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0xd2f0394c8e7195d:0x404f58273ca5da0!2m2!1d-8.6608933!2d42.7383626!1m5!1m1!1s0xd2efe4365741631:0x2287f32029524021!2m2!1d-8.5444654!2d42.8805763!3e2?entry=ttu" target="_blank" class="btn-route-map">
     🗺️ Ver Ruta en Google Maps (24,3 km)
 </a>
+
+<div class="modal-section" style="margin-top: 25px;">
+    <h3 class="sec-alojamiento" style="background: #e1f5fe !important; border-color: #b3e5fc !important;">📸 Mi Recuerdo del Día</h3>
+    <div class="extra-card" style="text-align: center; border-top: 3px solid #3498db; padding: 15px;">
+        <div id="photo-container-etapa9" class="photo-preview" style="width: 100%; height: 250px; background: #f9f9f9; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 12px; border: 2px dashed #3498db; position: relative;">
+            <span style="color: #3498db; font-size: 0.9em; font-weight: 500;">Captura un momento especial</span>
+        </div>
+        
+        <input type="file" id="input-photo-etapa9" accept="image/*" style="display: none;" onchange="handlePhotoUpload('etapa9', this)">
+        
+        <div style="display: flex; gap: 8px;">
+            <button onclick="document.getElementById('input-photo-etapa9').click()" style="flex: 2; background: #3498db; color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85em;">
+                📷 Seleccionar Foto
+            </button>
+            <button onclick="removePhoto('etapa9')" style="flex: 1; background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85em;">
+                🗑️ Borrar
+            </button>
+        </div>
+    </div>
+</div>
+
                 </div>
                 <div class="modal-right">
                     <div class="modal-section">
@@ -2856,6 +3364,32 @@ Pasaremos aquí en Baiona 2 noches para descansar y conocer las Islas Cíes.
                             </ul>
                         </div>
                     </div>
+
+                    <div class="modal-section">
+    <h3 class="sec-alojamiento" style="background: #fff3e0 !important; border-color: #ffe0b2 !important;">💰 Mis Gastos (Etapa)</h3>
+    <div class="extra-card" style="background: #fcfcfc; border-top: 3px solid #e67e22;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div>
+                <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🏨 Alojamiento (€)</label>
+                <input type="number" class="expense-input" data-cat="alojamiento" placeholder="0" 
+                       style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+            </div>
+            <div>
+                <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🍽️ Comida (€)</label>
+                <input type="number" class="expense-input" data-cat="comida" placeholder="0" 
+                       style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+            </div>
+        </div>
+        <div style="margin-top: 10px;">
+            <label style="font-size: 0.8em; color: #7f8c8d; display: block; margin-bottom: 4px;">🎒 Otros / Varios (€)</label>
+            <input type="number" class="expense-input" data-cat="otros" placeholder="0" 
+                   style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px; font-size: 0.9em;">
+        </div>
+        <div style="margin-top: 15px; padding-top: 10px; border-top: 1px dashed #eee; font-weight: bold; color: #2c3e50; font-size: 1em; text-align: right;">
+            Total Etapa: <span class="subtotal-etapa" style="color: #e67e22;">0</span>€
+        </div>
+    </div>
+</div>
 
                     <div class="modal-section">
                         <h3>🤓 Curiosidades</h3>
@@ -2937,8 +3471,21 @@ Pasaremos aquí en Baiona 2 noches para descansar y conocer las Islas Cíes.
 
     <script>
         function openModal(modalId) {
-            document.getElementById(modalId).classList.add('show');
-        }
+    document.getElementById(modalId).classList.add('show');
+    
+    // Convertimos 'modalEtapa1' en 'etapa1' para buscar los datos
+    const cleanId = modalId.replace('modal', '').toLowerCase();
+    
+    // Cargamos el diario, el clima y los gastos
+    loadDiaryWidget(cleanId);
+    loadExpensesIntoModal(cleanId);
+    
+    // --- NUEVO: CARGAR LA FOTO DEL DÍA SI EXISTE ---
+    const savedPhoto = localStorage.getItem(`photo_${cleanId}`);
+    if (savedPhoto) {
+        displayPhoto(cleanId, savedPhoto);
+    }
+}
 
         function closeModal(modalId) {
             document.getElementById(modalId).classList.remove('show');
@@ -2958,6 +3505,42 @@ Pasaremos aquí en Baiona 2 noches para descansar y conocer las Islas Cíes.
                     }
                 });
             });
+
+            // 1. Esta función se activa cuando eliges una foto
+function handlePhotoUpload(etapaId, input) {
+    const file = input.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const imageData = e.target.result;
+            // ESTA LÍNEA ES LA QUE GUARDA EN EL NAVEGADOR
+            localStorage.setItem(`photo_${etapaId}`, imageData); 
+            displayPhoto(etapaId, imageData);
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+// 2. Esta función pone la imagen físicamente en el cuadro
+function displayPhoto(etapaId, imageData) {
+    const container = document.getElementById(`photo-container-${etapaId}`);
+    if (container) {
+        container.innerHTML = `<img src="${imageData}" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;" onclick="window.open('${imageData}')">`;
+        container.style.border = "none";
+    }
+}
+
+// 3. Por si quieres borrarla y poner otra
+function removePhoto(etapaId) {
+    if (confirm("¿Quieres borrar esta foto?")) {
+        localStorage.removeItem(`photo_${etapaId}`);
+        const container = document.getElementById(`photo-container-${etapaId}`);
+        if (container) {
+            container.innerHTML = `<span style="color: #3498db; font-size: 0.9em; font-weight: 500;">Captura un momento especial</span>`;
+            container.style.border = "2px dashed #3498db";
+        }
+    }
+}
 
             document.querySelectorAll('.tramo-header').forEach(header => {
                 header.addEventListener('click', function() {
@@ -3051,6 +3634,15 @@ Pasaremos aquí en Baiona 2 noches para descansar y conocer las Islas Cíes.
         // ... (tu código anterior) ...
         loadSavedProgress(); // Cargar progreso
     });
+    document.addEventListener('DOMContentLoaded', function() {
+    // ... tu código anterior (como los quotes) ...
+    
+    loadSavedProgress(); // Carga el progreso de etapas
+    loadBackpackState(); // Carga el estado de la mochila
+    
+    // AÑADE ESTA LÍNEA AQUÍ:
+    refreshGlobalTotal(); 
+});
 
     // --- NUEVO: CONFIGURACIÓN DE COORDENADAS PARA EL TIEMPO ---
     const stageCoordinates = {
@@ -3114,43 +3706,34 @@ Pasaremos aquí en Baiona 2 noches para descansar y conocer las Islas Cíes.
         }
     }
 
-    // SOBRESCRIBIMOS LA FUNCIÓN OPENMODAL ANTIGUA
-    function openModal(modalId) {
-        document.getElementById(modalId).classList.add('show');
-        // Truco para sacar "etapa1" de "modalEtapa1"
-        const cleanId = modalId.replace('modal', '').toLowerCase(); // Resultado: etapa1
-        // ID especial para etapa 1 que tiene texto extra en el ID del modal si fuera necesario, 
-        // pero con tu código actual 'modalEtapa1' -> 'etapa1' funciona perfecto.
-        loadDiaryWidget(cleanId);
-    }
 
     // --- LÓGICA VISTA LISTA VS DETALLE ---
-    function switchView(mode, btn) {
-        const container = document.querySelector('.etapas-container');
-        const buttons = document.querySelectorAll('.view-btn');
-        
-        // 1. Resetear estilos botones
-        buttons.forEach(b => {
-            b.style.background = 'transparent';
-            b.style.color = 'white';
-        });
-        
-        // 2. Activar botón pulsado
-        if(btn) {
-            btn.style.background = 'white';
-            btn.style.color = '#333';
-        }
-
-        // 3. Cambiar clase CSS del contenedor
-        if (mode === 'list') {
-            container.classList.add('list-mode');
-        } else {
-            container.classList.remove('list-mode');
-        }
-        
-        // 4. Guardar preferencia en memoria
-        localStorage.setItem('viewMode', mode);
+function switchView(mode, btn) {
+    const container = document.querySelector('.etapas-container');
+    
+    // 1. Buscamos TODOS los botones del selector (usando la nueva clase 'pro')
+    const buttons = document.querySelectorAll('.view-btn-pro');
+    
+    // 2. Les quitamos la clase 'active' a todos (los "apagamos")
+    buttons.forEach(b => {
+        b.classList.remove('active');
+    });
+    
+    // 3. Activamos SOLO el botón que has pulsado
+    if(btn) {
+        btn.classList.add('active');
     }
+
+    // 4. Cambiamos el modo de visualización
+    if (mode === 'list') {
+        container.classList.add('list-mode');
+    } else {
+        container.classList.remove('list-mode');
+    }
+    
+    // 5. Guardamos la preferencia
+    localStorage.setItem('viewMode', mode);
+}
 
     // --- LÓGICA MOCHILA ---
     function updateBackpack() {
@@ -3184,12 +3767,12 @@ Pasaremos aquí en Baiona 2 noches para descansar y conocer las Islas Cíes.
         // Cargar mochila
         loadBackpackState();
         
-        // Cargar vista preferida (si el usuario dejó puesta la vista lista)
-        const savedView = localStorage.getItem('viewMode');
-        if(savedView === 'list') {
-            const listBtn = document.querySelectorAll('.view-btn')[1]; // El segundo botón es 'Lista'
-            if(listBtn) switchView('list', listBtn);
-        }
+        // Cargar vista preferida
+    const savedView = localStorage.getItem('viewMode');
+    if(savedView === 'list') {
+        const listBtn = document.querySelectorAll('.view-btn-pro')[1]; // El segundo botón es 'Lista'
+        if(listBtn) switchView('list', listBtn);
+    }
     });
 
     // --- LÓGICA DE EMERGENCIA Y GPS ---
@@ -3242,6 +3825,67 @@ Pasaremos aquí en Baiona 2 noches para descansar y conocer las Islas Cíes.
         }
     }
 
+    // --- LÓGICA DEL GESTOR DE GASTOS ---
+
+// Función para guardar gastos en localStorage
+function saveExpense(etapaId, category, value) {
+    let expenses = JSON.parse(localStorage.getItem('camino_gastos')) || {};
+    if (!expenses[etapaId]) expenses[etapaId] = {};
+    
+    expenses[etapaId][category] = parseFloat(value) || 0;
+    localStorage.setItem('camino_gastos', JSON.stringify(expenses));
+    
+    updateVisualTotals(etapaId);
+}
+
+// Actualiza los subtotales de la etapa en el modal
+function updateVisualTotals(etapaId) {
+    let expenses = JSON.parse(localStorage.getItem('camino_gastos')) || {};
+    let etapaData = expenses[etapaId] || {};
+    
+    let subtotal = (etapaData.alojamiento || 0) + (etapaData.comida || 0) + (etapaData.otros || 0);
+    
+    // Construimos el ID del modal (ej: etapa1 -> modalEtapa1)
+    const modalFullId = 'modal' + etapaId.charAt(0).toUpperCase() + etapaId.slice(1);
+    const modal = document.getElementById(modalFullId);
+    
+    if (modal) {
+        const subtotalSpan = modal.querySelector('.subtotal-etapa');
+        if (subtotalSpan) subtotalSpan.innerText = subtotal.toFixed(2);
+    }
+}
+
+// Carga los datos guardados al abrir el modal
+function loadExpensesIntoModal(etapaId) {
+    let expenses = JSON.parse(localStorage.getItem('camino_gastos')) || {};
+    let etapaData = expenses[etapaId] || {};
+    
+    const modalFullId = 'modal' + etapaId.charAt(0).toUpperCase() + etapaId.slice(1);
+    const modal = document.getElementById(modalFullId);
+    
+    if (modal) {
+        modal.querySelectorAll('.expense-input').forEach(input => {
+            const cat = input.dataset.cat;
+            input.value = etapaData[cat] || "";
+        });
+        updateVisualTotals(etapaId);
+    }
+}
+
+// Listener global para detectar cambios en los inputs de gastos
+document.addEventListener('input', function(e) {
+    if (e.target.classList.contains('expense-input')) {
+        const modal = e.target.closest('.modal-backdrop');
+        if (modal) {
+            const etapaId = modal.id.replace('modal', '').toLowerCase();
+            // 1. Guarda el gasto individual
+            saveExpense(etapaId, e.target.dataset.cat, e.target.value);
+            // 2. Recalcula el total de la cabecera principal
+            refreshGlobalTotal(); 
+        }
+    }
+});
+
     document.addEventListener('DOMContentLoaded', function() {
     const quotes = [
         '"El camino no se hace, el camino te hace a ti."',
@@ -3254,6 +3898,93 @@ Pasaremos aquí en Baiona 2 noches para descansar y conocer las Islas Cíes.
     document.getElementById('random-quote').innerText = randomQuote;
 });
 
+// Calcula la suma de todos los gastos de todas las etapas
+function refreshGlobalTotal() {
+    let expenses = JSON.parse(localStorage.getItem('camino_gastos')) || {};
+    let totalGlobal = 0;
+
+    // Recorremos cada etapa y sumamos sus tres categorías
+    Object.values(expenses).forEach(etapa => {
+        totalGlobal += (etapa.alojamiento || 0) + (etapa.comida || 0) + (etapa.otros || 0);
+    });
+
+    // Actualizamos el número en la cabecera
+    const totalDisplay = document.getElementById('global-total-money');
+    if (totalDisplay) {
+        totalDisplay.innerText = totalGlobal.toFixed(2) + '€';
+    }
+}
+
+// Procesa la subida de la foto
+function handlePhotoUpload(etapaId, input) {
+    const file = input.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const imageData = e.target.result;
+            localStorage.setItem(`photo_${etapaId}`, imageData); // Guarda en memoria local
+            displayPhoto(etapaId, imageData);
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+// Muestra la foto en el contenedor
+function displayPhoto(etapaId, imageData) {
+    const container = document.getElementById(`photo-container-${etapaId}`);
+    if (container) {
+        container.innerHTML = `<img src="${imageData}" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;" onclick="window.open('${imageData}')">`;
+        container.style.border = "none";
+    }
+}
+
+// Elimina la foto de la memoria
+function removePhoto(etapaId) {
+    if (confirm("¿Quieres borrar esta foto?")) {
+        localStorage.removeItem(`photo_${etapaId}`);
+        const container = document.getElementById(`photo-container-${etapaId}`);
+        if (container) {
+            container.innerHTML = `<span style="color: #3498db; font-size: 0.9em; font-weight: 500;">Captura un momento especial</span>`;
+            container.style.border = "2px dashed #3498db";
+        }
+    }
+}
+
+// 1. Motor de subida: Convierte la foto en datos y los guarda en el navegador
+function handlePhotoUpload(etapaId, input) {
+    const file = input.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const imageData = e.target.result;
+            // ESTO ES LO QUE HACE QUE NO SE BORRE AL ACTUALIZAR
+            localStorage.setItem(`photo_${etapaId}`, imageData); 
+            displayPhoto(etapaId, imageData);
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+// 2. Motor visual: Pone la imagen físicamente dentro del cuadro azul
+function displayPhoto(etapaId, imageData) {
+    const container = document.getElementById(`photo-container-${etapaId}`);
+    if (container) {
+        container.innerHTML = `<img src="${imageData}" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;" onclick="window.open('${imageData}')">`;
+        container.style.border = "none";
+    }
+}
+
+// 3. Motor de borrado: Limpia la memoria y el cuadro
+function removePhoto(etapaId) {
+    if (confirm("¿Quieres borrar esta foto?")) {
+        localStorage.removeItem(`photo_${etapaId}`);
+        const container = document.getElementById(`photo-container-${etapaId}`);
+        if (container) {
+            container.innerHTML = `<span style="color: #3498db; font-size: 0.9em; font-weight: 500;">Captura un momento especial</span>`;
+            container.style.border = "2px dashed #3498db";
+        }
+    }
+}
 
     </script>
 
