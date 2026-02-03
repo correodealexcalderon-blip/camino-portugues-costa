@@ -789,6 +789,46 @@ footer {
     .btn-mochila-pro { width: 80%; justify-content: center; }
 }
 
+/* --- EFECTO SELLO DE CREDENCIAL (CORREGIDO) --- */
+/* Importante: Esto permite que el sello se coloque encima */
+.etapa {
+    position: relative; 
+}
+
+/* El Sello Rojo */
+.etapa.completed::after {
+    content: 'ETAPA\A COMPLETADA';
+    white-space: pre;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    
+    border: 4px solid #c0392b;
+    color: #c0392b;
+    padding: 10px 20px;
+    font-weight: 900;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.2;
+    border-radius: 12px;
+    
+    opacity: 0.9;
+    mix-blend-mode: multiply; /* Efecto tinta realista */
+    pointer-events: none;     /* Permite hacer clic debajo */
+    z-index: 100;
+    box-shadow: inset 0 0 0 3px rgba(192, 57, 43, 0.4);
+    
+    animation: stamp-bounce 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Animación de golpe */
+@keyframes stamp-bounce {
+    0% { transform: translate(-50%, -50%) rotate(-15deg) scale(3); opacity: 0; }
+    100% { transform: translate(-50%, -50%) rotate(-15deg) scale(1); opacity: 0.9; }
+}
+
     </style>
 </head>
 <body>
@@ -1798,7 +1838,25 @@ Localidad pequeña y tranquila que dispone de albergue de peregrinos en la antig
                             </div>
                             <div class="tramo-content">
                                 <p>Alternamos varios barrios de casas y bloques de apartamentos con tramos de pasarelas. Así llegamos a la playa de Mindelo, donde las pasarelas nos conducen por detrás de las dunas. Seguimos de frente, bordeando la Reserva Ornitológica de Mindelo. Tras los bloques de apartamentos de la playa de Árvore, ya con la vista de Vila do Conde al fondo, volvemos a las pasarelas. Seguimos por la playa en paralelo a la valla del camping de Árvore; justo al final del camping enfilamos hacia el interior.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://beachcam.meo.pt/media/g3kpfw0l/praia-de-mindelo.jpg" 
+         alt="Praia do Mindelo"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Praia do Mindelo
+    </figcaption>
+</figure>
                                 <p>Al llegar a la carretera N13 giramos a la izquierda y por la misma acera cruzamos el puente sobre el río Ave. Al otro lado vemos la enorme mole del convento de Santa Clara. Tras cruzar el puente entramos en Vila do Conde.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://images.winalist.com/blog/wp-content/uploads/2025/02/26173259/adobestock-436045981-1500x1000.jpeg" 
+         alt="Vila do Conde"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Vila do Conde
+    </figcaption>
+</figure>
                                 <div class="punto-parada">
                                     <div class="punto-parada-nombre">📍 VILA DO CONDE</div>
                                     <div class="distancia-acumulada">Distancia acumulada: 10,7 km</div>
@@ -1816,6 +1874,15 @@ Localidad pequeña y tranquila que dispone de albergue de peregrinos en la antig
                             <div class="tramo-content">
                                 <p>Nuestra ruta continúa en subida por la estrecha Rua da Igreja y tuerce a la derecha por la Rua da Costa, callejeando hasta la Rua dos Benguiados, por la que llegamos a una rotonda donde hay un estanque y una escultura con dos figuras de bronce.</p>
                                 <p>Seguimos recto por la misma Rua dos Benguiados, a lo largo de la valla de un instituto y una escuela, y continuamos por la Rua da Estrada Velha y Rua das Violetas, pasando junto al cementerio das Caxinhas. A lo largo de la Rua dos Ferreiros accedemos al municipio de Póvoa de Varzim, ciudad importante y con todos los servicios.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://viajerosocultos.com/wp-content/uploads/2023/11/Povoa_de_Varzim.jpg" 
+         alt="Póvoa de Varzim"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Póvoa de Varzim
+    </figcaption>
+</figure>
                                 <div class="punto-parada">
                                     <div class="punto-parada-nombre">✅ PÓVOA DE VARZIM - FIN DE ETAPA</div>
                                     <div class="distancia-acumulada">Distancia acumulada total: 14 km</div>
@@ -1993,6 +2060,15 @@ Los platos tradicionales de la zona reflejan la combinación entre pesca y agric
                             <div class="tramo-content">
                                 <p>Para retomar el camino desde el centro de Póvoa no tenemos más que ir hasta el paseo marítimo (Av. dos Banhos) y seguirlo en dirección norte.</p>
                                 <p>A nuestra derecha se suceden cientos de bloques de apartamentos y a la izquierda, sobre la arena, tenemos bares musicales con sus terrazas chill out, algunos restaurantes y diferentes instalaciones de la playa. Al cabo de 900 metros pasaremos entre los edificios de las piscinas municipales y del campo de fútbol; enseguida, y sin que cambie el paisaje, entramos en la localidad vecina de A Ver-o-Mar.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/24/6d/ec/f3/passadico.jpg?w=900&h=500&s=1" 
+         alt="PASSEIO A VER-O-MAR"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 PASSEIO A VER-O-MAR (Póvoa de Varzim)
+    </figcaption>
+</figure>
                                 <div class="punto-parada">
                                     <div class="punto-parada-nombre">📍 A VER-O-MAR</div>
                                     <div class="distancia-acumulada">Distancia acumulada: 3,5 km</div>
@@ -2034,6 +2110,15 @@ Los platos tradicionales de la zona reflejan la combinación entre pesca y agric
                                 <p>Más adelante las flechas nos llevan a girar a la derecha hasta la M-501, carreterita estrecha que discurre en paralelo a la costa. Seguiremos por su mínimo arcén en dirección norte, entre un paisaje de campos e invernaderos. Pasamos junto a un desvío a la izquierda, donde un cartel indica el acceso al camping Orbitur Rio Grande.</p>
                                 <p><strong>3,8 km.</strong> Acceso al camping y a la Praia de Estela. El camping queda a 300 metros fuera del camino, entre la carretera y la playa. Nosotros debemos seguir por la carretera durante 450 metros, hasta llegar a una encrucijada donde toca girar a la izquierda por una pista adoquinada.</p>
                                 <p>En breve veremos al fondo la silueta de un molino de viento, pero antes de llegar a él las flechas viran a la derecha, en dirección hacia una zona arbolada donde encontramos las instalaciones de un campo de fútbol; nuestra ruta sigue por la Rua do Pinhal hasta que al cabo de 400 metros cruzamos una carretera y llegamos a las primeras casas de la localidad de Apúlia.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://content-viajes.nationalgeographic.com.es/medio/2024/08/08/playa-apulia_1b582d7b_240808154327_1280x853.jpg" 
+         alt="Apúlia"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Apúlia
+    </figcaption>
+</figure>
                                 <p><strong>3,1 km.</strong> Apúlia, iglesia.</p>
                                 <div class="punto-parada">
                                     <div class="punto-parada-nombre">📍 APÚLIA</div>
@@ -2054,6 +2139,15 @@ Los platos tradicionales de la zona reflejan la combinación entre pesca y agric
                             <div class="tramo-content">
                                 <p>Pasamos frente a la iglesia y recorremos las calles del centro del pueblo. Salimos por un camino adoquinado que al cabo de 800 metros nos lleva hasta una carreterita; torcemos a la izquierda y, a 30 metros, por la derecha, comienza uno de los tramos más agradables de la jornada: durante 1,5 km seguiremos un camino de tierra, a la sombra de los pinos y algunos eucaliptus, que nos conduce hacia la villa de Fão.</p>
                                 <p>Después de superar el campo de fútbol (con éste ya son cuatro los campos de fútbol que hemos encontrado en la etapa de hoy), giramos a la derecha por la Rua Santo Antonio da Fonte; una vez frente al cementerio giramos a la izquierda, pasamos ante una escultura coloreada de San Antonio y seguimos la acera de la carretera N-13; la cruzamos por un paso de cebra y llegamos a la iglesia do Bom Jesús.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://rpcr.visitesposende.com/wp-content/uploads/2021/05/Igreja-do-Bom-Jesus-de-Fa%CC%83o-1.jpg" 
+         alt="Fão"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Templo del Buen Jesús de Fão 
+    </figcaption>
+</figure>
                                 <p><strong>Nota:</strong> En este punto, a la entrada de Fão, se incorpora al Camino de la Costa un ramal de enlace que proviene de São Pedro de Rates, localidad que se halla a pie del Camino Portugués Central. Este ramal de enlace, de unos 15 km, sale desde la iglesia de Rates y está marcado con pictogramas del Camino de la Costa hasta la entrada a Fão. Los más puristas definen que el trazado originario del Camino de la Costa pasaba por São Pedro de Rates, cruzaba el río Cádavo por un lugar conocido como Barca do Lago, seguía después por Esposende y continuaba hacia Viana do Castelo y Galicia; por lo visto dicho recorrido ya existía antes del siglo XII, mientras que el paso por Vila do Conde no está documentado hasta el siglo XIV. A efectos prácticos, lo más probable es que ni siquiera nos percatemos de la incorporación de dicho ramal, salvo que coincidamos con algún peregrino que venga de allí, huyendo del Camino Portugués Central.</p>
                                 <div class="punto-parada">
                                     <div class="punto-parada-nombre">📍 FÃO</div>
@@ -2075,6 +2169,15 @@ Los platos tradicionales de la zona reflejan la combinación entre pesca y agric
                                 <p>Avanzamos por la alameda de la iglesia-santuario do Bom Jesús, donde también hay un quiosco de música. Justo a la derecha, a orillas del río, se halla el albergue-Pousada de Juventude.</p>
                                 <p>Después de atravesar el casco antiguo de la villa llegamos frente al río Cádavo, que cruzaremos por el puente metálico de la carretera N-13, conocido como puente de D. Luís Filipe y que data del año 1892; aquí el paso de los peatones discurre por pasarelas laterales, separadas del tránsito de vehículos.</p>
                                 <p>Nada más cruzar el puente giramos a la izquierda por un vial de servicio en desuso. En breve llegaremos a una rotonda, y tras superarla toca cruzar la avenida y enfilar una bocacalle empedrada que desemboca en la Rua Narciso Ferreira. Pasamos junto al cementerio y siguiendo de frente accedemos al centro de la villa de Esposende, población que es cabeza de municipio y dispone de una amplia oferta de servicios.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://viajecaminodesantiago.com/wp-content/uploads/2021/03/pueblo-esposende-camino-portugues-costa.jpg" 
+         alt="Esposende"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Villa de Esposende 
+    </figcaption>
+</figure>
                                 <p><strong>Nota:</strong> Desde la rotonda, si alguien prefiere evitar el meollo del casco urbano de Esposende, se puede seguir el paseo litoral, que va bordeando el estuario del río.</p>
                                 <div class="punto-parada">
                                     <div class="punto-parada-nombre">📍 ESPOSENDE</div>
@@ -2096,6 +2199,15 @@ Los platos tradicionales de la zona reflejan la combinación entre pesca y agric
                                 <p>Desde el centro de Esposende seguimos de frente por la Av. Dr. Henrique Barros Lima hasta llegar ante el Hospital Valentim Ribeiro, en un elegante edificio histórico, donde giraremos a la izquierda por la Av. Rocha Gonçalves para volver de nuevo ante el estuario del río Cádavo.</p>
                                 <p>Al cabo de 800 metros pasaremos junto al fuerte de São João Baptista, por detrás del cual sobresale un pequeño faro; seguimos la Av. dos Banhos en paralelo al mar, si bien en breve se va desviando hacia el interior.</p>
                                 <p>Ahora toca girar a la izquierda por la Rua da Agrela, con árboles y campos a lado y lado, y que al final nos deja en la localidad de Marinhas. Tomamos a la derecha la Rua da Praia y cruzamos la carretera N-13; al otro lado tenemos la capilla de São Sebastião y el edificio de la Cruz Roja –la Cruz Vermelha Portuguesa–, cuyos voluntarios gestionan el albergue de peregrinos, que se halla 250 metros más adelante.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://www.visitesposende.com/images/fazer/roteiros/roteiro-motorizado-das-marinhas/roteiro-motorizado-das-marinhas_3.jpg" 
+         alt="Marinhas - Esposende"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Marinhas - Esposende 
+    </figcaption>
+</figure>
                                 <p>Aquellos que deseen utilizar el albergue deben pasar antes por dicha oficina de la Cruz Roja para registrarse y sellar la credencial; a poca distancia disponemos de varios bares y una tienda. En la zona de la playa de Cepães hay más bares y restaurantes; ésta se halla a apenas 1 km de distancia del albergue, siguiendo la Rua da Praia en dirección contraria a la que llegamos.</p>
                                 <div class="punto-parada">
                                     <div class="punto-parada-nombre">✅ MARINHAS - FIN DE ETAPA</div>
@@ -4117,6 +4229,37 @@ function removePhoto(etapaId) {
         }
     }
 }
+
+// --- LÓGICA DEL SELLO VISUAL (CORREGIDA) ---
+
+function updateStampVisuals() {
+    // Buscamos tus checkboxes reales (clase 'etapa-checkbox')
+    const checkboxes = document.querySelectorAll('.etapa-checkbox');
+    
+    checkboxes.forEach(box => {
+        // Buscamos la tarjeta padre real (clase 'etapa')
+        const card = box.closest('.etapa');
+        
+        if (card) {
+            if (box.checked) {
+                card.classList.add('completed'); // ¡Estampa el sello!
+            } else {
+                card.classList.remove('completed'); // Borra el sello
+            }
+        }
+    });
+}
+
+// Activamos la lógica
+document.addEventListener('DOMContentLoaded', function() {
+    updateStampVisuals(); // Al cargar la página
+    
+    // Escuchamos los cambios en tus checkboxes
+    const checkboxes = document.querySelectorAll('.etapa-checkbox');
+    checkboxes.forEach(box => {
+        box.addEventListener('change', updateStampVisuals);
+    });
+});
 
     </script>
 
