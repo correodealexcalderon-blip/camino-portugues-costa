@@ -3,11 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camino Portugués de la Costa - Etapas 1 a 8</title>
+    <title>Camino Portugués de la Costa - Etapas 1 a 9</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; color: #333; }
         .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        /* --- CABECERA PRO COMPACTA & CLARA --- */
+/* --- HEADER COMPACTO --- */
+/* --- HEADER ULTRA-COMPACTO --- */
+header {
+    position: relative;
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.95)), 
+                url('https://images.unsplash.com/photo-1551043047-1d2adf00f300?q=80&w=1000&auto=format&fit=crop'); 
+    background-size: cover;
+    background-position: center 40%;
+    color: white !important;
+    /* CLAVE: Reducimos mucho el padding (especialmente el de abajo) */
+    padding: 20px 15px 15px; 
+    border-radius: 0 0 30px 30px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 20px;
+}
+
+/* Logo un poco más pequeño para ganar espacio */
+.logo-badge-pro {
+    width: 85px; 
+    height: 85px;
+    margin: 0 auto 5px; /* Margen mínimo con el título */
+    background: transparent; 
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease;
+}
+.logo-img-real {
+    width: 100%;        /* Ocupa todo el ancho del círculo */
+    height: 100%;       /* Ocupa todo el alto */
+    object-fit: cover;  /* Recorta lo que sobra para no deformarse */
+    border-radius: 50%; /* Se asegura de ser redondo */
+    display: block;
+}
+
+/* Títulos más pegaditos */
+header h1 {
+    font-size: 1.7em; /* Un pelín más pequeño */
+    margin: 0;
+    line-height: 1.1;
+}
+
+header p.subtitle-pro {
+    font-size: 0.8em;
+    margin-top: 4px;
+    opacity: 0.9;
+}
+
+/* Stats más compactas */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    gap: 8px; /* Menos hueco entre cajas */
+    margin-top: 15px; /* Menos separación con el título */
+}
+
+.stat {
+    padding: 8px 5px; /* Cajas más finas */
+    /* ... resto de estilos de stat ... */
+}
+
+/* Cuenta atrás "Slim" */
+#countdown-container {
+    margin-top: 12px;
+    padding: 5px 15px !important; /* Más fino */
+    background: rgba(0,0,0,0.4) !important;
+    /* ... */
+}
+#countdown {
+    font-size: 1.1em !important; /* Letra un poco más pequeña */
+}
+
+/* Controles pegados abajo */
+.controls-area {
+    margin-top: 12px; /* Pegado a la cuenta atrás */
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Poca distancia entre filas */
+    align-items: center;
+}
+
+.btn-app {
+    padding: 6px 12px; /* Botones más finos */
+    font-size: 0.9em;
+}
+
+/* --- NUEVO ESTILO MOCHILA (Integrado) --- */
+.btn-mochila {
+    /* Gradiente Naranja/Dorado vibrante */
+    background: linear-gradient(135deg, #FF8008 0%, #FFC837 100%);
+    border: none; /* Quitamos bordes por defecto del button */
+    cursor: pointer; /* Aseguramos que salga la manita al pasar el mouse */
+    font-family: inherit; /* Heredar fuente de la web */
+}
+
+/* Ajuste específico para que el botón <button> se comporte igual que los <a> */
+button.btn-app {
+    display: inline-flex; /* Asegura alineación correcta */
+    outline: none;
+}
+
+/* --- LIMPIEZA (Opcional pero recomendada) --- */
+/* Si tienes por ahí reglas antiguas llamadas .btn-mochila-pro que ya no usas,
+   puedes borrarlas para no tener código basura */
+
+/* Ajustes extra para móviles */
+@media (max-width: 768px) {
+    header { padding: 20px 15px 30px; }
+    .logo-badge-pro { width: 60px; height: 60px; }
+    .logo-icon-svg { width: 36px; height: 36px; }
+    header h1 { font-size: 1.8em; }
+}
         header { background: linear-gradient(135deg, #2c3e50 0%, #34595e 100%); color: white; padding: 40px; margin-bottom: 40px; border-radius: 8px; text-align: center; }
         header h1 { font-size: 2.5em; margin-bottom: 10px; }
         header p { font-size: 1.1em; opacity: 0.9; }
@@ -266,34 +386,65 @@ input:checked + .slider:before {
     font-family: 'Segoe UI', sans-serif;
 }
 
+/* --- NUEVA CABECERA CLIMÁTICA PRO --- */
 .weather-header {
-    background: linear-gradient(135deg, #6dd5fa 0%, #2980b9 100%);
-    color: white;
-    padding: 15px;
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: all 0.5s ease;
+    min-height: 100px;
+    background: #34495e; /* Color base por si falla la carga */
+    color: white;
 }
+
+/* Clases dinámicas según el tiempo */
+.weather-sunny { background: linear-gradient(135deg, #FF8008, #FFC837); }
+.weather-rainy { background: linear-gradient(135deg, #606c88, #3f4c6b); }
+.weather-cloudy { background: linear-gradient(135deg, #bdc3c7, #2c3e50); }
+.weather-storm { background: linear-gradient(135deg, #4b6cb7, #182848); }
 
 .weather-info {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
 }
 
 .weather-temp {
-    font-size: 2.2em;
-    font-weight: bold;
+    font-size: 2.8em;
+    font-weight: 800;
+    line-height: 1;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.weather-desc-group {
+    display: flex;
+    flex-direction: column;
 }
 
 .weather-desc {
-    font-size: 0.9em;
+    font-size: 1em;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.weather-advice {
+    font-size: 0.75em;
     opacity: 0.9;
-    line-height: 1.2;
+    margin-top: 4px;
+    font-style: italic;
+    max-width: 150px;
 }
 
 .weather-icon {
-    font-size: 2.5em;
+    font-size: 3.5em;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
 }
 
 .diary-body {
@@ -471,20 +622,20 @@ input:checked + .slider:before {
 
 /* --- CABECERA HERO STYLE (DISEÑO NUEVO) --- */
 header {
-    /* Imagen de fondo (Costa/Camino) con un filtro oscuro encima para que se lea el texto */
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), 
                 url('https://estaticos-cdn.prensaiberica.es/clip/6bbb0fed-2234-4eac-b78e-77702924fd41_alta-libre-aspect-ratio_default_0.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Efecto Parallax chulo al hacer scroll */
+    background-attachment: fixed;
     color: white;
-    padding: 60px 20px 140px 20px; /* Aumentamos el espacio de abajo a 140px */
-    margin-bottom: 40px;
-    border-radius: 0 0 25px 25px; /* Bordes redondeados solo abajo */
+    /* CAMBIO AQUÍ: Reducimos de 140px a 40px abajo */
+    padding: 40px 20px 40px 20px; 
+    margin-bottom: 30px;
+    border-radius: 0 0 25px 25px;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     position: relative;
-    overflow: visible; /* Esto evita que el contenido se corte si sobresale un poco */
+    overflow: visible;
 }
 
 header h1 {
@@ -563,7 +714,7 @@ header p {
     
     /* 1. Ajustar la Cabecera */
     header {
-    padding: 40px 15px 120px 15px !important; 
+    padding: 30px 15px 40px 15px !important; 
 }
     header h1 {
         font-size: 2.2em; /* Título un poco más pequeño */
@@ -705,44 +856,30 @@ footer {
     width: 100%;
 }
 
-/* --- ESTILO MOCHILA --- */
-.btn-mochila-pro {
-    background: linear-gradient(135deg, #FF8008 0%, #FFC837 100%);
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 50px;
-    font-weight: 800;
-    text-transform: uppercase;
-    font-size: 0.9em;
-    cursor: pointer;
-    box-shadow: 0 10px 25px rgba(255, 128, 8, 0.4);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-.btn-mochila-pro:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 15px 35px rgba(255, 128, 8, 0.6);
-}
-
-/* --- ESTILO SELECTOR (CÁPSULA DE CRISTAL) --- */
+/* --- ESTILO SELECTOR (CÁPSULA DE CRISTAL) - VERSIÓN CLARA --- */
 .view-toggle-capsule {
-    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro transparente */
+    /* CAMBIO: Fondo gris muy claro (casi blanco) */
+    background: #f1f2f6; 
+    
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     padding: 5px;
     border-radius: 50px;
     display: flex;
     gap: 5px;
-    border: 1px solid rgba(255, 255, 255, 0.3); /* BORDE BLANCO SUTIL */
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    
+    /* CAMBIO: Borde gris sutil en vez de blanco */
+    border: 1px solid #e1e1e1; 
+    /* Sombra más suave */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); 
 }
 
 .view-btn-pro {
     background: transparent;
-    color: rgba(255, 255, 255, 0.7);
+    
+    /* CAMBIO: Color de texto gris medio (para que se lea sobre el fondo claro) */
+    color: #95a5a6; 
+    
     border: none;
     padding: 8px 20px;
     border-radius: 40px;
@@ -751,36 +888,64 @@ footer {
     cursor: pointer;
     transition: all 0.3s;
 }
+
 .view-btn-pro.active {
     background: white;
-    color: #333;
+    /* CAMBIO: Texto activo más oscuro para contraste */
+    color: #2c3e50; 
     font-weight: 800;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    /* Sombra suave para que el botón "salte" */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
 }
 
-/* --- ESTILO APPS (PÍLDORAS) --- */
+/* --- ESTILO APPS (PÍLDORAS) CON ICONOS REALES --- */
 .btn-app {
     text-decoration: none;
     color: white;
-    padding: 10px 25px;
+    /* Ajustamos el padding para acomodar el icono */
+    padding: 8px 20px 8px 15px; 
     border-radius: 50px;
     font-weight: 700;
-    font-size: 0.85em;
+    font-size: 0.9em;
     display: flex;
     align-items: center;
-    gap: 8px;
-    transition: transform 0.2s;
-    border: 1px solid rgba(255,255,255,0.2);
+    gap: 10px; /* Espacio entre icono y texto */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid rgba(255,255,255,0.15);
+    /* Efecto cristal sutil */
+    backdrop-filter: blur(4px); 
 }
-.btn-app:hover { transform: translateY(-3px); color: white; }
 
-.btn-tricount {
-    background: linear-gradient(135deg, #004e92 0%, #000428 100%); /* Azul */
-    box-shadow: 0 5px 15px rgba(0, 78, 146, 0.4);
+/* Estilo para la imagen del icono */
+.app-icon {
+    width: 26px;  /* Tamaño ideal para icono de app */
+    height: 26px;
+    object-fit: contain;
+    /* Sombrita para que el logo destaque sobre el fondo del botón */
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    transition: transform 0.3s ease;
 }
+
+/* Efecto Hover (Al pasar el ratón) */
+.btn-app:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.btn-app:hover .app-icon {
+    /* El icono hace un pequeño baile al pasar el ratón */
+    transform: scale(1.15) rotate(5deg); 
+}
+
+/* Colores Específicos */
+.btn-tricount {
+    /* Azul Tricount oficial */
+    background: linear-gradient(135deg, #004e92 0%, #2b5876 100%); 
+}
+
 .btn-spotify {
-    background: linear-gradient(135deg, #1DB954 0%, #191414 100%); /* Verde */
-    box-shadow: 0 5px 15px rgba(29, 185, 84, 0.4);
+    /* Verde Spotify y Negro */
+    background: linear-gradient(135deg, #1DB954 0%, #101010 100%); 
 }
 
 /* Versión Móvil */
@@ -830,60 +995,60 @@ footer {
 }
 
     </style>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🥾 Camino Portugués de la Costa</h1>
-            <p>Itinerario completo de peregrinación por la costa portuguesa y gallega</p>
-            
-            <div class="stats-grid">
-                <div class="stat"><div class="stat-number">241 km</div><div class="stat-label">Distancia Total</div></div>
-                <div class="stat"><div class="stat-number">12 Etapas</div><div class="stat-label">Jornadas</div></div>
-                <div class="stat"><div class="stat-number">8-10 días</div><div class="stat-label">Duración Aprox.</div></div>
-                <div class="stat" style="background: rgba(230, 126, 34, 0.3); border: 1px solid #e67e22;">
-                    <div class="stat-number" id="global-total-money">0.00€</div>
-                    <div class="stat-label">Presupuesto Personal</div>
-                </div>
-            </div>
+    <div class="logo-badge-pro">
+        <img src="logo-camino.png" alt="Logo Peregrinos" class="logo-img-real">
+    </div>
 
-            <div id="countdown-container" style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; margin-top: 25px; display: inline-block; border: 1px solid rgba(255,255,255,0.2);">
-                <span style="font-size: 0.9em; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9;">⏳ Tiempo para la aventura:</span>
-                <div id="countdown" style="font-size: 1.6em; font-weight: bold; margin-top: 5px; color: #f1c40f; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
-                    Cargando...
-                </div>
-            </div>
-
-<div class="controls-area">
+    <h1>Camino Portugués</h1>
+    <p class="subtitle-pro">Ruta de la Costa · Galicia</p>
     
-    <div class="tools-row">
-        <button onclick="openModal('modalMochila')" class="btn-mochila-pro">
-            <span style="font-size: 1.4em;">🎒</span> 
-            <span>Mi Mochila</span>
-        </button>
-
-        <div class="view-toggle-capsule">
-            <button class="view-btn-pro active" onclick="switchView('detail', this)">
-                🪪 Tarjetas
-            </button>
-            <button class="view-btn-pro" onclick="switchView('list', this)">
-                📋 Lista
-            </button>
+    <div class="stats-grid">
+        <div class="stat"><div class="stat-number">241 km</div><div class="stat-label">Distancia Total</div></div>
+        <div class="stat"><div class="stat-number">12 Etapas</div><div class="stat-label">Jornadas</div></div>
+        <div class="stat"><div class="stat-number">8-10 días</div><div class="stat-label">Duración Aprox.</div></div>
+        <div class="stat" style="background: rgba(230, 126, 34, 0.3); border: 1px solid #e67e22;">
+            <div class="stat-number" id="global-total-money">0.00€</div>
+            <div class="stat-label">Presupuesto</div>
         </div>
     </div>
 
-    <div class="apps-row">
-        <a href="https://tricount.com/ttpkwRQfUInLcPVXHb" target="_blank" class="btn-app btn-tricount">
-            💸 Tricount
-        </a>
-        <a href="https://open.spotify.com/playlist/7Akw7DCeq3bTUNXQ69pcVc?si=2IK1mTG4QUCY3NtyTP01Cw&pt=473465e8068564a44586aed89baed87f&pi=gPtd8AuXQP6-8" target="_blank" class="btn-app btn-spotify">
-            🎧 Música
-        </a>
+    <div id="countdown-container" style="background: rgba(0,0,0,0.3); padding: 8px 16px; border-radius: 50px; margin-top: 20px; display: inline-block; border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(5px);">
+        <span style="font-size: 0.75em; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9;">⏳ Comienza en:</span>
+        <div id="countdown" style="font-size: 1.2em; font-weight: 800; margin-top: 1px; color: #f1c40f;">
+            Cargando...
+        </div>
     </div>
 
+    <div class="controls-area">
+    <div class="apps-row" style="flex-wrap: wrap;"> <button onclick="openModal('modalMochila')" class="btn-app btn-mochila">
+            <img src="https://cdn-icons-png.flaticon.com/512/2662/2662503.png" alt="Mochila" class="app-icon">
+            <span>Mochila</span>
+        </button>
+
+        <a href="https://tricount.com/ttpkwRQfUInLcPVXHb" target="_blank" class="btn-app btn-tricount">
+            <img src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://tricount.com&size=128" alt="Tricount" class="app-icon">
+            <span>Tricount</span>
+        </a>
+
+        <a href="https://open.spotify.com/playlist/7Akw7DCeq3bTUNXQ69pcVc?si=2IK1mTG4QUCY3NtyTP01Cw&pt=473465e8068564a44586aed89baed87f&pi=gPtd8AuXQP6-8" target="_blank" class="btn-app btn-spotify">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify" class="app-icon">
+            <span>Música</span>
+        </a>
+
+    </div>
 </div>
 
-        </header>
+    </div>
+</header>
+
         <div class="progress-section">
     <div class="progress-label" style="align-items: center; margin-bottom: 15px;">
     <span style="display: flex; align-items: center; gap: 12px; font-size: 1.15em; color: #2c3e50;">
@@ -903,7 +1068,12 @@ footer {
         <div class="progress-bar-fill" id="progressBar">0%</div>
     </div>
 </div>
-
+<div class="view-toggle-bar">
+    <div class="view-toggle-capsule">
+        <button class="view-btn-pro active" onclick="switchView('detail', this)">🪪 Tarjetas</button>
+        <button class="view-btn-pro" onclick="switchView('list', this)">📋 Lista</button>
+    </div>
+</div>
         <div class="etapas-container">
             <!-- ETAPA 1 CARD -->
             <div class="etapa">
@@ -1146,7 +1316,10 @@ footer {
     <div class="weather-header">
         <div class="weather-info">
             <div class="weather-temp">--°C</div>
-            <div class="weather-desc">Cargando clima...</div>
+            <div class="weather-desc-group">
+                <span class="weather-desc">Cargando clima...</span>
+                <span class="weather-advice">Preparando consejos...</span>
+            </div>
         </div>
         <div class="weather-icon">⏳</div>
     </div>
@@ -1228,9 +1401,8 @@ footer {
                             </div>
                         </div>
                     </div>
-                    <a href="https://www.google.com/maps/dir/Baiona,+Pontevedra/Padr%C3%B3n,+A+Coru%C3%B1a/@42.4,-8.7,10z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0xd259062ccf7c87d:0x404f58273ca55a0!2m2!1d-8.8495577!2d42.1193392!1m5!1m1!1s0xd2f0394c8e7195d:0x404f58273ca5da0!2m2!1d-8.6608933!2d42.7383626!3e0?entry=ttu" target="_blank" class="btn-route-map">
-    🗺️ Ver Trayecto (Bus/Coche) en Google Maps
-</a>
+                    <div id="map-etapa8" style="height: 350px; width: 100%; border-radius: 10px; margin-top: 20px; border: 2px solid #ddd; z-index: 1;"></div>
+<button onclick="cargarMapaEtapa8()" class="btn-route-map" style="margin-top: 10px;">🗺️ Mapa Trayecto (Bus)</button>
 
 <div class="modal-section" style="margin-top: 25px;">
     <h3 class="sec-alojamiento" style="background: #e1f5fe !important; border-color: #b3e5fc !important;">📸 Mi Recuerdo del Día</h3>
@@ -1417,7 +1589,10 @@ Esta etapa de descanso es fundamental para recuperar fuerzas antes del último t
     <div class="weather-header">
         <div class="weather-info">
             <div class="weather-temp">--°C</div>
-            <div class="weather-desc">Cargando clima...</div>
+            <div class="weather-desc-group">
+                <span class="weather-desc">Cargando clima...</span>
+                <span class="weather-advice">Preparando consejos...</span>
+            </div>
         </div>
         <div class="weather-icon">⏳</div>
     </div>
@@ -1637,9 +1812,10 @@ Esta etapa de descanso es fundamental para recuperar fuerzas antes del último t
                         </div>
                     </div>
 
-                    <a href="https://www.google.com/maps/dir/Catedral+de+Oporto/Labruge,+Vila+do+Conde,+Portugal/@41.208166,-8.7188764,12z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0xd2464e251ebd14d:0x22629b4df12a433e!2m2!1d-8.6111162!2d41.1428592!1m5!1m1!1s0xd24677f8d689531:0x500ebbde4911070!2m2!1d-8.7160759!2d41.2750047!3e2?entry=ttu" target="_blank" class="btn-route-map">
-    🗺️ Ver Ruta en Google Maps (24 km)
-</a>
+                    <div id="map-etapa1" style="height: 350px; width: 100%; border-radius: 10px; margin-top: 20px; border: 2px solid #ddd; z-index: 1;"></div>
+<button onclick="cargarMapaEtapa1()" class="btn-route-map" style="margin-top: 10px;">
+    🗺️ Cargar Mapa Interactivo
+</button>
 
 <div class="modal-section" style="margin-top: 25px;">
     <h3 class="sec-alojamiento" style="background: #e1f5fe !important; border-color: #b3e5fc !important;">📸 Mi Recuerdo del Día</h3>
@@ -1776,7 +1952,10 @@ Localidad pequeña y tranquila que dispone de albergue de peregrinos en la antig
     <div class="weather-header">
         <div class="weather-info">
             <div class="weather-temp">--°C</div>
-            <div class="weather-desc">Cargando clima...</div>
+            <div class="weather-desc-group">
+                <span class="weather-desc">Cargando clima...</span>
+                <span class="weather-advice">Preparando consejos...</span>
+            </div>
         </div>
         <div class="weather-icon">⏳</div>
     </div>
@@ -1890,9 +2069,8 @@ Localidad pequeña y tranquila que dispone de albergue de peregrinos en la antig
                             </div>
                         </div>
                     </div>
-                    <a href="https://www.google.com/maps/dir/Labruge,+Portugal/P%C3%B3voa+de+Varzim,+Portugal/@41.3283259,-8.7884185,13z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0xd24677f8d689531:0x500ebbde4911070!2m2!1d-8.7160759!2d41.2750047!1m5!1m1!1s0xd246e7ae3d34605:0x400ebbde4903bc0!2m2!1d-8.7612376!2d41.3804369!3e2?entry=ttu" target="_blank" class="btn-route-map">
-    🗺️ Ver Ruta en Google Maps (14 km)
-                    </a>
+                    <div id="map-etapa2" style="height: 350px; width: 100%; border-radius: 10px; margin-top: 20px; border: 2px solid #ddd; z-index: 1;"></div>
+<button onclick="cargarMapaEtapa2()" class="btn-route-map" style="margin-top: 10px;">🗺️ Cargar Mapa Interactivo</button>
 
                     <div class="modal-section" style="margin-top: 25px;">
     <h3 class="sec-alojamiento" style="background: #e1f5fe !important; border-color: #b3e5fc !important;">📸 Mi Recuerdo del Día</h3>
@@ -2027,7 +2205,10 @@ Los platos tradicionales de la zona reflejan la combinación entre pesca y agric
     <div class="weather-header">
         <div class="weather-info">
             <div class="weather-temp">--°C</div>
-            <div class="weather-desc">Cargando clima...</div>
+            <div class="weather-desc-group">
+                <span class="weather-desc">Cargando clima...</span>
+                <span class="weather-advice">Preparando consejos...</span>
+            </div>
         </div>
         <div class="weather-icon">⏳</div>
     </div>
@@ -2216,9 +2397,8 @@ Los platos tradicionales de la zona reflejan la combinación entre pesca y agric
                             </div>
                         </div>
                     </div>
-                    <a href="https://www.google.com/maps/dir/P%C3%B3voa+de+Varzim,+Portugal/Marinhas,+Portugal/@41.4583925,-8.8258505,12z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0xd246e7ae3d34605:0x400ebbde4903bc0!2m2!1d-8.7612376!2d41.3804369!1m5!1m1!1s0xd25b42d13000b0d:0x500ebbde490fc60!2m2!1d-8.7844093!2d41.5363412!3e2?entry=ttu" target="_blank" class="btn-route-map">
-    🗺️ Ver Ruta en Google Maps (24,5 km)
-</a>
+                    <div id="map-etapa3" style="height: 350px; width: 100%; border-radius: 10px; margin-top: 20px; border: 2px solid #ddd; z-index: 1;"></div>
+<button onclick="cargarMapaEtapa3()" class="btn-route-map" style="margin-top: 10px;">🗺️ Cargar Mapa Interactivo</button>
 
 <div class="modal-section" style="margin-top: 25px;">
     <h3 class="sec-alojamiento" style="background: #e1f5fe !important; border-color: #b3e5fc !important;">📸 Mi Recuerdo del Día</h3>
@@ -2347,7 +2527,10 @@ Si el tiempo acompaña os recomendamos pasar la tarde en la playa de Cepães, qu
     <div class="weather-header">
         <div class="weather-info">
             <div class="weather-temp">--°C</div>
-            <div class="weather-desc">Cargando clima...</div>
+            <div class="weather-desc-group">
+                <span class="weather-desc">Cargando clima...</span>
+                <span class="weather-advice">Preparando consejos...</span>
+            </div>
         </div>
         <div class="weather-icon">⏳</div>
     </div>
@@ -2573,9 +2756,8 @@ Si el tiempo acompaña os recomendamos pasar la tarde en la playa de Cepães, qu
                             </div>
                         </div>
                     </div>
-                    <a href="https://www.google.com/maps/dir/Marinhas,+Portugal/Viana+do+Castelo,+Portugal/@41.614917,-8.859665,12z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0xd25b42d13000b0d:0x500ebbde490fc60!2m2!1d-8.7844093!2d41.5363412!1m5!1m1!1s0xd25b62649060b2d:0x400ebbde4903820!2m2!1d-8.832596!2d41.69323!3e2?entry=ttu" target="_blank" class="btn-route-map">
-    🗺️ Ver Ruta en Google Maps (20,8 km)
-</a>
+                    <div id="map-etapa4" style="height: 350px; width: 100%; border-radius: 10px; margin-top: 20px; border: 2px solid #ddd; z-index: 1;"></div>
+<button onclick="cargarMapaEtapa4()" class="btn-route-map" style="margin-top: 10px;">🗺️ Cargar Mapa Interactivo</button>
 
 <div class="modal-section" style="margin-top: 25px;">
     <h3 class="sec-alojamiento" style="background: #e1f5fe !important; border-color: #b3e5fc !important;">📸 Mi Recuerdo del Día</h3>
@@ -2706,7 +2888,10 @@ El puente Eiffel (Ponte de D. Luís Filipe), que cruzamos al final de la etapa, 
     <div class="weather-header">
         <div class="weather-info">
             <div class="weather-temp">--°C</div>
-            <div class="weather-desc">Cargando clima...</div>
+            <div class="weather-desc-group">
+                <span class="weather-desc">Cargando clima...</span>
+                <span class="weather-advice">Preparando consejos...</span>
+            </div>
         </div>
         <div class="weather-icon">⏳</div>
     </div>
@@ -2739,6 +2924,15 @@ El puente Eiffel (Ponte de D. Luís Filipe), que cruzamos al final de la etapa, 
                             <div class="tramo-content">
                                 <p><strong>NOTA IMPORTANTE:</strong> En la primera parte de la etapa podemos escoger entre la ruta oficial, que va por el interior, o bien el recorrido alternativo por el litoral, sin flechas pero con playas. La distancia en ambas opciones es similar, y la elección dependerá de nuestras preferencias.</p>
                                 <p><strong>Ruta alternativa por el litoral:</strong> Los que decidan seguir el litoral no tendrán ninguna dificultad para orientarse, si bien este trazado alternativo no cuenta con flechas amarillas. Desde Viana do Castelo sólo hay que buscar la Av. do Atlântico y superar la playa Norte y el fortín da Areosa, siguiendo la costa en dirección hacia el faro de Montedor, en Carreço. Se pasa por playas, molinos y tramos de pasarelas de madera, a lo largo del GR-1 y la Ecovía Litoral Norte. La llegada a Vila Praia de Âncora puede hacerse por la misma orilla de la costa, pisando arena en algún momento, o bien –con precaución– por el arcén de la carretera N-13.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://live.staticflickr.com/1788/43040127272_4ef16b94ae_b.jpg" 
+         alt="Praça da República"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Praça da República - Viana do Castelo 
+    </figcaption>
+</figure>
                                 <p><strong>Ruta oficial:</strong> Desde la Praça da República se toma el Passeio das Mordomas, para girar a la izquierda por la Rua Cándido dos Reis y seguir de frente por la Rua General Luís do Rego; una vez en el Largo 9 de abril buscaremos la Rua de São Tiago. Tras pasar bajo las vías del tren vemos el centro comercial Estação Viana Shopping (pues tiene la estación de ferrocarril justo al lado); antes de llegar giramos por la Rua Portela da Cima, en fuerte ascenso. Cruzamos por un paso inferior bajo la Av. 25 de Abril, que es la vía de circunvalación de la ciudad, y al salir giramos a la izquierda, siempre en subida, por la Rua D. Moisés Alves Pinho, llegando ante la iglesia de los Santos Mártires.</p>
                                 <p>Continuamos de frente por la misma calle y después por la Rua dos Sobreiros, bordeando el monte de Santa Luzia. Desde la Rua Pedreira da Areosa torceremos a la izquierda para seguir un rosario de callecitas estrechas entre muros de piedra, que nos dejan finalmente en una mini-rotonda donde hay una escultura de hierro oxidado. Seguimos por la Rua Entre Quintas, la Rua da Saudade y la Travessa das Pereiras; tras cruzar un puentecito de piedra sobre un riachuelo aparecemos ante la entrada a la mansión Quinta da Boa Viagem, con una capilla enfrente en cuyo atrio podemos parar a descansar.</p>
                                 <div class="punto-parada">
@@ -2778,10 +2972,37 @@ El puente Eiffel (Ponte de D. Luís Filipe), que cruzamos al final de la etapa, 
                             </div>
                             <div class="tramo-content">
                                 <p>Seguiremos por detrás de la iglesia en paralelo a la vía del tren, para finalmente volver a cruzarla, esta vez por un puente. Seguimos la adoquinada Av. de Paço y pasamos junto al albergue privado Casa do Sardão, un remanso de paz que goza de buenas vistas sobre el faro de Montedor y el mar.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://www.diariodesantiago.es/wp-content/uploads/2025/11/viana-web-117.original-2025-11-17-viana-web-117.original.jpg" 
+         alt="Faro de Montedor"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Faro de Montedor 
+    </figcaption>
+</figure>
                                 <p>Poco después el camino se interna en un bosque de eucaliptus, tramo abrupto pero muy agradable tras el cual llegamos a un cruce con una fuente de piedra. Ya por calzadas empedradas entramos en el barrio de Armada, perteneciente a la localidad de Afife.</p>
                                 <p><strong>3,5 km.</strong> Armada (Afife). Tras un tramo de camino adoquinado a través del bosque llegamos ante la Quinta de Cabanas.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/ce/9b/bb/convento.jpg?w=900&h=500&s=1" 
+         alt="Convento de São João de Cabanas"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Convento de São João de Cabanas 
+    </figcaption>
+</figure>
                                 <p><strong>0,5 km.</strong> Convento de São João de Cabanas (Afife). Antiguo convento benedictino situado en un paraje idílico, con un riachuelo, árboles, poemas sobre azulejos y un cruceiro. Tras el puente el camino sigue a la derecha por el borde del río, tomando después algún tramo de adoquines y escaleras. Un sendero empinado y con piedras nos conduce hasta otro camino con adoquines, ahora en bajada; viene después un nuevo tramo en subida por el bosque, con camino de tierra y losas de piedra. Al cabo de 20 minutos llegamos a un primer cruceiro, y poco después a otro, éste sin vistas, donde comienza una bajada por terreno pedregoso. Al cabo de 1 km, ya por adoquines, llegamos a la aldea de Barreiros, con un antiquísimo lavadero a ras de suelo y de nuevo otro cruceiro, éste datado en 1779.</p>
                                 <p><strong>2,8 km.</strong> Barreiros. Tras 800 metros el camino nos lleva ante otro gran cruceiro en un parterre con césped, y seguimos por un caminito empedrado. Justo después de cruzar una plataforma de piedra sobre el río Âncora tomamos a la izquierda un sendero por el que llegamos a la carretera N-305, que cruzamos. Por la Rua da Barrosa tomamos otro atajo a mano izquierda, entre pinos, y llegamos a una escuela y al edificio vidriado de la piscina municipal. En breve cruzaremos bajo la carretera N-13 por un paso inferior y avanzaremos hacia la Praça da Revolución, centro de Vila Praia de Âncora.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://thenwewalked.com/wp-content/uploads/2025/01/agarda-seafront-1024x683.jpg" 
+         alt="Vila Praia De Ancora"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Vila Praia De Ancora 
+    </figcaption>
+</figure>
                                 <p><strong>3,1 km.</strong> Vila Praia de Âncora.</p>
                                 <div class="punto-parada">
                                     <div class="punto-parada-nombre">📍 VILA PRAIA DE ÂNCORA</div>
@@ -2801,7 +3022,25 @@ El puente Eiffel (Ponte de D. Luís Filipe), que cruzamos al final de la etapa, 
                             </div>
                             <div class="tramo-content">
                                 <p>Se cruza la vía del tren por alguno de los pasos a nivel y llegamos ante la costa, junto al fuerte da Lagarteira. Seguimos todo el litoral, en paralelo a la vía del tren y a la costa, pasando por la capilla de Santo Isidoro, con un pequeño atrio. Al cabo de 1,8 km el camino cruza por un paso inferior bajo la vía del tren y entra en la localidad de Moledo.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://www.portugalplease.com/uploads/artigos-visitar/1179/principal/principal-5f4d20a08da31-imagem_10_1_1024_2500.jpg" 
+         alt="Forte da Lagarteira"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Forte da Lagarteira
+    </figcaption>
+</figure>
                                 <p><strong>Variante recomendada:</strong> En lugar de cruzar bajo la vía del tren tal como indican las flechas, os recomendamos seguir de frente, por la orilla del mar hacia la playa de Moledo, y cruzar la Mata do Camarido, precioso bosque de pinos declarado Parque Nacional (también es factible caminar por la misma arena de la playa), llegando finalmente al estuario del río Miño y al paseo marítimo de Caminha. El rodeo supone apenas 1,1 km más de camino, pero vale la pena.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://r-xx.bstatic.com/xdata/images/hotel/608x352/660705177.webp?k=4a35029342f5a200e8a2810a95ad987af4b27ea5d5bbfa4d183a2309bbc096ad&o=" 
+         alt="Praia Moledo"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Praia Moledo - Caminha
+    </figcaption>
+</figure>
                                 <div class="punto-parada">
                                     <div class="punto-parada-nombre">📍 MOLEDO</div>
                                     <div class="distancia-acumulada">Distancia acumulada: 23 km</div>
@@ -2820,7 +3059,25 @@ El puente Eiffel (Ponte de D. Luís Filipe), que cruzamos al final de la etapa, 
                             </div>
                             <div class="tramo-content">
                                 <p>Los que crucen bajo la vía del tren deben seguir en paralelo por las aceras de la Av. Santana hasta una gran rotonda. La cruzamos con sumo cuidado por los pasos de cebra y continuamos por el arcén de una carretera secundaria y rectilínea. <strong>[Nota 2021: nos informan que se ha habilitado un carril-bici, por lo que ya no es necesario caminar por el arcén]</strong>, siempre en paralelo a las vías del tren, y que seguiremos durante 3,2 km totalmente anodinos hasta entrar en Caminha, llegando a la plaza del Ayuntamiento, con la bonita Torre del Reloj y la puerta que da entrada al casco viejo de la villa.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://content-viajes.nationalgeographic.com.es/medio/2025/12/17/carminha_970db375_251217094958_1280x854.webp" 
+         alt="Torre do Relógio"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Torre do Relógio (Porta de Viana)
+    </figcaption>
+</figure>
                                 <p>Además de visitar su bonito casco histórico, os recomendamos consultar enseguida los horarios del ferry que cruza el Miño, que varían cada día en función de la marea baja, para decidir si quedarnos a dormir aquí o bien tomar el transbordador hoy mismo (lo que implicará continuar caminando, después del trayecto en ferry, los 3,6 km que restan hasta A Guarda).</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Caminha_e_Camposancos.JPG" 
+         alt="Caminha"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Caminha
+    </figcaption>
+</figure>
                                 <div class="punto-parada">
                                     <div class="punto-parada-nombre">✅ CAMINHA - FIN DE ETAPA EN PORTUGAL</div>
                                     <div class="distancia-acumulada">Distancia acumulada total: 26,8 km</div>
@@ -2828,9 +3085,8 @@ El puente Eiffel (Ponte de D. Luís Filipe), que cruzamos al final de la etapa, 
                             </div>
                         </div>
                     </div>
-                    <a href="https://www.google.com/maps/dir/Viana+do+Castelo,+Portugal/Caminha,+Portugal/@41.784917,-8.9105,11z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0xd25b62649060b2d:0x400ebbde4903820!2m2!1d-8.832596!2d41.69323!1m5!1m1!1s0xd25a8e26527588b:0x400ebbde4903330!2m2!1d-8.8385731!2d41.8761271!3e2?entry=ttu" target="_blank" class="btn-route-map">
-    🗺️ Ver Ruta en Google Maps (26,8 km)
-</a>
+                    <div id="map-etapa5" style="height: 350px; width: 100%; border-radius: 10px; margin-top: 20px; border: 2px solid #ddd; z-index: 1;"></div>
+<button onclick="cargarMapaEtapa5()" class="btn-route-map" style="margin-top: 10px;">🗺️ Cargar Mapa Interactivo</button>
 
 <div class="modal-section" style="margin-top: 25px;">
     <h3 class="sec-alojamiento" style="background: #e1f5fe !important; border-color: #b3e5fc !important;">📸 Mi Recuerdo del Día</h3>
@@ -2962,7 +3218,10 @@ Hoy es nuestro último día del recorrido en Portugal, justo cuando nos habíamo
     <div class="weather-header">
         <div class="weather-info">
             <div class="weather-temp">--°C</div>
-            <div class="weather-desc">Cargando clima...</div>
+            <div class="weather-desc-group">
+                <span class="weather-desc">Cargando clima...</span>
+                <span class="weather-advice">Preparando consejos...</span>
+            </div>
         </div>
         <div class="weather-icon">⏳</div>
     </div>
@@ -2994,6 +3253,15 @@ Hoy es nuestro último día del recorrido en Portugal, justo cuando nos habíamo
                             </div>
                             <div class="tramo-content">
                                 <p>Desde el centro de Caminha nos acercamos al embarcadero, donde tomaremos el ferry que cruza el río Miño hacia Galicia. Para información detallada sobre horarios y tarifas, consultar la sección de Curiosidades.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://static.laregion.es/clip/07065a38-527e-4d5e-b44f-7c337ecc93dc_source-aspect-ratio_1600w_0.jpg" 
+         alt="Ferry Caminha - A Guarda"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Ferry Caminha - A Guarda
+    </figcaption>
+</figure>
                                 <div class="punto-parada">
                                     <div class="punto-parada-nombre">⛴️ A PASAXE (CAMPOSANCOS)</div>
                                     <div class="distancia-acumulada">Distancia acumulada: 0,7 km</div>
@@ -3012,8 +3280,26 @@ Hoy es nuestro último día del recorrido en Portugal, justo cuando nos habíamo
                             </div>
                             <div class="tramo-content">
                                 <p>Nada más salir del puerto caminaremos unos metros hacia la izquierda, pasando frente al edificio del antiguo colegio-internado de jesuitas, que durante la Guerra Civil albergó un campo de concentración de infausta memoria. Tomamos la primera calle en subida y vamos siguiendo las flechas, que nos llevarán a rodear por la derecha el monte de Santa Tegra –Santa Tecla–.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://www.turismoaguarda.es/wp-content/uploads/2016/05/viacrucis-1024x678.jpg" 
+         alt="Monte Santa Trega"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Monte Santa Trega - A Guarda
+    </figcaption>
+</figure>
                                 <p><strong>NOTA:</strong> Aunque el camino no pase por allí, debemos saber que en lo alto del monte Santa Tegra se ha excavado un gran castro galaico-romano; quien lo desee puede subir a visitar el yacimiento arqueológico y el museo, aunque el recorrido resulta bastante duro por los 341 metros de desnivel. Si el día es claro, las vistas desde la cima sobre el estuario del Miño y sobre las costas portuguesa y gallega son espectaculares.</p>
                                 <p>Después de la primera subida, los que van caminando llegarán a la carretera de Camposancos; a 20 metros a la izquierda se inicia una nueva subidita, junto a una parada de bus y un transformador. Tras un zigzag por las casas del barrio de Saa pasamos a un camino de tierra por el monte que desemboca en la carretera PO-355, frente a un campo de fútbol, ya a la entrada de A Guarda. Seguimos la acera de la carretera, después la Rúa Rosalía de Castro y finalmente la Rúa Galicia hacia el centro de la villa. Es recomendable desviarse ligeramente para visitar, en el casco viejo, la bonita plaza do Reló (ayuntamiento y oficina de turismo) y la iglesia parroquial de Santa María.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://mapas.turismoaguarda.es/cgmlImg/101-aqkpvla/wmdpi16/PRI-Iglesia_Santa_Maria.jpg" 
+         alt="Iglesia_Santa_Maria"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Iglesia_Santa_Maria
+    </figcaption>
+</figure>
                                 <div class="punto-parada">
                                     <div class="punto-parada-nombre">📍 A GUARDA</div>
                                     <div class="distancia-acumulada">Distancia acumulada: 4,3 km</div>
@@ -3034,8 +3320,26 @@ Hoy es nuestro último día del recorrido en Portugal, justo cuando nos habíamo
                                 <p>Podemos seguir por la Rúa San Bernardo o bien por la Rúa Puerto Rico (donde está el albergue municipal), pues ambas nos conducen a la Rúa da Guía, que se convierte en plaza ante la capilla de la Virgen de la Guía. Por la Rúa Baixada á Praia, tal como su nombre indica, llegamos a las playas de Fedorento y de Area Grande (Arena Grande), ya al final del pueblo.</p>
                                 <p><strong>Nota para bicicletas:</strong> A partir de aquí el camino se complica para las bicis, por lo cual lo mejor será que los ciclistas asciendan por la rampa de asfalto que hay desde la playa de Area Grande hasta la carretera PO-552, donde encontrarán un mirador y un carril bici que seguirán, en paralelo a la carretera y por toda la costa, hasta Baiona. Esta opción también sería una alternativa prudente para los caminantes en días de temporal extremo.</p>
                                 <p>Al final del aparcamiento de la playa comienza el tramo más agreste de la etapa, durante el cual avanzaremos por un camino casi al nivel del mar y entre las rocas de la costa. Se trata de una parte de la Ruta de las Cetarias, recorrido habilitado para conocer estos viveros naturales utilizados antaño para conservar langostas, bogavantes, bueyes de mar y centollas; eran estructuras pétreas construidas al abrigo de las rocas, donde rompen las olas, aprovechando las mareas para renovar constantemente el agua.</p>
+                               <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></figure>
+                                <img src="https://elviajeroaccidental.com/wp-content/uploads/2022/04/Portada_ruta_cetareas.jpg" 
+         alt="Ruta de las Cetarias"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Ruta de las Cetarias
+    </figcaption>
+</figure>
                                 <p>Al cabo de 1,1 km, justo ante la cetaria Redonda, las flechas nos llevan en fuerte subida para girar –antes de llegar a la carretera– por un sendero a la izquierda; éste se convierte en una agradable pista de tierra a través de zonas de campos y bosquecillos de pinos o eucaliptus, algunos de los cuales se quemaron durante los terribles incendios forestales de 2017. Finalmente el camino vuelve a ascender a la carretera PO-552.</p>
                                 <p><strong>3,8 Carretera PO-552.</strong> Seguiremos por su carril bici durante 1,9 km, siempre con precaución pues es muy utilizado por ciclistas (tanto locales como bicigrinos). Pasamos el mirador de Punta Bazar y, justo al entrar en el término municipal de O Rosal, las flechas nos devuelven a la izquierda por un tramo de camino muy bonito, en paralelo a la carretera. Por éste llegamos a las casas de Portecelo, pequeña localidad donde en temporada abre un chiringuito.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://www.turismodeobservacion.com/media/fotografias/playa-de-portocelo-marin-pontevedra-100192-xl.jpg" 
+         alt="Playa de Portocelo"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Playa de Portocelo
+    </figcaption>
+</figure>
                                 <p><strong>3,2 Portecelo.</strong></p>
                                 <div class="punto-parada">
                                     <div class="punto-parada-nombre">📍 PORTECELO</div>
@@ -3055,6 +3359,15 @@ Hoy es nuestro último día del recorrido en Portugal, justo cuando nos habíamo
                             </div>
                             <div class="tramo-content">
                                 <p>Seguimos durante 2 km por la antigua Estrada Real, volviendo después al carril bici de la carretera, lo cual se repite en dos ocasiones. Finalmente lo dejaremos tomando una pista asfaltada en bajada que lleva a la ermita de San Sebastián, ya en el término municipal de Oia. En 800 metros entraremos en el barrio del Arrabal, con casas de piedra y un par de bares; pasamos ante el cruceiro de la Centinela, del año 1764 y con una curiosa inscripción, buen mirador sobre el embarcadero, la playa y el monasterio de Oia.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://www.infobae.com/new-resizer/aUv_cAOidPzQOc6bsDVY7BJ7KvA=/arc-anglerfish-arc2-prod-infobae/public/B6HROS55RRFQBO5WH2GNHRGG3M.jpg" 
+         alt="Monasterio de Oia"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 Monasterio de Oia
+    </figcaption>
+</figure>
                                 <p><strong>Monasterio cisterciense de Santa María (siglo XII),</strong> único de dicha orden construido frente al mar, en un emplazamiento espectacular y muy fotogénico. La iglesia del monasterio puede visitarse en horario de misas o bien solicitando la llave en el bar-estanco que hay 80 metros antes de llegar. El resto del edificio, cerrado a cal y canto, se halla inmerso en una batalla legal entre sus propietarios (una sociedad privada que quiere convertirlo en hotel y centro de talasoterapia), el Concello de Oia y la Xunta de Galicia.</p>
                                 <div class="punto-parada">
                                     <div class="punto-parada-nombre">📍 OIA</div>
@@ -3094,6 +3407,15 @@ Hoy es nuestro último día del recorrido en Portugal, justo cuando nos habíamo
                                 <p>Sólo 250 metros después del hotel Glasgow, tras superar una gasolinera, debemos cruzar la carretera por un paso de peatones y tomaremos una calle asfaltada en subida; ahora el camino va a una cota más alta, con buenas vistas, por una zona con casitas y huertos.</p>
                                 <p>Seguimos las indicaciones de las flechas, a lo largo de una ruta que, como ya podíamos imaginar, está pensada para evitarnos un tramo de 1,8 km de la peligrosa PO-552, en el que no existe –por ahora– ni carril bici ni otra alternativa más que la señalizada; aunque suponga un pequeño rodeo, es sin duda mucho más seguro y agradable que caminar por el arcén junto a los coches y camiones.</p>
                                 <p>Finalmente bajamos de nuevo a la carretera, que atravesamos con cuidado por el paso de peatones; la seguimos apenas unos metros por el carril bici y torcemos a la izquierda por una pista de tierra. Pronto llegamos ante una playa de cantos rodados y la desembocadura del río Mougás, que cruzaremos gracias a un puentecillo metálico de color azul. Tras superarlo giramos a la izquierda y entramos en el pequeño núcleo de Porto Mougás, con casas en primera línea de la costa.</p>
+                                <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="https://caminhoportuguesdesantiago.eu/wp-content/uploads/2022/06/etapa-7.jpg" 
+         alt="El puerto de Mougás"
+         style="width: 100%; height: 200px; object-fit: cover; display: block;">
+         
+    <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
+        🌉 El puerto de Mougás
+    </figcaption>
+</figure>
                                 <p><strong>Porto Mougás.</strong> En el albergue privado Aguncheiro, todo un referente del Camino Portugués de la Costa, nos sellarán la credencial y pueden indicarnos lugares interesantes a visitar, como el castro de A Cabeciña y su conjunto de petroglifos, las pozas del río o dónde ver caballos salvajes; además, si el hambre acucia, al lado disponemos de un bar-restaurante. Los que decidan alargar la jornada tienen más adelante dos campings, uno a 1,8 km y otro a 4,2 km.</p>
                                 <div class="punto-parada">
                                     <div class="punto-parada-nombre">✅ PORTO MOUGÁS - FIN DE ETAPA</div>
@@ -3102,9 +3424,8 @@ Hoy es nuestro último día del recorrido en Portugal, justo cuando nos habíamo
                             </div>
                         </div>
                     </div>
-                    <a href="https://www.google.com/maps/dir/Caminha,+Portugal/Porto+Moug%C3%A1s,+Oia,+Espa%C3%B1a/@41.961022,-8.93005,11z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0xd25a8e26527588b:0x400ebbde4903330!2m2!1d-8.8385731!2d41.8761271!1m5!1m1!1s0xd25997a3a5a5a5b:0xa0a0a0a0a0a0a0a0!2m2!1d-8.892!2d42.046!3e2?entry=ttu" target="_blank" class="btn-route-map">
-    🗺️ Ver Ruta en Google Maps (23,5 km)
-</a>
+                    <div id="map-etapa6" style="height: 350px; width: 100%; border-radius: 10px; margin-top: 20px; border: 2px solid #ddd; z-index: 1;"></div>
+<button onclick="cargarMapaEtapa6()" class="btn-route-map" style="margin-top: 10px;">🗺️ Cargar Mapa Interactivo</button>
 
 <div class="modal-section" style="margin-top: 25px;">
     <h3 class="sec-alojamiento" style="background: #e1f5fe !important; border-color: #b3e5fc !important;">📸 Mi Recuerdo del Día</h3>
@@ -3238,7 +3559,10 @@ La langosta, el bogavante –lumbrigante en gallego–, el buey de mar y la cent
     <div class="weather-header">
         <div class="weather-info">
             <div class="weather-temp">--°C</div>
-            <div class="weather-desc">Cargando clima...</div>
+            <div class="weather-desc-group">
+                <span class="weather-desc">Cargando clima...</span>
+                <span class="weather-advice">Preparando consejos...</span>
+            </div>
         </div>
         <div class="weather-icon">⏳</div>
     </div>
@@ -3336,9 +3660,8 @@ La langosta, el bogavante –lumbrigante en gallego–, el buey de mar y la cent
                             </div>
                         </div>
                     </div>
-                    <a href="https://www.google.com/maps/dir/Porto+Moug%C3%A1s,+Oia,+Espa%C3%B1a/Baiona,+Pontevedra/@42.0825,-8.9,12z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0xd25997a3a5a5a5b:0xa0a0a0a0a0a0a0a0!2m2!1d-8.892!2d42.046!1m5!1m1!1s0xd259062ccf7c87d:0x404f58273ca55a0!2m2!1d-8.8495577!2d42.1193392!3e2?entry=ttu" target="_blank" class="btn-route-map">
-    🗺️ Ver Ruta en Google Maps (11,5 km)
-</a>
+                    <div id="map-etapa7" style="height: 350px; width: 100%; border-radius: 10px; margin-top: 20px; border: 2px solid #ddd; z-index: 1;"></div>
+<button onclick="cargarMapaEtapa7()" class="btn-route-map" style="margin-top: 10px;">🗺️ Cargar Mapa Interactivo</button>
 
 <div class="modal-section" style="margin-top: 25px;">
     <h3 class="sec-alojamiento" style="background: #e1f5fe !important; border-color: #b3e5fc !important;">📸 Mi Recuerdo del Día</h3>
@@ -3473,7 +3796,10 @@ Pasaremos aquí en Baiona 2 noches para descansar y conocer las Islas Cíes.
     <div class="weather-header">
         <div class="weather-info">
             <div class="weather-temp">--°C</div>
-            <div class="weather-desc">Cargando clima...</div>
+            <div class="weather-desc-group">
+                <span class="weather-desc">Cargando clima...</span>
+                <span class="weather-advice">Preparando consejos...</span>
+            </div>
         </div>
         <div class="weather-icon">⏳</div>
     </div>
@@ -3600,9 +3926,8 @@ Pasaremos aquí en Baiona 2 noches para descansar y conocer las Islas Cíes.
                             </div>
                         </div>
                     </div>
-                    <a href="https://www.google.com/maps/dir/Padr%C3%B3n,+A+Coru%C3%B1a/Catedral+de+Santiago+de+Compostela,+Praza+do+Obradoiro,+Santiago+de+Compostela/@42.809,-8.6,11z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0xd2f0394c8e7195d:0x404f58273ca5da0!2m2!1d-8.6608933!2d42.7383626!1m5!1m1!1s0xd2efe4365741631:0x2287f32029524021!2m2!1d-8.5444654!2d42.8805763!3e2?entry=ttu" target="_blank" class="btn-route-map">
-    🗺️ Ver Ruta en Google Maps (24,3 km)
-</a>
+                    <div id="map-etapa9" style="height: 350px; width: 100%; border-radius: 10px; margin-top: 20px; border: 2px solid #ddd; z-index: 1;"></div>
+<button onclick="cargarMapaEtapa9()" class="btn-route-map" style="margin-top: 10px;">🗺️ Cargar Mapa Interactivo</button>
 
 <div class="modal-section" style="margin-top: 25px;">
     <h3 class="sec-alojamiento" style="background: #e1f5fe !important; border-color: #b3e5fc !important;">📸 Mi Recuerdo del Día</h3>
@@ -3955,45 +4280,69 @@ function removePhoto(etapaId) {
         'etapa9': { lat: 42.880, lon: -8.544, name: 'Santiago' }
     };
 
-    // Función actualizada para buscar Tiempo y Diario por separado
     async function loadDiaryWidget(etapaId) {
-        
-        // 1. CARGAR DIARIO (Busca el ID diary-etapaX)
-        const diaryContainer = document.getElementById(`diary-${etapaId}`);
-        if (diaryContainer) {
-            const savedText = localStorage.getItem(`diary_text_${etapaId}`) || '';
-            const textarea = diaryContainer.querySelector('.diary-textarea');
-            if (textarea) textarea.value = savedText;
-        }
+    // 1. CARGAR DIARIO
+    const diaryContainer = document.getElementById(`diary-${etapaId}`);
+    if (diaryContainer) {
+        const savedText = localStorage.getItem(`diary_text_${etapaId}`) || '';
+        const textarea = diaryContainer.querySelector('.diary-textarea');
+        if (textarea) textarea.value = savedText;
+    }
 
-        // 2. CARGAR TIEMPO (Busca el ID weather-etapaX)
-        const weatherContainer = document.getElementById(`weather-${etapaId}`);
-        const coords = stageCoordinates[etapaId]; // Usa las coordenadas que ya definiste arriba
+    // 2. CARGAR TIEMPO PRO
+    const weatherContainer = document.getElementById(`weather-${etapaId}`);
+    const coords = stageCoordinates[etapaId];
 
-        if (weatherContainer && coords) {
-            try {
-                const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${coords.lat}&longitude=${coords.lon}&current_weather=true&timezone=auto`);
-                const data = await response.json();
-                
-                // Iconos
-                const code = data.current_weather.weathercode;
-                let icon = '☀️'; let desc = 'Despejado';
-                if (code > 0 && code <= 3) { icon = '⛅'; desc = 'Nublado'; }
-                else if (code >= 45 && code <= 48) { icon = '🌫️'; desc = 'Niebla'; }
-                else if (code >= 51 && code <= 67) { icon = '🌧️'; desc = 'Lluvia'; }
-                else if (code >= 71) { icon = '❄️'; desc = 'Nieve'; }
-                else if (code >= 95) { icon = '⛈️'; desc = 'Tormenta'; }
+    if (weatherContainer && coords) {
+        try {
+            const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${coords.lat}&longitude=${coords.lon}&current_weather=true&timezone=auto`);
+            const data = await response.json();
+            const header = weatherContainer.querySelector('.weather-header');
+            
+            // Lógica de estados y consejos
+            const code = data.current_weather.weathercode;
+            const temp = Math.round(data.current_weather.temperature);
+            let icon, desc, consejo, climaClass;
 
-                // Actualizar HTML del Tiempo
-                weatherContainer.querySelector('.weather-temp').innerText = `${Math.round(data.current_weather.temperature)}°C`;
-                weatherContainer.querySelector('.weather-desc').innerText = `${desc} en ${coords.name}`;
-                weatherContainer.querySelector('.weather-icon').innerText = icon;
-                
-            } catch (error) {
-                console.log("Error clima", error);
+            if (code === 0) {
+                icon = '☀️'; desc = 'Despejado'; climaClass = 'weather-sunny';
+                consejo = temp > 25 ? "🔥 Calor: hidrátate mucho y usa crema." : "🥾 Día perfecto para caminar.";
+            } else if (code <= 3) {
+                icon = '⛅'; desc = 'Nublado'; climaClass = 'weather-cloudy';
+                consejo = "☁️ Ideal para no quemarse. Mantén el ritmo.";
+            } else if (code >= 51 && code <= 67) {
+                icon = '🌧️'; desc = 'Lluvia'; climaClass = 'weather-rainy';
+                consejo = "☔ ¡Chubasquero fuera! Protege tu mochila.";
+            } else if (code >= 95) {
+                icon = '⛈️'; desc = 'Tormenta'; climaClass = 'weather-storm';
+                consejo = "⚠️ Tormenta: busca refugio si arrecia.";
+            } else {
+                icon = '🌫️'; desc = 'Niebla'; climaClass = 'weather-cloudy';
+                consejo = "🌫️ Poca visibilidad: atento a las flechas.";
             }
+
+            // Aplicar clase de color al header
+            header.className = `weather-header ${climaClass}`;
+
+            // Actualizar el HTML interior con la nueva estructura
+            weatherContainer.innerHTML = `
+                <div class="weather-header ${climaClass}">
+                    <div class="weather-info">
+                        <div class="weather-temp">${temp}°C</div>
+                        <div class="weather-desc-group">
+                            <span class="weather-desc">${desc} en ${coords.name}</span>
+                            <span class="weather-advice">${consejo}</span>
+                        </div>
+                    </div>
+                    <div class="weather-icon">${icon}</div>
+                </div>
+            `;
+            
+        } catch (error) {
+            console.error("Error al cargar el clima:", error);
         }
     }
+}
 
     function saveDiary(etapaId, text) {
         localStorage.setItem(`diary_text_${etapaId}`, text);
@@ -4314,6 +4663,281 @@ document.addEventListener('DOMContentLoaded', function() {
         box.addEventListener('change', updateStampVisuals);
     });
 });
+
+// --- VARIABLES GLOBALES Y CONFIGURACIÓN ---
+let maps = { 1: null, 2: null, 3: null, 4: null, 5: null, 6: null, 7: null, 8: null, 9: null };
+
+// Icono Hotel / Alojamiento
+const hotelIcon = L.icon({
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/10350/10350212.png',
+    iconSize: [35, 35], iconAnchor: [17, 35], popupAnchor: [0, -35]
+});
+
+// Icono Usuario (Punto Azul estilo Google Maps)
+const userIcon = L.divIcon({
+    className: 'user-marker',
+    html: '<div style="background-color: #4285F4; width: 15px; height: 15px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 4px rgba(66, 133, 244, 0.3);"></div>',
+    iconSize: [20, 20],
+    iconAnchor: [10, 10]
+});
+
+// --- FUNCIÓN MAESTRA: CREAR MAPA CON GPS ---
+function crearMapaBase(id, coordsCentro, zoom) {
+    if (maps[id] !== null) return null; 
+
+    // 1. Crear el mapa
+    const map = L.map(`map-etapa${id}`).setView(coordsCentro, zoom);
+    maps[id] = map;
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    // 2. AÑADIR BOTÓN DE GPS "🎯" (NUEVO)
+    const GpsControl = L.Control.extend({
+        options: { position: 'topright' }, // Arriba a la derecha
+        onAdd: function(map) {
+            const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+            const button = L.DomUtil.create('a', '', container);
+            button.innerHTML = '🎯'; // Icono de diana
+            button.href = '#';
+            button.title = "Ver mi ubicación";
+            button.style.backgroundColor = 'white';
+            button.style.width = '35px';
+            button.style.height = '35px';
+            button.style.display = 'flex';
+            button.style.alignItems = 'center';
+            button.style.justifyContent = 'center';
+            button.style.fontSize = '20px';
+            button.style.textDecoration = 'none';
+            button.style.cursor = 'pointer';
+
+            // Al hacer clic, buscamos al usuario
+            L.DomEvent.on(button, 'click', function(e) {
+                L.DomEvent.stop(e);
+                button.innerHTML = '⏳'; // Icono de cargando
+                map.locate({setView: true, maxZoom: 16});
+            });
+
+            return container;
+        }
+    });
+    map.addControl(new GpsControl());
+
+    // 3. EVENTOS DE GPS
+    map.on('locationfound', function(e) {
+        // Restaurar icono botón
+        const btn = document.querySelector('.leaflet-control a[title="Ver mi ubicación"]');
+        if(btn) btn.innerHTML = '🎯';
+
+        // Poner o mover el marcador azul
+        if (map.userMarker) {
+            map.userMarker.setLatLng(e.latlng);
+        } else {
+            map.userMarker = L.marker(e.latlng, {icon: userIcon}).addTo(map)
+                .bindPopup("<b>👋 ¡Estás aquí!</b>").openPopup();
+        }
+    });
+
+    map.on('locationerror', function(e) {
+        alert("⚠️ No pudimos localizarte. Asegúrate de tener el GPS activado y dar permiso al navegador.");
+        const btn = document.querySelector('.leaflet-control a[title="Ver mi ubicación"]');
+        if(btn) btn.innerHTML = '🎯';
+    });
+    
+    // Fix visualización
+    setTimeout(() => { map.invalidateSize(); }, 200);
+    return map;
+}
+
+// FUNCIÓN PARA DIBUJAR RUTA
+function dibujarRuta(map, latlngs) {
+    if(!map) return;
+    const polyline = L.polyline(latlngs, {color: '#3498db', weight: 4, dashArray: '10, 10', opacity: 0.7}).addTo(map);
+    map.fitBounds(polyline.getBounds(), {padding: [40, 40]});
+}
+
+// --- ETAPA 1: OPORTO -> LABRUGE ---
+function cargarMapaEtapa1() {
+    const map = crearMapaBase(1, [41.2000, -8.6800], 11);
+    if (!map) return;
+
+    L.marker([41.1429, -8.6111]).addTo(map).bindPopup('<b>🚩 Inicio: Oporto</b>');
+    L.marker([41.2754, -8.7296]).addTo(map).bindPopup('<b>🏁 Meta: Labruge</b>');
+    L.marker([41.1485, -8.6680]).addTo(map).bindPopup('📍 Foz do Douro');
+    L.marker([41.1685, -8.6890]).addTo(map).bindPopup('📍 Matosinhos');
+    L.marker([41.1940, -8.7050]).addTo(map).bindPopup('📍 Leça da Palmeira');
+    L.marker([41.2210, -8.7190]).addTo(map).bindPopup('📍 Aldeia Nova');
+    L.marker([41.2580, -8.7240]).addTo(map).bindPopup('📍 Angeiras');
+
+    // Hotel
+    L.marker([41.2765, -8.7250], {icon: hotelIcon}).addTo(map)
+        .bindPopup('<b>🌟 Beach House Labruge</b>').openPopup();
+
+    dibujarRuta(map, [
+        [41.1429, -8.6111], [41.1485, -8.6680], [41.1685, -8.6890], 
+        [41.1940, -8.7050], [41.2210, -8.7190], [41.2580, -8.7240], 
+        [41.2754, -8.7296]
+    ]);
+}
+
+// --- ETAPA 2: LABRUGE -> PÓVOA DE VARZIM ---
+function cargarMapaEtapa2() {
+    const map = crearMapaBase(2, [41.3300, -8.7500], 12);
+    if (!map) return;
+
+    L.marker([41.2754, -8.7296]).addTo(map).bindPopup('<b>🚩 Inicio: Labruge</b>');
+    L.marker([41.3804, -8.7609]).addTo(map).bindPopup('<b>🏁 Meta: Póvoa</b>');
+    L.marker([41.2950, -8.7350]).addTo(map).bindPopup('📍 Vila Chã');
+    L.marker([41.3150, -8.7400]).addTo(map).bindPopup('📍 Mindelo');
+    L.marker([41.3550, -8.7420]).addTo(map).bindPopup('📍 Vila do Conde');
+
+    L.marker([41.3900, -8.7500], {icon: hotelIcon}).addTo(map)
+        .bindPopup('<b>🌟 Casa Fragosa</b>').openPopup();
+
+    dibujarRuta(map, [
+        [41.2754, -8.7296], [41.2950, -8.7350], [41.3150, -8.7400], 
+        [41.3550, -8.7420], [41.3804, -8.7609]
+    ]);
+}
+
+// --- ETAPA 3: PÓVOA -> MARINHAS ---
+function cargarMapaEtapa3() {
+    const map = crearMapaBase(3, [41.4500, -8.7700], 11);
+    if (!map) return;
+
+    L.marker([41.3804, -8.7609]).addTo(map).bindPopup('<b>🚩 Inicio: Póvoa</b>');
+    L.marker([41.5420, -8.7850]).addTo(map).bindPopup('<b>🏁 Meta: Marinhas</b>');
+    L.marker([41.4100, -8.7750]).addTo(map).bindPopup('📍 Aguçadoura');
+    L.marker([41.4800, -8.7780]).addTo(map).bindPopup('📍 Apúlia');
+    L.marker([41.5100, -8.7750]).addTo(map).bindPopup('📍 Fão');
+    L.marker([41.5300, -8.7800]).addTo(map).bindPopup('📍 Esposende');
+
+    L.marker([41.5450, -8.7820], {icon: hotelIcon}).addTo(map)
+        .bindPopup('<b>🌟 Casa Outeiro Polo 2</b>').openPopup();
+
+    dibujarRuta(map, [
+        [41.3804, -8.7609], [41.4100, -8.7750], [41.4800, -8.7780], 
+        [41.5100, -8.7750], [41.5300, -8.7800], [41.5420, -8.7850]
+    ]);
+}
+
+// --- ETAPA 4: MARINHAS -> VIANA DO CASTELO ---
+function cargarMapaEtapa4() {
+    const map = crearMapaBase(4, [41.6200, -8.8000], 11);
+    if (!map) return;
+
+    L.marker([41.5420, -8.7850]).addTo(map).bindPopup('<b>🚩 Inicio: Marinhas</b>');
+    L.marker([41.6932, -8.8325]).addTo(map).bindPopup('<b>🏁 Meta: Viana</b>');
+    L.marker([41.5800, -8.7900]).addTo(map).bindPopup('📍 Belinho');
+    L.marker([41.6200, -8.8050]).addTo(map).bindPopup('📍 Castelo do Neiva');
+    L.marker([41.6500, -8.8100]).addTo(map).bindPopup('📍 Chafé');
+    L.marker([41.6750, -8.8150]).addTo(map).bindPopup('📍 Darque');
+
+    L.marker([41.6980, -8.8280], {icon: hotelIcon}).addTo(map)
+        .bindPopup('<b>🌟 3 Marias Residence</b>').openPopup();
+
+    dibujarRuta(map, [
+        [41.5420, -8.7850], [41.5800, -8.7900], [41.6200, -8.8050], 
+        [41.6500, -8.8100], [41.6750, -8.8150], [41.6932, -8.8325]
+    ]);
+}
+
+// --- ETAPA 5: VIANA -> CAMINHA ---
+function cargarMapaEtapa5() {
+    const map = crearMapaBase(5, [41.7800, -8.8500], 11);
+    if (!map) return;
+
+    L.marker([41.6932, -8.8325]).addTo(map).bindPopup('<b>🚩 Inicio: Viana</b>');
+    L.marker([41.8760, -8.8380]).addTo(map).bindPopup('<b>🏁 Meta: Caminha</b>');
+    L.marker([41.7200, -8.8600]).addTo(map).bindPopup('📍 Areosa');
+    L.marker([41.7500, -8.8700]).addTo(map).bindPopup('📍 Carreço');
+    L.marker([41.8100, -8.8650]).addTo(map).bindPopup('📍 Vila Praia de Âncora');
+    L.marker([41.8450, -8.8680]).addTo(map).bindPopup('📍 Moledo');
+
+    L.marker([41.8770, -8.8390], {icon: hotelIcon}).addTo(map)
+        .bindPopup('<b>🌟 Casa Sebastiao</b>').openPopup();
+
+    dibujarRuta(map, [
+        [41.6932, -8.8325], [41.7200, -8.8600], [41.7500, -8.8700], 
+        [41.8100, -8.8650], [41.8450, -8.8680], [41.8760, -8.8380]
+    ]);
+}
+
+// --- ETAPA 6: CAMINHA -> PORTO MOUGÁS ---
+function cargarMapaEtapa6() {
+    const map = crearMapaBase(6, [41.9600, -8.8700], 11);
+    if (!map) return;
+
+    L.marker([41.8760, -8.8380]).addTo(map).bindPopup('<b>🚩 Inicio: Caminha</b>');
+    L.marker([42.0460, -8.8920]).addTo(map).bindPopup('<b>🏁 Meta: Porto Mougás</b>');
+    L.marker([41.8850, -8.8500]).addTo(map).bindPopup('⛴️ Ferry / A Pasaxe');
+    L.marker([41.9010, -8.8750]).addTo(map).bindPopup('📍 A Guarda');
+    L.marker([42.0000, -8.8770]).addTo(map).bindPopup('📍 Oia (Monasterio)');
+
+    L.marker([42.0500, -8.8950], {icon: hotelIcon}).addTo(map)
+        .bindPopup('<b>🌟 Casa Toñi</b>').openPopup();
+
+    dibujarRuta(map, [
+        [41.8760, -8.8380], [41.8850, -8.8500], [41.9010, -8.8750], 
+        [42.0000, -8.8770], [42.0460, -8.8920]
+    ]);
+}
+
+// --- ETAPA 7: PORTO MOUGÁS -> BAIONA ---
+function cargarMapaEtapa7() {
+    const map = crearMapaBase(7, [42.0800, -8.8700], 12);
+    if (!map) return;
+
+    L.marker([42.0460, -8.8920]).addTo(map).bindPopup('<b>🚩 Inicio: Mougás</b>');
+    L.marker([42.1195, -8.8505]).addTo(map).bindPopup('<b>🏁 Meta: Baiona</b>');
+    L.marker([42.0900, -8.8750]).addTo(map).bindPopup('📍 Baredo');
+
+    L.marker([42.1220, -8.8480], {icon: hotelIcon}).addTo(map)
+        .bindPopup('<b>🌟 Apt. Mariñeiro</b>').openPopup();
+
+    dibujarRuta(map, [
+        [42.0460, -8.8920], [42.0900, -8.8750], [42.1195, -8.8505]
+    ]);
+}
+
+// --- ETAPA 8: BAIONA -> PADRÓN (Transporte) ---
+function cargarMapaEtapa8() {
+    const map = crearMapaBase(8, [42.4500, -8.7500], 9);
+    if (!map) return;
+
+    L.marker([42.1195, -8.8505]).addTo(map).bindPopup('<b>🚍 Salida: Baiona</b>');
+    L.marker([42.7380, -8.6610]).addTo(map).bindPopup('<b>🏁 Llegada: Padrón</b>');
+    L.marker([42.2230, -8.9050]).addTo(map).bindPopup('🏝️ Islas Cíes');
+
+    L.marker([42.7390, -8.6620], {icon: hotelIcon}).addTo(map)
+        .bindPopup('<b>🌟 O Secreto (Padrón)</b>').openPopup();
+
+    const polyline = L.polyline([
+        [42.1195, -8.8505], [42.7380, -8.6610]
+    ], {color: '#7f8c8d', weight: 3, dashArray: '5, 10'}).addTo(map);
+    map.fitBounds(polyline.getBounds(), {padding: [50, 50]});
+}
+
+// --- ETAPA 9: PADRÓN -> SANTIAGO ---
+function cargarMapaEtapa9() {
+    const map = crearMapaBase(9, [42.8100, -8.6000], 11);
+    if (!map) return;
+
+    L.marker([42.7380, -8.6610]).addTo(map).bindPopup('<b>🚩 Inicio: Padrón</b>');
+    L.marker([42.8806, -8.5446]).addTo(map).bindPopup('<b>🏁 CATEDRAL DE SANTIAGO</b>');
+    L.marker([42.7480, -8.6550]).addTo(map).bindPopup('📍 Iria Flavia');
+    L.marker([42.7750, -8.6400]).addTo(map).bindPopup('📍 A Escravitude');
+    L.marker([42.8450, -8.5900]).addTo(map).bindPopup('📍 Milladoiro');
+
+    L.marker([42.8750, -8.5500], {icon: hotelIcon}).addTo(map)
+        .bindPopup('<b>🌟 Pensión da Sela</b>').openPopup();
+
+    dibujarRuta(map, [
+        [42.7380, -8.6610], [42.7480, -8.6550], [42.7750, -8.6400], 
+        [42.8450, -8.5900], [42.8806, -8.5446]
+    ]);
+}
 
     </script>
 
