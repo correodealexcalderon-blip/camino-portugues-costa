@@ -614,14 +614,177 @@ input:checked + .slider:before {
     .etapas-container.list-mode .btn-modal { width: 100%; text-align: center; }
 }
 
-/* --- ESTILOS MOCHILA --- */
-.backpack-group { margin-bottom: 25px; }
-.backpack-group h3 { color: #e67e22; border-bottom: 2px solid #eee; padding-bottom: 8px; margin-bottom: 12px; font-size: 1.1em; }
-.backpack-item { display: flex; align-items: center; padding: 10px; border-bottom: 1px dashed #f0f0f0; transition: background 0.2s; }
-.backpack-item:hover { background: #fffcf5; }
-.backpack-item input { transform: scale(1.3); margin-right: 12px; accent-color: #e67e22; cursor: pointer; }
-.backpack-item label { cursor: pointer; flex: 1; font-size: 0.95em; color: #555; }
-.backpack-item input:checked + label { text-decoration: line-through; color: #ccc; }
+/* --- ESTILOS MOCHILA PRO 2.0 (NUEVO) --- */
+
+/* Contenedor superior (Tarjeta Iberia + Regla Oro) */
+.backpack-header-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+@media (max-width: 600px) {
+    .backpack-header-grid { grid-template-columns: 1fr; }
+}
+
+/* Tarjeta Iberia */
+.airline-card {
+    background: white;
+    border: 1px solid #e1e1e1;
+    border-radius: 12px;
+    padding: 15px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-left: 5px solid #d70f21; /* Rojo Iberia */
+}
+
+.airline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 8px;
+}
+
+.airline-logo-text {
+    font-weight: 800;
+    color: #d70f21;
+    font-size: 1.1em;
+    letter-spacing: -0.5px;
+}
+
+.bag-specs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.spec-item strong {
+    display: block;
+    font-size: 1.4em;
+    color: #333;
+}
+
+.spec-item span {
+    font-size: 0.8em;
+    color: #777;
+    text-transform: uppercase;
+}
+
+/* Regla de Oro visual */
+.golden-rule-card {
+    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.golden-rule-icon { font-size: 1.8em; margin-bottom: 5px; }
+.golden-rule-text { font-size: 0.9em; color: #555; line-height: 1.4; }
+
+/* Barra de progreso visual */
+.mini-progress-container {
+    margin-top: 10px;
+    width: 100%;
+    background: #e0e0e0;
+    border-radius: 10px;
+    height: 8px;
+    overflow: hidden;
+}
+
+.mini-progress-bar {
+    height: 100%;
+    background: #27ae60;
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+/* Checklist Grid (Cuadrícula de categorías) */
+.checklist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 15px;
+}
+
+.checklist-category {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 15px;
+    border-top: 3px solid #ccc; /* Color por defecto */
+}
+
+/* Colores temáticos por categoría */
+.cat-docs { border-top-color: #3498db; } /* Azul */
+.cat-gear { border-top-color: #e67e22; } /* Naranja */
+.cat-meds { border-top-color: #e74c3c; } /* Rojo */
+.cat-tech { border-top-color: #9b59b6; } /* Violeta */
+
+.checklist-category h4 {
+    margin-bottom: 12px;
+    color: #2c3e50;
+    font-size: 1em;
+    font-weight: 700;
+}
+
+/* Items de la lista mejorados */
+.check-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.check-item:hover { color: #000; }
+
+/* Checkbox personalizado (Cuadradito bonito) */
+.check-item input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #cbd5e0;
+    border-radius: 4px;
+    margin-right: 10px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0; /* Evita que se aplaste si hay mucho texto */
+}
+
+.check-item input:checked {
+    background-color: #27ae60;
+    border-color: #27ae60;
+}
+
+/* El tick ✔️ */
+.check-item input:checked::after {
+    content: '✔';
+    font-size: 12px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Texto tachado al marcar */
+.check-item input:checked + span {
+    text-decoration: line-through;
+    color: #a0aec0;
+}
 
 /* --- ESTILOS SOS FLOTANTE --- */
 .btn-sos {
@@ -1140,6 +1303,71 @@ footer {
 /* 🤓 CURIOSIDADES (Turquesa) */
 .theme-curious h3::first-letter { background: #e0f2f1; border: 1px solid #b2dfdb; }
 .theme-curious .pro-card { border-left-color: #1abc9c; }
+
+/* Botón Check-in Iberia */
+.btn-checkin {
+    display: block; /* Ocupa todo el ancho */
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px;
+    background: #d70f21; /* Rojo corporativo */
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9em;
+    transition: background 0.2s ease, transform 0.2s;
+    box-shadow: 0 2px 5px rgba(215, 15, 33, 0.2);
+}
+
+.btn-checkin:hover {
+    background: #b30b1b; /* Rojo más oscuro al pasar el ratón */
+    transform: translateY(-1px);
+}
+
+/* Botón WhatsApp Emergencia */
+.btn-whatsapp-sos {
+    display: block;
+    width: 100%;
+    background: #25D366; /* Verde WhatsApp */
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+    transition: transform 0.2s;
+    text-decoration: none; /* Por si decidimos usar <a> */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-whatsapp-sos:hover {
+    background: #1ebc57;
+    transform: scale(1.02);
+}
+
+.sos-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #888;
+    margin: 15px 0;
+    font-size: 0.85em;
+}
+.sos-divider::before, .sos-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+}
+.sos-divider:not(:empty)::before { margin-right: .25em; }
+.sos-divider:not(:empty)::after { margin-left: .25em; }
 
     </style>
 
@@ -1678,50 +1906,104 @@ footer {
             </div> </div> </div> </div> ```
 
     <div class="modal-backdrop" id="modalMochila">
-    <div class="modal-panel" style="max-width: 600px;">
-        <div class="modal-header" style="background: #fff8e1; border-bottom: 2px solid #e67e22;">
-            <h2 style="color: #d35400;">🎒 Mochila del Peregrino</h2>
+    <div class="modal-panel" style="max-width: 850px;"> <div class="modal-header" style="background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%); border-bottom: none;">
+            <h2 style="color: #E65100; display: flex; align-items: center; gap: 10px;">
+                🎒 Mochila & Vuelo
+            </h2>
             <button class="modal-close" onclick="closeModal('modalMochila')">×</button>
         </div>
-        <div class="modal-body" style="grid-template-columns: 1fr;"> <div style="background: #e8f6f3; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #1abc9c;">
-                <p style="margin: 0; font-size: 0.9em; color: #16a085;">
-                    <strong>Regla de oro:</strong> Tu mochila no debería pesar más del 10% de tu peso corporal. ¡Lo agradecerás!
-                </p>
-                <div style="margin-top: 10px; font-weight: bold; color: #2c3e50;">
-                    Progreso: <span id="backpack-progress">0</span>% listo
+
+        <div class="modal-body" style="background-color: #fafafa; display: block;"> 
+            
+            <div class="backpack-header-grid">
+                
+                <div class="airline-card">
+    <div class="airline-header">
+        <span class="airline-logo-text">IBERIA</span>
+        <span style="font-size: 0.75em; background: #eee; padding: 2px 6px; border-radius: 4px; color: #555;">Equipaje Cabina</span>
+    </div>
+    
+    <div class="bag-specs">
+        <div class="spec-item">
+            <span style="font-size: 1.8em;">⚖️</span>
+            <strong>10 kg</strong>
+            <span>Peso Máx</span>
+        </div>
+        <div style="border-right: 1px solid #eee; height: 40px;"></div>
+        <div class="spec-item">
+            <span style="font-size: 1.8em;">📏</span>
+            <strong>56x40x25</strong>
+            <span>Centímetros</span>
+        </div>
+    </div>
+    
+    <div style="margin-top: 8px; font-size: 0.75em; color: #999; text-align: center; margin-bottom: 5px;">
+        *Incluye asas, bolsillos y ruedas.
+    </div>
+
+    <a href="https://www.iberia.com/es/autocheckin/" target="_blank" class="btn-checkin">
+        📲 Hacer Check-in Online
+    </a>
+</div>
+
+                <div class="golden-rule-card">
+                    <div class="golden-rule-icon">⚖️</div>
+                    <div class="golden-rule-text">
+                        <strong>Regla del 10%:</strong><br>
+                        Tu mochila no debería pesar más de 7-8 kg para caminar cómodo.
+                    </div>
+                    
+                    <div style="width: 100%; margin-top: 15px; text-align: left;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8em; font-weight: bold; color: #555; margin-bottom: 4px;">
+                            <span>Estado de la mochila</span>
+                            <span id="backpack-progress-text">0%</span>
+                        </div>
+                        <div class="mini-progress-container">
+                            <div class="mini-progress-bar" id="backpack-progress-bar"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="backpack-group">
-                <h3>📜 Documentación</h3>
-                <div class="backpack-item"><input type="checkbox" id="bp_dni" onchange="updateBackpack()"><label for="bp_dni">DNI / Pasaporte</label></div>
-                <div class="backpack-item"><input type="checkbox" id="bp_credencial" onchange="updateBackpack()"><label for="bp_credencial">Credencial del Peregrino</label></div>
-                <div class="backpack-item"><input type="checkbox" id="bp_seguro" onchange="updateBackpack()"><label for="bp_seguro">Tarjeta Sanitaria / Seguro</label></div>
-                <div class="backpack-item"><input type="checkbox" id="bp_dinero" onchange="updateBackpack()"><label for="bp_dinero">Efectivo y Tarjeta</label></div>
-            </div>
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
 
-            <div class="backpack-group">
-                <h3>🥾 Equipo Básico</h3>
-                <div class="backpack-item"><input type="checkbox" id="bp_botas" onchange="updateBackpack()"><label for="bp_botas">Calzado de trekking (domado)</label></div>
-                <div class="backpack-item"><input type="checkbox" id="bp_chanclas" onchange="updateBackpack()"><label for="bp_chanclas">Chanclas (ducha/descanso)</label></div>
-                <div class="backpack-item"><input type="checkbox" id="bp_saco" onchange="updateBackpack()"><label for="bp_saco">Chubasquero / Funda Mochila</label></div>
-                <div class="backpack-item"><input type="checkbox" id="bp_mochila" onchange="updateBackpack()"><label for="bp_mochila">Mochila (30-40L)</label></div>
-            </div>
+            <div class="checklist-grid">
+                
+                <div class="checklist-category cat-docs">
+                    <h4>📂 Documentación</h4>
+                    <label class="check-item"><input type="checkbox" id="bp_dni" onchange="updateBackpackPro()"><span>DNI / Pasaporte</span></label>
+                    <label class="check-item"><input type="checkbox" id="bp_credencial" onchange="updateBackpackPro()"><span>Credencial Peregrino</span></label>
+                    <label class="check-item"><input type="checkbox" id="bp_seguro" onchange="updateBackpackPro()"><span>Tarjeta Sanitaria</span></label>
+                    <label class="check-item"><input type="checkbox" id="bp_dinero" onchange="updateBackpackPro()"><span>Efectivo / Tarjetas</span></label>
+                    <label class="check-item"><input type="checkbox" id="bp_billetes" onchange="updateBackpackPro()"><span>Billetes Avión (PDF)</span></label>
+                </div>
 
-            <div class="backpack-group">
-                <h3>💊 Botiquín y Aseo</h3>
-                <div class="backpack-item"><input type="checkbox" id="bp_compeed" onchange="updateBackpack()"><label for="bp_compeed">Compeed / Aguja e hilo</label></div>
-                <div class="backpack-item"><input type="checkbox" id="bp_vaselina" onchange="updateBackpack()"><label for="bp_vaselina">Vaselina (anti-rozaduras)</label></div>
-                <div class="backpack-item"><input type="checkbox" id="bp_solar" onchange="updateBackpack()"><label for="bp_solar">Crema solar y Gorra</label></div>
-                <div class="backpack-item"><input type="checkbox" id="bp_jabon" onchange="updateBackpack()"><label for="bp_jabon">Jabón pastilla (cuerpo/ropa)</label></div>
-                <div class="backpack-item"><input type="checkbox" id="bp_toalla" onchange="updateBackpack()"><label for="bp_toalla">Toalla microfibra</label></div>
-            </div>
-            
-            <div class="backpack-group">
-                <h3>📱 Tecnología</h3>
-                <div class="backpack-item"><input type="checkbox" id="bp_movil" onchange="updateBackpack()"><label for="bp_movil">Móvil + Cargador</label></div>
-                <div class="backpack-item"><input type="checkbox" id="bp_power" onchange="updateBackpack()"><label for="bp_power">Powerbank (Batería externa)</label></div>
-                <div class="backpack-item"><input type="checkbox" id="bp_auriculares" onchange="updateBackpack()"><label for="bp_auriculares">Auriculares</label></div>
+                <div class="checklist-category cat-gear">
+                    <h4>🥾 Equipo Básico</h4>
+                    <label class="check-item"><input type="checkbox" id="bp_botas" onchange="updateBackpackPro()"><span>Calzado de trekking (domado)</span></label>
+                    <label class="check-item"><input type="checkbox" id="bp_chanclas" onchange="updateBackpackPro()"><span>Chanclas ducha/descanso</span></label>
+                    <label class="check-item"><input type="checkbox" id="bp_saco" onchange="updateBackpackPro()"><span>Chubasquero / Funda Mochila</span></label>
+                    <label class="check-item"><input type="checkbox" id="bp_mochila" onchange="updateBackpackPro()"><span>Mochila (30-40L)</span></label>
+                    <label class="check-item"><input type="checkbox" id="bp_cantimplora" onchange="updateBackpackPro()"><span>Cantimplora/Agua</span></label>
+                </div>
+
+                <div class="checklist-category cat-meds">
+                    <h4>💊 Botiquín & Aseo</h4>
+                    <label class="check-item"><input type="checkbox" id="bp_compeed" onchange="updateBackpackPro()"><span>Compeed / Aguja</span></label>
+                    <label class="check-item"><input type="checkbox" id="bp_vaselina" onchange="updateBackpackPro()"><span>Vaselina</span></label>
+                    <label class="check-item"><input type="checkbox" id="bp_solar" onchange="updateBackpackPro()"><span>Crema Solar / Gorra</span></label>
+                    <label class="check-item"><input type="checkbox" id="bp_jabon" onchange="updateBackpackPro()"><span>Jabón Pastilla cuerpo/ropa</span></label>
+                    <label class="check-item"><input type="checkbox" id="bp_toalla" onchange="updateBackpackPro()"><span>Toalla Microfibra</span></label>
+                </div>
+                
+                <div class="checklist-category cat-tech">
+                    <h4>📱 Tecnología</h4>
+                    <label class="check-item"><input type="checkbox" id="bp_movil" onchange="updateBackpackPro()"><span>Móvil + Cargador</span></label>
+                    <label class="check-item"><input type="checkbox" id="bp_power" onchange="updateBackpackPro()"><span>Powerbank</span></label>
+                    <label class="check-item"><input type="checkbox" id="bp_auriculares" onchange="updateBackpackPro()"><span>Auriculares</span></label>
+                    <label class="check-item"><input type="checkbox" id="bp_ladron" onchange="updateBackpackPro()"><span>Ladrón (Enchufes)</span></label>
+                </div>
+
             </div>
 
         </div>
@@ -3858,31 +4140,29 @@ Pasaremos aquí en Baiona 2 noches para descansar y conocer las Islas Cíes.
 
 <div class="modal-backdrop" id="modalSOS">
     <div class="modal-panel" style="max-width: 400px; text-align: center;">
-        <div class="modal-header" style="background: #e74c3c; color: white; justify-content: center;">
-            <h2 style="margin:0;">🆘 EMERGENCIA</h2>
+        <div class="modal-header" style="background: #e74c3c; color: white; justify-content: center; border-bottom: none;">
+            <h2 style="margin:0; font-size: 1.5em;">🆘 CENTRO DE AYUDA</h2>
         </div>
-        <div class="modal-body" style="display: block; padding: 30px;">
+        <div class="modal-body" style="display: block; padding: 25px;">
             
-            <p style="font-size: 1.1em; margin-bottom: 20px;">
-                Si tienes una emergencia real, pulsa el botón para llamar inmediatamente.
+            <p style="color: #666; margin-bottom: 20px;">
+                Elige la opción según tu situación:
             </p>
 
-            <a href="tel:112" style="display: block; background: #e74c3c; color: white; text-decoration: none; padding: 20px; border-radius: 10px; font-size: 1.5em; font-weight: bold; margin-bottom: 25px; box-shadow: 0 4px 10px rgba(231,76,60,0.3); transition: transform 0.2s;">
+            <a href="tel:112" style="display: block; background: #e74c3c; color: white; text-decoration: none; padding: 15px; border-radius: 10px; font-size: 1.2em; font-weight: bold; box-shadow: 0 4px 10px rgba(231,76,60,0.3); transition: transform 0.2s;">
                 📞 LLAMAR AL 112
             </a>
+            
+            <div class="sos-divider">O TAMBIÉN</div>
 
-            <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; border: 1px solid #eee;">
-                <h4 style="margin-bottom: 10px; color: #555;">📍 Tu Ubicación Actual</h4>
-                <div id="sos-location" style="font-family: monospace; font-size: 1.1em; color: #333; margin-bottom: 10px;">
-                    Esperando GPS...
-                </div>
-                <button onclick="getLocation()" style="background: #3498db; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.9em;">
-                    🔄 Obtener Coordenadas
-                </button>
-            </div>
+            <button onclick="sendWhatsappLocation()" class="btn-whatsapp-sos">
+                <span style="font-size: 1.3em;">💬</span> Enviar "Estoy Aquí"
+            </button>
 
-            <button onclick="closeModal('modalSOS')" style="margin-top: 25px; background: transparent; border: 1px solid #aaa; padding: 10px 20px; border-radius: 20px; cursor: pointer; color: #666;">
-                Cancelar
+            <div id="sos-status" style="font-size: 0.85em; color: #888; min-height: 20px; margin-top: 10px;"></div>
+
+            <button onclick="closeModal('modalSOS')" style="margin-top: 20px; background: transparent; border: 1px solid #aaa; padding: 8px 25px; border-radius: 20px; cursor: pointer; color: #666; font-size: 0.9em;">
+                Cerrar
             </button>
         </div>
     </div>
@@ -4195,6 +4475,32 @@ function switchView(mode, btn) {
         if(progressSpan) progressSpan.innerText = percent;
     }
 
+    // --- NUEVA LÓGICA MOCHILA PRO ---
+function updateBackpackPro() {
+    // 1. Ejecutamos la lógica antigua para guardar en memoria
+    updateBackpack(); 
+
+    // 2. Actualizamos la nueva barra visual PRO
+    const inputs = document.querySelectorAll('.check-item input');
+    let checkedCount = 0;
+    inputs.forEach(input => { if(input.checked) checkedCount++; });
+
+    const percent = inputs.length > 0 ? Math.round((checkedCount / inputs.length) * 100) : 0;
+    
+    // Actualizar texto
+    const textSpan = document.getElementById('backpack-progress-text');
+    if(textSpan) textSpan.innerText = percent + '%';
+
+    // Actualizar barra de color
+    const bar = document.getElementById('backpack-progress-bar');
+    if(bar) {
+        bar.style.width = percent + '%';
+        // Cambiar color si está completo
+        if(percent === 100) bar.style.background = '#f1c40f'; // Dorado
+        else bar.style.background = '#27ae60'; // Verde
+    }
+}
+
     function loadBackpackState() {
         const inputs = document.querySelectorAll('.backpack-item input');
         inputs.forEach(input => {
@@ -4218,55 +4524,67 @@ function switchView(mode, btn) {
     }
     });
 
-    // --- LÓGICA DE EMERGENCIA Y GPS ---
-    function openEmergencyModal() {
-        openModal('modalSOS');
-        // Intentamos obtener la ubicación automáticamente al abrir
-        getLocation();
+    // --- LÓGICA DE EMERGENCIA WHATSAPP ---
+
+function sendWhatsappLocation() {
+    const statusDiv = document.getElementById('sos-status');
+    statusDiv.innerHTML = "📡 Buscando satélites GPS...";
+    statusDiv.style.color = "#e67e22"; // Naranja
+
+    if (!navigator.geolocation) {
+        statusDiv.innerHTML = "❌ Tu navegador no soporta GPS";
+        alert("Tu dispositivo no permite acceso a la ubicación.");
+        return;
     }
 
-    function getLocation() {
-        const locBox = document.getElementById('sos-location');
-        locBox.innerHTML = "📡 Localizando...";
-        
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition, showError);
-        } else {
-            locBox.innerHTML = "GPS no soportado.";
+    navigator.geolocation.getCurrentPosition(
+        // Éxito
+        function(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const accuracy = position.coords.accuracy; // Precisión en metros
+
+            statusDiv.innerHTML = "✅ Ubicación obtenida. Abriendo WhatsApp...";
+            statusDiv.style.color = "#27ae60";
+
+            // Creamos el enlace de Google Maps
+            const mapsLink = `https://www.google.com/maps?q=${lat},${lon}`;
+            
+            // Mensaje de emergencia
+            const text = `🆘 *SOS / EMERGENCIA* \nNecesito ayuda o que sepas dónde estoy.\n\n📍 *Ubicación exacta:* ${mapsLink}\n(Precisión: +/- ${Math.round(accuracy)}m)`;
+
+            // Codificamos para URL
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
+
+            // Abrir WhatsApp
+            window.open(whatsappUrl, '_blank');
+        },
+        // Error
+        function(error) {
+            let errorMsg = "Error desconocido";
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    errorMsg = "❌ Denegaste el permiso de GPS.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    errorMsg = "❌ Señal GPS no disponible.";
+                    break;
+                case error.TIMEOUT:
+                    errorMsg = "❌ Tiempo de espera agotado.";
+                    break;
+            }
+            statusDiv.innerHTML = errorMsg;
+            statusDiv.style.color = "#c0392b";
+            alert("Por favor, activa la ubicación en tu móvil para usar esta función.");
+        },
+        // Opciones de alta precisión
+        {
+            enableHighAccuracy: true, // Forzar GPS real (no solo wifi)
+            timeout: 10000,           // Esperar máx 10 segundos
+            maximumAge: 0             // No usar caché antigua
         }
-    }
-
-    function showPosition(position) {
-        const lat = position.coords.latitude.toFixed(5);
-        const lon = position.coords.longitude.toFixed(5);
-        const locBox = document.getElementById('sos-location');
-        
-        // Generamos enlace directo a Google Maps
-        locBox.innerHTML = `
-            <strong>Lat:</strong> ${lat}<br><strong>Lon:</strong> ${lon}<br>
-            <a href="https://www.google.com/maps?q=${lat},${lon}" target="_blank" style="display:inline-block; margin-top:8px; color:#3498db; text-decoration:none; font-weight:bold;">
-                🗺️ Ver en Mapa
-            </a>
-        `;
-    }
-
-    function showError(error) {
-        const locBox = document.getElementById('sos-location');
-        switch(error.code) {
-            case error.PERMISSION_DENIED:
-                locBox.innerHTML = "⚠️ Acceso GPS denegado.";
-                break;
-            case error.POSITION_UNAVAILABLE:
-                locBox.innerHTML = "⚠️ Señal GPS no disponible.";
-                break;
-            case error.TIMEOUT:
-                locBox.innerHTML = "⚠️ Tiempo agotado.";
-                break;
-            default:
-                locBox.innerHTML = "⚠️ Error desconocido.";
-                break;
-        }
-    }
+    );
+}
 
     // --- LÓGICA DEL GESTOR DE GASTOS ---
 
@@ -4733,6 +5051,19 @@ function cargarMapaEtapa9() {
         [42.7380, -8.6610], [42.7480, -8.6550], [42.7750, -8.6400], 
         [42.8450, -8.5900], [42.8806, -8.5446]
     ]);
+}
+
+// --- FUNCIÓN QUE ABRE LA VENTANA DE EMERGENCIA ---
+function openEmergencyModal() {
+    // 1. Abre el modal usando la función genérica que ya tienes
+    openModal('modalSOS');
+    
+    // 2. Limpia el mensaje de estado anterior (para que se vea limpio)
+    const statusDiv = document.getElementById('sos-status');
+    if(statusDiv) {
+        statusDiv.innerHTML = ""; 
+        statusDiv.style.color = "#888";
+    }
 }
 
     </script>
