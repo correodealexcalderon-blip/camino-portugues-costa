@@ -1374,6 +1374,10 @@ footer {
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
     <div class="container">
@@ -2047,6 +2051,18 @@ footer {
                     </div>
                 </div>
 
+                <div class="modal-section theme-elevation">
+    <h3>⛰️ Perfil de la Etapa</h3>
+    <div class="pro-card">
+        <div style="height: 200px; width: 100%;">
+            <canvas id="elevation-etapa1"></canvas> 
+        </div>
+        <p style="font-size: 0.8em; color: #777; text-align: center; margin-top: 5px;">
+            📈 Desnivel acumulado: <span id="gain-etapa1">--</span>m
+        </p>
+    </div>
+</div>
+
                 <div class="modal-section theme-route">
                     <h3>📍 Tramos y Puntos de Parada</h3>
                     
@@ -2348,6 +2364,7 @@ footer {
         </div>
 
         <div class="modal-body">
+            
             <div class="modal-left">
 
                 <div class="widget-card" id="weather-etapa2" style="margin-bottom: 25px;">
@@ -2373,6 +2390,18 @@ footer {
                             <li><strong>Tipo de etapa:</strong> Costera, playas y centros urbanos</li>
                             <li><strong>Pavimento:</strong> Pasarelas de madera, playas y calles urbanas</li>
                         </ul>
+                    </div>
+                </div>
+
+                <div class="modal-section theme-elevation">
+                    <h3>⛰️ Perfil de la Etapa</h3>
+                    <div class="pro-card">
+                        <div style="height: 150px; width: 100%;">
+                            <canvas id="elevation-etapa2"></canvas>
+                        </div>
+                        <p style="font-size: 0.8em; color: #777; text-align: center; margin-top: 5px;">
+                            📈 Desnivel acumulado: <span id="gain-etapa2">--</span>m
+                        </p>
                     </div>
                 </div>
 
@@ -2479,9 +2508,7 @@ footer {
                     </div>
                 </div>
 
-            </div>
-
-            <div class="modal-right">
+            </div> <div class="modal-right">
                 
                 <div class="modal-section theme-sleep">
                     <h3>🏨 Alojamiento</h3>
@@ -2582,10 +2609,7 @@ footer {
                     </div>
                 </div>
 
-            </div>
-        </div>
-    </div>
-</div>
+            </div> </div> </div> </div> ```
 
      <!-- MODAL ETAPA 3 -->
     <div class="modal-backdrop" id="modalEtapa3">
@@ -2624,6 +2648,16 @@ footer {
                         </ul>
                     </div>
                 </div>
+
+                <div class="modal-section theme-elevation">
+    <h3>⛰️ Perfil de la Etapa</h3>
+    <div class="pro-card">
+        <div style="height: 150px; width: 100%;"> <canvas id="elevation-etapa3"></canvas> </div>
+        <p style="font-size: 0.8em; color: #777; text-align: center; margin-top: 5px;">
+            📈 Desnivel acumulado: <span id="gain-etapa3">--</span>m
+        </p>
+    </div>
+</div>
 
                 <div class="modal-section theme-route">
                     <h3>📍 Tramos y Puntos de Parada</h3>
@@ -2913,6 +2947,16 @@ footer {
                     </div>
                 </div>
 
+                <div class="modal-section theme-elevation">
+    <h3>⛰️ Perfil de la Etapa</h3>
+    <div class="pro-card">
+        <div style="height: 150px; width: 100%;"> <canvas id="elevation-etapa4"></canvas> </div>
+        <p style="font-size: 0.8em; color: #777; text-align: center; margin-top: 5px;">
+            📈 Desnivel acumulado: <span id="gain-etapa4">--</span>m
+        </p>
+    </div>
+</div>
+
                 <div class="modal-section theme-route">
                     <h3>📍 Tramos y Puntos de Parada</h3>
 
@@ -3177,6 +3221,16 @@ footer {
                     </div>
                 </div>
 
+                <div class="modal-section theme-elevation">
+    <h3>⛰️ Perfil de la Etapa</h3>
+    <div class="pro-card">
+        <div style="height: 150px; width: 100%;"> <canvas id="elevation-etapa5"></canvas> </div>
+        <p style="font-size: 0.8em; color: #777; text-align: center; margin-top: 5px;">
+            📈 Desnivel acumulado: <span id="gain-etapa5">--</span>m
+        </p>
+    </div>
+</div>
+
                 <div class="modal-section theme-route">
                     <h3>📍 Tramos y Puntos de Parada</h3>
 
@@ -3435,6 +3489,16 @@ footer {
                     </div>
                 </div>
 
+                <div class="modal-section theme-elevation">
+    <h3>⛰️ Perfil de la Etapa</h3>
+    <div class="pro-card">
+        <div style="height: 150px; width: 100%;"> <canvas id="elevation-etapa6"></canvas> </div>
+        <p style="font-size: 0.8em; color: #777; text-align: center; margin-top: 5px;">
+            📈 Desnivel acumulado: <span id="gain-etapa6">--</span>m
+        </p>
+    </div>
+</div>
+
                 <div class="modal-section theme-route">
                     <h3>📍 Tramos y Puntos de Parada</h3>
 
@@ -3683,6 +3747,16 @@ footer {
                     </div>
                 </div>
 
+                <div class="modal-section theme-elevation">
+    <h3>⛰️ Perfil de la Etapa</h3>
+    <div class="pro-card">
+        <div style="height: 150px; width: 100%;"> <canvas id="elevation-etapa7"></canvas> </div>
+        <p style="font-size: 0.8em; color: #777; text-align: center; margin-top: 5px;">
+            📈 Desnivel acumulado: <span id="gain-etapa7">--</span>m
+        </p>
+    </div>
+</div>
+
                 <div class="modal-section theme-route">
                     <h3>📍 Tramos y Puntos de Parada</h3>
 
@@ -3922,6 +3996,16 @@ Pasaremos aquí en Baiona 2 noches para descansar y conocer las Islas Cíes.
                         </ul>
                     </div>
                 </div>
+
+                <div class="modal-section theme-elevation">
+    <h3>⛰️ Perfil de la Etapa</h3>
+    <div class="pro-card">
+        <div style="height: 150px; width: 100%;"> <canvas id="elevation-etapa9"></canvas> </div>
+        <p style="font-size: 0.8em; color: #777; text-align: center; margin-top: 5px;">
+            📈 Desnivel acumulado: <span id="gain-etapa9">--</span>m
+        </p>
+    </div>
+</div>
 
                 <div class="modal-section theme-route">
                     <h3>📍 Tramos y Puntos de Parada</h3>
@@ -4178,7 +4262,9 @@ Pasaremos aquí en Baiona 2 noches para descansar y conocer las Islas Cíes.
     // Cargamos el diario, el clima y los gastos
     loadDiaryWidget(cleanId);
     loadExpensesIntoModal(cleanId);
-    
+
+    loadElevationProfile(cleanId);
+
     // --- NUEVO: CARGAR LA FOTO DEL DÍA SI EXISTE ---
     const savedPhoto = localStorage.getItem(`photo_${cleanId}`);
     if (savedPhoto) {
@@ -5064,6 +5150,112 @@ function openEmergencyModal() {
         statusDiv.innerHTML = ""; 
         statusDiv.style.color = "#888";
     }
+}
+
+// --- DATOS DE ELEVACIÓN (APROXIMADOS CAMINO COSTA) ---
+const elevationData = {
+    'etapa1': { // Oporto -> Labruge (Muy llano)
+        labels: ['0km', '5km', '10km', '15km', '20km', '24km'],
+        data: [10, 15, 12, 8, 10, 5], 
+        gain: '50'
+    },
+    'etapa2': { // Labruge -> Póvoa (Llano)
+        labels: ['0km', '4km', '8km', '12km', '14km'],
+        data: [5, 8, 10, 12, 10], 
+        gain: '30'
+    },
+    'etapa3': { // Póvoa -> Marinhas (Llano)
+        labels: ['0km', '5km', '10km', '15km', '20km', '24km'],
+        data: [10, 12, 15, 10, 20, 15], 
+        gain: '60'
+    },
+    'etapa4': { // Marinhas -> Viana (Subida al monte y bajada al río)
+        labels: ['0km', '5km', '8km', '12km', '16km', '21km'],
+        data: [20, 120, 150, 60, 40, 10], 
+        gain: '350' // ¡Aquí hay subida!
+    },
+    'etapa5': { // Viana -> Caminha (Pequeños repechos)
+        labels: ['0km', '5km', '10km', '15km', '20km', '26km'],
+        data: [10, 50, 80, 20, 40, 10], 
+        gain: '200'
+    },
+    'etapa6': { // Caminha -> Mougás (Costa rocosa)
+        labels: ['0km', '5km', '10km', '15km', '20km', '23km'],
+        data: [5, 40, 20, 30, 10, 15], 
+        gain: '150'
+    },
+    'etapa7': { // Mougás -> Baiona (¡LA SUBIDA DE BAREDO!)
+        labels: ['0km', '2km', '4km', '6km', '8km', '11km'],
+        data: [10, 20, 160, 140, 80, 10], 
+        gain: '300'
+    },
+    'etapa8': { // Descanso (Sin gráfico necesario o plano)
+        labels: ['0km', '10km'],
+        data: [10, 10], 
+        gain: '0'
+    },
+    'etapa9': { // Padrón -> Santiago (Subida Milladoiro)
+        labels: ['0km', '5km', '10km', '15km', '18km', '24km'],
+        data: [20, 40, 100, 150, 260, 260], 
+        gain: '450'
+    }
+};
+
+let elevationCharts = {}; // Para guardar los gráficos y no duplicarlos
+
+function loadElevationProfile(etapaId) {
+    const ctx = document.getElementById(`elevation-${etapaId}`);
+    
+    // Si no existe el canvas o ya dibujamos el gráfico, salimos
+    if (!ctx || elevationCharts[etapaId]) return;
+
+    const info = elevationData[etapaId];
+    if (!info) return;
+
+    // Actualizar texto de desnivel
+    const gainSpan = document.getElementById(`gain-${etapaId}`);
+    if(gainSpan) gainSpan.innerText = info.gain;
+
+    // Crear el Gráfico
+    elevationCharts[etapaId] = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: info.labels,
+            datasets: [{
+                label: 'Altitud (m)',
+                data: info.data,
+                borderColor: '#e67e22', // Color Naranja Camino
+                backgroundColor: 'rgba(230, 126, 34, 0.2)', // Relleno transparente
+                borderWidth: 3,
+                tension: 0.4, // Suaviza las curvas (0 es pico, 1 es curva)
+                fill: true,   // Rellenar debajo de la línea
+                pointRadius: 0, // Ocultar puntos para que se vea limpio
+                pointHoverRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }, // Ocultar leyenda
+                tooltip: { 
+                    mode: 'index', 
+                    intersect: false,
+                    backgroundColor: 'rgba(44, 62, 80, 0.9)',
+                    titleColor: '#f1c40f'
+                }
+            },
+            scales: {
+                y: { 
+                    beginAtZero: true,
+                    grid: { color: 'rgba(0,0,0,0.05)' } 
+                },
+                x: { 
+                    grid: { display: false } 
+                }
+            }
+        }
+    });
 }
 
     </script>
