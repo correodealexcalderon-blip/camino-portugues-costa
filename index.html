@@ -1369,6 +1369,117 @@ footer {
 .sos-divider:not(:empty)::before { margin-right: .25em; }
 .sos-divider:not(:empty)::after { margin-left: .25em; }
 
+/* --- MODO NOCHE: CORRECTOR DE PORTADA --- */
+body.dark-mode {
+    background-color: #121212 !important; /* Fondo general muy oscuro */
+    color: #e0e0e0;
+}
+
+/* 1. Tarjetas Principales (Las Etapas) */
+body.dark-mode .etapa {
+    background-color: #1e1e1e; /* Gris casi negro */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5); /* Sombra más oscura */
+    border-left: 5px solid #e74c3c; /* Mantiene el color rojo */
+}
+
+/* 2. El título de la etapa */
+body.dark-mode .etapa-title {
+    color: #ffffff;
+}
+
+/* 3. ¡EL ARREGLO CLAVE! Cajas de texto interiores */
+/* Esto arregla los recuadros grises claros que se veían mal */
+body.dark-mode .etapa-intro,
+body.dark-mode .stat-box,
+body.dark-mode .check-container,
+body.dark-mode .tramo,
+body.dark-mode .widget-card {
+    background-color: #2d2d2d !important; /* Gris oscuro suave */
+    border-color: #444;
+    color: #ccc;
+}
+
+/* 4. Textos pequeños y etiquetas */
+body.dark-mode .meta-label,
+body.dark-mode .stat-box-label {
+    color: #aaa; /* Gris claro para que se lea bien */
+}
+
+body.dark-mode .meta-value,
+body.dark-mode .stat-box-value {
+    color: #fff; /* Blanco brillante */
+}
+
+/* 5. La barra de progreso superior (Credencial) */
+body.dark-mode .progress-section {
+    background-color: #1e1e1e;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+body.dark-mode .progress-label {
+    color: #fff;
+}
+
+body.dark-mode .progress-bar-bg {
+    background-color: #333;
+}
+
+/* 6. Modales (Ventanas emergentes) */
+body.dark-mode .modal-panel {
+    background-color: #1e1e1e;
+    color: #ddd;
+}
+
+body.dark-mode .modal-header {
+    background-color: #252525;
+    border-bottom: 1px solid #333;
+}
+
+body.dark-mode .modal-header h2 {
+    color: white;
+}
+
+body.dark-mode .pro-card {
+    background-color: #2d2d2d !important;
+    border-color: #444;
+}
+
+/* 7. Ajuste para los Inputs de gastos en modo noche */
+body.dark-mode input.expense-input {
+    background-color: #444;
+    border-color: #555;
+    color: white;
+}
+
+/* Estilo para el botón cuando reemplaza al contador */
+.btn-compostela-header {
+    background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
+    color: #1a1a1a;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 800;
+    font-size: 0.9em;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-compostela-header:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
     </style>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -1407,9 +1518,8 @@ footer {
     </div>
 
     <div id="countdown-container" style="background: rgba(0,0,0,0.3); padding: 8px 16px; border-radius: 50px; margin-top: 20px; display: inline-block; border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(5px);">
-        <span style="font-size: 0.75em; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9;">⏳ Comienza en:</span>
+        <span style="font-size: 0.75em; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9;"></span>
         <div id="countdown" style="font-size: 1.2em; font-weight: 800; margin-top: 1px; color: #f1c40f;">
-            Cargando...
         </div>
     </div>
 
@@ -1428,6 +1538,11 @@ footer {
             <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify" class="app-icon">
             <span>Música</span>
         </a>
+
+        <button onclick="toggleTheme()" class="btn-app" style="background: linear-gradient(135deg, #2c3e50 0%, #000000 100%); border: 1px solid rgba(255,255,255,0.2);">
+    <span style="font-size: 1.2em;">🌙</span>
+    <span>Modo Noche</span>
+</button>
 
     </div>
 </div>
@@ -4337,29 +4452,64 @@ function removePhoto(etapaId) {
                 });
             });
         });
-        // --- CUENTA ATRÁS (HYPE TRAIN) ---
-    // Fecha de inicio: 1 de Junio de 2026 a las 08:00 AM
-    const fechaInicio = new Date("June 1, 2026 08:00:00").getTime();
+       /* --- CONTADOR TRIFÁSICO (INICIO -> SANTIAGO -> COMPOSTELA) --- */
+const fechaInicio = new Date(2026, 6, 1, 8, 0, 0).getTime();   // 1 Junio 08:00 AM
+const fechaMeta = new Date(2026, 6, 10, 12, 0, 0).getTime();   // 10 Junio 12:00 PM (Llegada)
 
-    const x = setInterval(function() {
-        const ahora = new Date().getTime();
-        const distancia = fechaInicio - ahora;
+const x = setInterval(function() {
+    const now = new Date().getTime();
+    const contenedor = document.getElementById("countdown-container");
 
-        const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-        const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+    if (!contenedor) return;
 
-        const elemento = document.getElementById("countdown");
-        if (elemento) {
-            elemento.innerHTML = dias + "d " + horas + "h " + minutos + "m ";
-            
-            if (distancia < 0) {
-                clearInterval(x);
-                elemento.innerHTML = "¡BUEN CAMINO!";
-                elemento.style.color = "#2ecc71";
-            }
-        }
-    }, 1000);
+    // Estilos base (Píldora pequeña y centrada)
+    contenedor.style.cssText = "display: inline-block !important; width: auto !important; background: rgba(0, 0, 0, 0.4); padding: 8px 25px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(5px); margin-top: 20px;";
+
+    if (now < fechaInicio) {
+        // --- FASE 1: CUENTA ATRÁS PARA EMPEZAR ---
+        const distance = fechaInicio - now;
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+        contenedor.innerHTML = `
+            <div style="color: #FFD700; text-shadow: 0 1px 2px rgba(0,0,0,0.5); display: flex; gap: 10px; align-items: baseline; justify-content: center;">
+                <span style="font-size: 1.4em; font-weight: 400;">${days}d</span> 
+                <span style="font-size: 1.4em; font-weight: 400;">${hours}h</span> 
+                <span style="font-size: 1.4em; font-weight: 400;">${minutes}m</span>
+            </div>
+            <div style="font-size: 0.65em; text-transform: uppercase; letter-spacing: 2px; margin-top: 2px; opacity: 0.8; color: #eee;">Para la aventura</div>
+        `;
+
+    } else if (now >= fechaInicio && now < fechaMeta) {
+        // --- FASE 2: EN RUTA (CUENTA ATRÁS PARA SANTIAGO) ---
+        const distance = fechaMeta - now;
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+        // Cambiamos el color a un azul celeste (#00d2ff) o blanco brillante para diferenciarlo
+        contenedor.innerHTML = `
+            <div style="color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5); display: flex; gap: 10px; align-items: baseline; justify-content: center;">
+                <span style="font-size: 1.4em; font-weight: 700;">${days}d</span> 
+                <span style="font-size: 1.4em; font-weight: 700;">${hours}h</span> 
+                <span style="font-size: 1.4em; font-weight: 700;">${minutes}m</span>
+            </div>
+            <div style="font-size: 0.65em; text-transform: uppercase; letter-spacing: 2px; margin-top: 2px; opacity: 1; color: #4facfe; font-weight: bold;">Rumbo a Santiago</div>
+        `;
+
+    } else {
+        // --- FASE 3: META ALCANZADA (BOTÓN) ---
+        clearInterval(x); 
+        contenedor.outerHTML = `
+            <div style="text-align: center; margin-top: 15px;">
+                <button onclick="generarDiploma()" class="btn-compostela-header">
+                    <span>🏅</span> Obtener Compostela
+                </button>
+            </div>
+        `;
+    }
+}, 1000);
         // --- LÓGICA DE LA BARRA DE PROGRESO ---
 
     function updateProgress() {
@@ -5257,6 +5407,27 @@ function loadElevationProfile(etapaId) {
         }
     });
 }
+
+// --- LÓGICA MODO NOCHE ---
+function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+    
+    // Guardamos la preferencia del usuario
+    if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+    } else {
+        localStorage.setItem('theme', 'light');
+    }
+}
+
+// Cargar el tema guardado al abrir la app
+document.addEventListener('DOMContentLoaded', function() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
+    // ... aquí sigue tu otro código de DOMContentLoaded ...
+});
 
     </script>
 
