@@ -1,22 +1,23 @@
 {
-  "name": "Camino Portugués 2026",
-  "short_name": "Camino2026",
+  "name": "Camino Portugués de la Costa 2026",
+  "short_name": "Camino de Santiago 2026",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#FFD700",
   "icons": [
     {
-      "src": "logo-camino1.png",
+      "src": "logo-camino1.jpg",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "logo-camino1.png",
+      "src": "logo-camino1.jpg",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
     }
   ]
 }
+
