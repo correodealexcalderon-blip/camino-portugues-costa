@@ -5373,6 +5373,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // ... aquí sigue tu otro código de DOMContentLoaded ...
 });
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js');
+}
     </script>
 
     <footer>
