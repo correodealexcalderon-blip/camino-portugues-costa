@@ -7,10 +7,11 @@
   "theme_color": "#FFD700",
   "icons": [
     {
-      "src": "logo-app.png",
+      "src": "logo-camino.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
   ]
 }
+
