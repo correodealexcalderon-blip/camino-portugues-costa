@@ -1451,35 +1451,6 @@ body.dark-mode input.expense-input {
     color: white;
 }
 
-/* Estilo para el botón cuando reemplaza al contador */
-.btn-compostela-header {
-    background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
-    color: #1a1a1a;
-    border: 1px solid rgba(255,255,255,0.3);
-    padding: 10px 20px;
-    border-radius: 30px;
-    font-weight: 800;
-    font-size: 0.9em;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.btn-compostela-header:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
-}
-
-@keyframes popIn {
-    0% { transform: scale(0.5); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
     </style>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -1488,6 +1459,11 @@ body.dark-mode input.expense-input {
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#FFD700">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 </head>
 <body>
@@ -1518,8 +1494,9 @@ body.dark-mode input.expense-input {
     </div>
 
     <div id="countdown-container" style="background: rgba(0,0,0,0.3); padding: 8px 16px; border-radius: 50px; margin-top: 20px; display: inline-block; border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(5px);">
-        <span style="font-size: 0.75em; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9;"></span>
+        <span style="font-size: 0.75em; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9;">⏳ Comienza en:</span>
         <div id="countdown" style="font-size: 1.2em; font-weight: 800; margin-top: 1px; color: #f1c40f;">
+            Cargando...
         </div>
     </div>
 
@@ -2218,13 +2195,14 @@ body.dark-mode input.expense-input {
                         </div>
                         <div class="tramo-content">
                             <p>Comienza aquí un largo tramo por la fachada marítima del barrio de Nevogilde, la Copacabana de Porto, pasando ante las concurridas playas de Ourigo, Ingleses, da Luz, Molhe… Al final llegamos al fuerte de São Francisco Xavier, más conocido como <strong>Castelo do Queijo</strong> (castillo del queso), donde comienza la extensa playa de Matosinhos, muy frecuentada por surfistas.</p>
+                            <p>A partir de aquí es probable que encontremos alguna flecha amarilla, pero no hay que agobiarse buscándolas pues el recorrido es intuitivo.</p>
                             <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
                                 <img src="https://porto-north-portugal.com/images/650x450/castelo-do-queijo-matosinhos.jpg" alt="Castelo do Queijo" style="width: 100%; height: 200px; object-fit: cover; display: block;">
                                 <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
                                     🌉 Castelo do Queijo (Castillo del Queso)
                                 </figcaption>
                             </figure>
-                            <p>Superamos una rotonda de forma elíptica con una curiosa escultura colgante que simboliza una red de pesca, si bien es más conocida como la <strong>Anémona</strong>; al final de la playa tenemos otra escultura, ésta figurativa, titulada <strong>Tragédia do Mar</strong> y dedicada al desastre acaecido aquí una noche de diciembre de 1947, donde naufragaron varios barcos de pesca y murieron 152 marineros.</p>
+                            <p>Superamos una rotonda de forma elíptica con una curiosa escultura colgante que simboliza una red de pesca, si bien es más conocida como la Anémona; al final de la playa tenemos otra escultura, ésta figurativa, titulada Tragédia do Mar y dedicada al desastre acaecido aquí una noche de diciembre de 1947, donde naufragaron varios barcos de pesca y murieron 152 marineros.</p>
                             <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
                                 <img src="https://lifecooler.com/files/registos/imagens/429139/240627.jpg" alt="Tragédia do Mar" style="width: 100%; height: 200px; object-fit: cover; display: block;">
                                 <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
@@ -4131,8 +4109,8 @@ Pasaremos aquí en Baiona 2 noches para descansar y conocer las Islas Cíes.
                             <div class="tramo-header-right"><span class="tramo-distance">1,0 km</span><span class="tramo-toggle-icon">＋</span></div>
                         </div>
                         <div class="tramo-content">
-                            <p>Salimos de Padrón por la calle Murgadán y nos aproximamos a la N-550 tras cruzar una canalización del río Sar. Cruzamos la nacional con precaución.</p>
-                            <p>El camino nos lleva directamente a la parte trasera de la Colegiata de Iria Flavia, antigua sede episcopal y lugar de gran importancia histórica.</p>
+                            <p>Siguiendo la misma dirección por la que llegamos ayer, por delante de la iglesia de Santiago, tomamos la calle Murgadán y, tras un giro a la derecha, nos aproximamos en diagonal a nuestra nacional N-550, a la que llegamos tras cruzar una canalización del río Sar.</p>
+                            <p>Cruzamos la N-550 por el paso de peatones con precaución. El camino nos conduce a la parte trasera de la colegiata de Iria Flavia (ver curiosidades).</p>
                             <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
                                 <img src="https://www.viajandoconpio.com/wp-content/uploads/2013/03/049044_HDR.jpg" alt="Colegiata de Iria Flavia" style="width: 100%; height: 200px; object-fit: cover; display: block;">
                                 <figcaption style="background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.9em; text-align: center; font-weight: 500;">
@@ -4149,7 +4127,8 @@ Pasaremos aquí en Baiona 2 noches para descansar y conocer las Islas Cíes.
                             <div class="tramo-header-right"><span class="tramo-distance">4,8 km</span><span class="tramo-toggle-icon">＋</span></div>
                         </div>
                         <div class="tramo-content">
-                            <p>Volvemos a la N-550 y cruzamos la vía del tren a nivel. Este tramo es una sucesión de cruces de la nacional y pequeños núcleos rurales. Hay que extremar la precaución con el tráfico.</p>
+                            <p>Enseguida volvemos a la N-550 para tomar, por su derecha, un carril que nos lleva a la vía del tren; la cruzamos a nivel. Continuamos recto, alcanzamos de nuevo la N-550, la cruzamos por el paso de peatones con mucha precaución y la vamos siguiendo.</p>
+                            <p>Dejamos la N-550 por una calle a mano izquierda. Atravesamos luego una retahíla de pequeños núcleos rural-urbanos; finalmente, al lado de la vía del tren, volvemos por enésima vez a la N-550, y también por enésima vez la cruzamos con mucha precaución. Y la seguimos por la izquierda.</p> 
                             <p>Llegamos al imponente santuario barroco da Escravitude, donde cuenta la leyenda que un esclavo se curó de su enfermedad bebiendo de su Fuente Santa.</p>
                             <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
                                 <img src="https://www.iglesiaenpadron.com/wp-content/uploads/2017/05/IMG-PARROQUIAS-ESCLAVITUD.jpg" alt="Santuario da Escravitude" style="width: 100%; height: 200px; object-fit: cover; display: block;">
@@ -4167,8 +4146,8 @@ Pasaremos aquí en Baiona 2 noches para descansar y conocer las Islas Cíes.
                             <div class="tramo-header-right"><span class="tramo-distance">4,1 km</span><span class="tramo-toggle-icon">＋</span></div>
                         </div>
                         <div class="tramo-content">
-                            <p>Ascendemos hasta la iglesia de Santa María de Cruces y tomamos una pista forestal que desciende hacia la vía del tren. Pasamos un bonito tramo bajo parras de viñas, típico paisaje gallego.</p>
-                            <p>Volvemos a la N-550 y tras 800 metros nos desviamos a la izquierda para cruzar O Faramello, un lugar estrechamente ligado a la literatura gallega.</p>
+                            <p>Por la derecha de la nacional ascendemos hasta la iglesia de Santa María de Cruces, dejando la aldea de Cruces a mano derecha. Más adelante tomamos una pista forestal que nos desciende hasta la vía del tren; la cruzamos y, después de un bonito tramo bajo un emparrado de viñas, alcanzamos la N-550</p>
+                            <p>Nacional N-550 (a la altura de la pensión-bar-restaurante Alfonso). Seguimos la nacional por la derecha; a 800 metros la dejamos por una carretera a mano izquierda, por la cual cruzamos O Faramello, un lugar estrechamente ligado a la literatura gallega.</p>
                             <div class="punto-parada"><div class="punto-parada-nombre">📍 O FARAMELLO</div><div class="distancia-acumulada">Distancia acumulada: 9,9 km</div></div>
                         </div>
                     </div>
@@ -4196,7 +4175,7 @@ Pasaremos aquí en Baiona 2 noches para descansar y conocer las Islas Cíes.
                             <div class="tramo-header-right"><span class="tramo-distance">6,2 km</span><span class="tramo-toggle-icon">＋</span></div>
                         </div>
                         <div class="tramo-content">
-                            <p>Cruzamos las vías del tren y avanzamos alternando asfalto y caminos de tierra, cruzando el río Tinto. La carretera CP-0206 nos obliga a desviarnos hacia una rotonda de la N-550 para poder cruzar.</p>
+                            <p>Doblamos a la izquierda y poco después, junto al restaurante Carboeiro, tomamos una pista de tierra que nos baja a un cruce, tras el cual ascendemos por una pista asfaltada en la misma dirección.</p>
                             <p>Comenzamos el ascenso hacia O Milladoiro, conocido como el "Humilladero" porque desde aquí los peregrinos veían por primera vez las torres de la Catedral y se arrodillaban. Llegamos a la capilla de Santa María Magdalena.</p>
                             <figure style="margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
                                 <img src="https://www.upmilladoiro.org/wp-content/uploads/2016/11/Santa_Maria_Magdalena03.jpg" alt="Capilla de Santa María Magdalena" style="width: 100%; height: 200px; object-fit: cover; display: block;">
@@ -4452,64 +4431,29 @@ function removePhoto(etapaId) {
                 });
             });
         });
-       /* --- CONTADOR TRIFÁSICO (INICIO -> SANTIAGO -> COMPOSTELA) --- */
-const fechaInicio = new Date(2026, 6, 1, 8, 0, 0).getTime();   // 1 Junio 08:00 AM
-const fechaMeta = new Date(2026, 6, 10, 12, 0, 0).getTime();   // 10 Junio 12:00 PM (Llegada)
+        // --- CUENTA ATRÁS (HYPE TRAIN) ---
+    // Fecha de inicio: 1 de Junio de 2026 a las 08:00 AM
+    const fechaInicio = new Date("June 1, 2026 08:00:00").getTime();
 
-const x = setInterval(function() {
-    const now = new Date().getTime();
-    const contenedor = document.getElementById("countdown-container");
+    const x = setInterval(function() {
+        const ahora = new Date().getTime();
+        const distancia = fechaInicio - ahora;
 
-    if (!contenedor) return;
+        const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
 
-    // Estilos base (Píldora pequeña y centrada)
-    contenedor.style.cssText = "display: inline-block !important; width: auto !important; background: rgba(0, 0, 0, 0.4); padding: 8px 25px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(5px); margin-top: 20px;";
-
-    if (now < fechaInicio) {
-        // --- FASE 1: CUENTA ATRÁS PARA EMPEZAR ---
-        const distance = fechaInicio - now;
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
-        contenedor.innerHTML = `
-            <div style="color: #FFD700; text-shadow: 0 1px 2px rgba(0,0,0,0.5); display: flex; gap: 10px; align-items: baseline; justify-content: center;">
-                <span style="font-size: 1.4em; font-weight: 400;">${days}d</span> 
-                <span style="font-size: 1.4em; font-weight: 400;">${hours}h</span> 
-                <span style="font-size: 1.4em; font-weight: 400;">${minutes}m</span>
-            </div>
-            <div style="font-size: 0.65em; text-transform: uppercase; letter-spacing: 2px; margin-top: 2px; opacity: 0.8; color: #eee;">Para la aventura</div>
-        `;
-
-    } else if (now >= fechaInicio && now < fechaMeta) {
-        // --- FASE 2: EN RUTA (CUENTA ATRÁS PARA SANTIAGO) ---
-        const distance = fechaMeta - now;
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
-        // Cambiamos el color a un azul celeste (#00d2ff) o blanco brillante para diferenciarlo
-        contenedor.innerHTML = `
-            <div style="color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5); display: flex; gap: 10px; align-items: baseline; justify-content: center;">
-                <span style="font-size: 1.4em; font-weight: 700;">${days}d</span> 
-                <span style="font-size: 1.4em; font-weight: 700;">${hours}h</span> 
-                <span style="font-size: 1.4em; font-weight: 700;">${minutes}m</span>
-            </div>
-            <div style="font-size: 0.65em; text-transform: uppercase; letter-spacing: 2px; margin-top: 2px; opacity: 1; color: #4facfe; font-weight: bold;">Rumbo a Santiago</div>
-        `;
-
-    } else {
-        // --- FASE 3: META ALCANZADA (BOTÓN) ---
-        clearInterval(x); 
-        contenedor.outerHTML = `
-            <div style="text-align: center; margin-top: 15px;">
-                <button onclick="generarDiploma()" class="btn-compostela-header">
-                    <span>🏅</span> Obtener Compostela
-                </button>
-            </div>
-        `;
-    }
-}, 1000);
+        const elemento = document.getElementById("countdown");
+        if (elemento) {
+            elemento.innerHTML = dias + "d " + horas + "h " + minutos + "m ";
+            
+            if (distancia < 0) {
+                clearInterval(x);
+                elemento.innerHTML = "¡BUEN CAMINO!";
+                elemento.style.color = "#2ecc71";
+            }
+        }
+    }, 1000);
         // --- LÓGICA DE LA BARRA DE PROGRESO ---
 
     function updateProgress() {

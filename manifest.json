@@ -1,0 +1,16 @@
+{
+  "name": "Camino Portugués 2026",
+  "short_name": "Camino2026",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#FFD700",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2850/2850737.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
