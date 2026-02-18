@@ -1,11 +1,17 @@
 {
   "name": "Camino Portugués 2026",
   "short_name": "Camino2026",
-  "start_url": "./index.html",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#FFD700",
   "icons": [
+    {
+      "src": "logo-camino1.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
     {
       "src": "logo-camino1.png",
       "sizes": "512x512",
